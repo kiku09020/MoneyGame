@@ -21,6 +21,11 @@ public class SimpleSingleton<T> : MonoBehaviour where T : Component {
 		}
 	}
 
+	protected virtual void Awake()
+	{
+		RemoveDuplicates();
+	}
+
 	// 新規作成
 	static void SetupInstance()
 	{
@@ -28,5 +33,13 @@ public class SimpleSingleton<T> : MonoBehaviour where T : Component {
 		obj.name = typeof(T).Name;
 
 		instance = obj.AddComponent<T>();
+	}
+
+	// インスタンスの重複削除
+	protected virtual void RemoveDuplicates()
+	{
+		if (instance) {
+			Destroy(gameObject);	// 既存であれば、自身を削除
+		}
 	}
 }

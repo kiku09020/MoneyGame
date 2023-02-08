@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Singleton<T> : SimpleSingleton<T> where T:Singleton<T>
 {
-	protected virtual void Awake()
+	sealed protected override void RemoveDuplicates()
 	{
-		RemoveDuplicates();
-	}
-
-	// インスタンスの重複を削除
-	void RemoveDuplicates()
-	{
-		// シーン上に無ければ
+		// シーン上に無ければ新規作成
 		if (!instance) {
 			instance = this as T;
 			DontDestroyOnLoad(gameObject);

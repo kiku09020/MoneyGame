@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// インスタンスの状態の操作をします。
-/// </summary>
-public class StateControllerBase : MonoBehaviour
+public abstract class StateMatchineBase<T> :MonoBehaviour where T:IStateBase
 {
 	/// <summary>
 	/// 現在の状態
 	/// </summary>
-	public IStateBase NowState { get; private set; }
+	public T NowState { get; protected set; }
 
 	/// <summary>
 	/// 状態の初期化
 	/// </summary>
 	/// /// <param name="initState">初期状態</param>
-	public void StateInit(IStateBase initState)
+	public void StateInit(T state)
 	{
-		NowState = initState;
+		NowState = state;
 		NowState.StateEnter();
 	}
 
@@ -34,10 +31,11 @@ public class StateControllerBase : MonoBehaviour
 	/// 状態遷移
 	/// </summary>
 	/// <param name="nextState">次の状態</param>
-	public void StateTransition(IStateBase nextState)
+	public void StateTransition(T nextState)
 	{
 		NowState.StateExit();
 		NowState = nextState;
 		NowState.StateEnter();
 	}
+
 }
