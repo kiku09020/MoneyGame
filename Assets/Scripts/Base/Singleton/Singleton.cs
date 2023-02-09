@@ -46,6 +46,7 @@ public class Singleton<T> : MonoBehaviour where T : Component {
 
         // Šù‚É‚ ‚ê‚Î©g‚ğíœ
         else {
+            LogController.ColoredLog($"*{gameObject} was destroyed.", Color.red);
             Destroy(gameObject);
         }
     }

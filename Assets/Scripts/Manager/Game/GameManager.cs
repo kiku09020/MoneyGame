@@ -14,13 +14,16 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         state.StateInit(GameStateMachine.TitleState);
-
-        BGM.Instance.Play(AudioNames.BGM_PALETTE);
     }
 
-	private void Update()
-	{
+    private void Start()
+    {
+        BGM.Instance.Play(AudioNames.BGM_PALETTE,0,0.5f,1);
+    }
 
+    private void Update()
+	{
+        transform.position= ExtendInput.Mouse_.GetMousePosition_World();
 	}
 
 	// Update is called once per frame

@@ -44,6 +44,10 @@ public abstract class AudioBase<T> : Singleton<T> where T: AudioBase<T>
 	/// <summary>
 	/// 音声の再生
 	/// </summary>
+	/// <param name="audioName">音声名</param>
+	/// <param name="delay">遅延秒数</param>
+	/// <param name="volume">音量</param>
+	/// <param name="pitch">ピッチ</param>
 	public virtual void Play(string audioName, float delay = 0, float volume = 1, float pitch = 1)
 	{
 		// 指定された音声ファイル名が存在しない場合
