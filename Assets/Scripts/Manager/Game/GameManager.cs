@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
 	{
-        transform.position= ExtendInput.Mouse_.GetMousePosition_World();
+        transform.position = ExtendInput.GetMousePosition_World();
 	}
 
 	// Update is called once per frame
