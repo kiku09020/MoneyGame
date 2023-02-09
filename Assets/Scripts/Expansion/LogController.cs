@@ -13,8 +13,8 @@ public abstract class LogController : MonoBehaviour
     static string AddColorTag(string str, Color color)
     {
         var code = ColorUtility.ToHtmlStringRGBA(color);
-        var startStr = $"<color=#{code}>";
-        var endStr = "</color>";
+        var startStr = $"<b><color=#{code}>";
+        var endStr = "</color></b>";
 
         return startStr + str + endStr;
     }
@@ -22,8 +22,8 @@ public abstract class LogController : MonoBehaviour
     // サイズタグ追加
     static string AddSizeTag(string str,int size)
     {
-        var startStr = $"<size={size}>";
-        var endStr = "</size>";
+        var startStr = $"<b><size={size}>";
+        var endStr = "</size></b>";
 
         return startStr + str + endStr;
     }

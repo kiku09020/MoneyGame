@@ -14,6 +14,8 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         state.StateInit(GameStateMachine.TitleState);
+
+        BGM.Instance.Play(AudioNames.BGM_PALETTE);
     }
 
 	private void Update()

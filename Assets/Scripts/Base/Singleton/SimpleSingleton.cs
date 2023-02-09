@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleSingleton<T> : MonoBehaviour where T : Component {
-	protected static T instance;
+	static T instance;
 
 	public static T Instance {
 		get {
@@ -36,7 +36,7 @@ public class SimpleSingleton<T> : MonoBehaviour where T : Component {
 	}
 
 	// インスタンスの重複削除
-	protected virtual void RemoveDuplicates()
+	void RemoveDuplicates()
 	{
 		if (instance) {
 			Destroy(gameObject);	// 既存であれば、自身を削除
