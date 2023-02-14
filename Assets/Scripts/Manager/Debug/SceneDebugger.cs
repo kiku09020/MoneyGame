@@ -4,27 +4,27 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Debug_ {
-    public class SceneDebuger : MonoBehaviour {
+    public class SceneDebugger : MonoBehaviour {
 
-        SceneInput inputActions;
+        DebugInput inputActions;
 
         private void Awake()
         {
-            inputActions = new SceneInput();
+            inputActions = new DebugInput();
 
 
-            inputActions.Debug.LoadPrevScene.performed += LoadPrevScene;
-            inputActions.Debug.LoadNextScene.performed += LoadNextScene;
-            inputActions.Debug.LoadNowScene.performed += LoadNowScene;
+            inputActions.Scene.LoadPrevScene.performed += LoadPrevScene;
+            inputActions.Scene.LoadNextScene.performed += LoadNextScene;
+            inputActions.Scene.LoadNowScene.performed += LoadNowScene;
 
             inputActions.Enable();
         }
 
 		private void OnDestroy()
 		{
-            inputActions.Debug.LoadPrevScene.performed -= LoadPrevScene;
-            inputActions.Debug.LoadNextScene.performed -= LoadNextScene;
-            inputActions.Debug.LoadNowScene.performed -= LoadNowScene;
+            inputActions.Scene.LoadPrevScene.performed -= LoadPrevScene;
+            inputActions.Scene.LoadNextScene.performed -= LoadNextScene;
+            inputActions.Scene.LoadNowScene.performed -= LoadNowScene;
 
             inputActions.Disable();
         }
