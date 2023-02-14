@@ -1,0 +1,98 @@
+{
+    "name": "SceneInput",
+    "maps": [
+        {
+            "name": "Debug",
+            "id": "d00efd91-1ab4-4534-8d4f-73761f9a78ee",
+            "actions": [
+                {
+                    "name": "LoadPrevScene",
+                    "type": "Button",
+                    "id": "e2005bec-4b8f-4c19-8519-73b214029b44",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LoadNextScene",
+                    "type": "Button",
+                    "id": "9533feab-3632-405e-9325-675632daf056",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "key",
+                    "id": "e4e84da9-6c4a-41d5-89f1-7fe2b91bee72",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadPrevScene",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "6c888204-5eef-4c04-ae30-0dd8693b0077",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadPrevScene",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "4c31acf9-3f6c-4e92-aa76-4d75ea91b987",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadPrevScene",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "key",
+                    "id": "00245dd6-c183-475b-a859-75c22458b0f9",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadNextScene",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "710133dc-018f-46d3-b60b-a01db86ff8f9",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadNextScene",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "00dcec61-b63c-4046-95d1-1348917fcbe0",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadNextScene",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
