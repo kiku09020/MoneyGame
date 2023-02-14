@@ -33,7 +33,7 @@ public partial class @SceneInput : IInputActionCollection2, IDisposable
                     ""id"": ""e2005bec-4b8f-4c19-8519-73b214029b44"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -42,7 +42,16 @@ public partial class @SceneInput : IInputActionCollection2, IDisposable
                     ""id"": ""9533feab-3632-405e-9325-675632daf056"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadNowScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""fa1757a2-d69a-4b19-b194-d343e967bbdf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -73,6 +82,39 @@ public partial class @SceneInput : IInputActionCollection2, IDisposable
                     ""name"": ""binding"",
                     ""id"": ""4c31acf9-3f6c-4e92-aa76-4d75ea91b987"",
                     ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadPrevScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""ctrl"",
+                    ""id"": ""ae7e4a29-8e19-4865-9ea3-ec3d46011868"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadPrevScene"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""a009b6af-1a80-40d7-8e8f-7eeb74289d29"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadPrevScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""f35d1ba6-05a5-4924-86de-f195784a4530"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -112,6 +154,105 @@ public partial class @SceneInput : IInputActionCollection2, IDisposable
                     ""action"": ""LoadNextScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""ctrl"",
+                    ""id"": ""15429686-3bed-4861-8891-28c8ee3c0d71"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNextScene"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""55ba8e8e-7e4c-41a8-b64e-9005e14ceecf"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNextScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""a6b01546-40c7-4667-ae85-8871cb8ceb7c"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNextScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""key"",
+                    ""id"": ""c8bf4af7-a26d-4e96-a2d2-8e0cba8cc382"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNowScene"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""025f1a2e-749b-4c72-b871-64423f493fce"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNowScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""20dc3934-5f3f-4930-924b-f7dd28310bb4"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNowScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""ctrl"",
+                    ""id"": ""5b6c432b-fd71-4768-a107-4465d625fcfd"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNowScene"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""9f5f61fd-5525-4850-bbbf-d16d4a50884b"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNowScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""7df17ade-d8f6-47ee-b549-e15131d4954f"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNowScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -122,6 +263,7 @@ public partial class @SceneInput : IInputActionCollection2, IDisposable
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_LoadPrevScene = m_Debug.FindAction("LoadPrevScene", throwIfNotFound: true);
         m_Debug_LoadNextScene = m_Debug.FindAction("LoadNextScene", throwIfNotFound: true);
+        m_Debug_LoadNowScene = m_Debug.FindAction("LoadNowScene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,12 +325,14 @@ public partial class @SceneInput : IInputActionCollection2, IDisposable
     private IDebugActions m_DebugActionsCallbackInterface;
     private readonly InputAction m_Debug_LoadPrevScene;
     private readonly InputAction m_Debug_LoadNextScene;
+    private readonly InputAction m_Debug_LoadNowScene;
     public struct DebugActions
     {
         private @SceneInput m_Wrapper;
         public DebugActions(@SceneInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @LoadPrevScene => m_Wrapper.m_Debug_LoadPrevScene;
         public InputAction @LoadNextScene => m_Wrapper.m_Debug_LoadNextScene;
+        public InputAction @LoadNowScene => m_Wrapper.m_Debug_LoadNowScene;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -204,6 +348,9 @@ public partial class @SceneInput : IInputActionCollection2, IDisposable
                 @LoadNextScene.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnLoadNextScene;
                 @LoadNextScene.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnLoadNextScene;
                 @LoadNextScene.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnLoadNextScene;
+                @LoadNowScene.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnLoadNowScene;
+                @LoadNowScene.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnLoadNowScene;
+                @LoadNowScene.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnLoadNowScene;
             }
             m_Wrapper.m_DebugActionsCallbackInterface = instance;
             if (instance != null)
@@ -214,6 +361,9 @@ public partial class @SceneInput : IInputActionCollection2, IDisposable
                 @LoadNextScene.started += instance.OnLoadNextScene;
                 @LoadNextScene.performed += instance.OnLoadNextScene;
                 @LoadNextScene.canceled += instance.OnLoadNextScene;
+                @LoadNowScene.started += instance.OnLoadNowScene;
+                @LoadNowScene.performed += instance.OnLoadNowScene;
+                @LoadNowScene.canceled += instance.OnLoadNowScene;
             }
         }
     }
@@ -222,5 +372,6 @@ public partial class @SceneInput : IInputActionCollection2, IDisposable
     {
         void OnLoadPrevScene(InputAction.CallbackContext context);
         void OnLoadNextScene(InputAction.CallbackContext context);
+        void OnLoadNowScene(InputAction.CallbackContext context);
     }
 }

@@ -2,62 +2,90 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+/// <summary>
+/// ログ用のタグ
+/// </summary>
+public enum LogTag {
+    Invalid = -1,
+    Debug,
+    Scene,
+    Audio,
+}
+
 public abstract class LogController : MonoBehaviour
 {
-    public static void Log(object message)
+    public static void Log(object message, LogTag tag = LogTag.Invalid)
     {
-        Debug.Log(message);
+        var msg = AddMessageTag(message, tag);
+
+        Debug.Log(msg);
     }
 
     // 色タグ追加
-    static string AddColorTag(string str, Color color)
+    static string AddColorTag(object msg, Color color)
     {
         var code = ColorUtility.ToHtmlStringRGBA(color);
-        var startStr = $"<b><color=#{code}>";
-        var endStr = "</color></b>";
+        var codeStart = $"<b><color=#{code}>";
+        var codeEnd = "</color></b>";
 
-        return startStr + str + endStr;
+        return codeStart + msg.ToString() + codeEnd;
     }
 
     // サイズタグ追加
-    static string AddSizeTag(string str,int size)
+    static string AddSizeTag(object msg,int size)
     {
-        var startStr = $"<b><size={size}>";
-        var endStr = "</size></b>";
+        var codeStart = $"<b><size={size}>";
+        var codeEnd = "</size></b>";
 
-        return startStr + str + endStr;
+        return codeStart + msg.ToString() + codeEnd;
     }
+
+    // [○○]のようなタグを追加
+    static string AddMessageTag(object msg,LogTag tag)
+	{
+        // タグ無効でなければ[タグ]付与
+		if (tag != LogTag.Invalid) {
+            return $"[{tag}]" + msg.ToString();
+		}
+
+        return msg.ToString();
+	}
 
     /// <summary>
     /// 色付きログ表示
     /// </summary>
-    public static void ColoredLog(object message,Color color)
+    public static void ColoredLog(object message, Color color, LogTag tag = LogTag.Invalid)
     {
-        var str= AddColorTag(message.ToString(), color);
+        var tagdMsg = AddMessageTag(message, tag);
+        var coloredMsg= AddColorTag(tagdMsg, color);
 
-        Debug.Log(str);
+        Debug.Log(coloredMsg);
     }
 
     /// <summary>
     /// サイズ指定ログ表示
     /// </summary>
-    public static void ReSizedLog(object message,int size)
+    public static void ReSizedLog(object message, int size, LogTag tag = LogTag.Invalid)
     {
-        var str = AddSizeTag(message.ToString(), size);
+        var tagdMsg = AddMessageTag(message, tag);
+        var resizedMsg = AddSizeTag(tagdMsg, size);
 
-        Debug.Log(str);
+        Debug.Log(resizedMsg);
     }
 
     /// <summary>
     /// 色とサイズ指定されたログ表示
     /// </summary>
-    public static void ColoredAndResizedLog(object message,Color color, int size)
+    public static void ColoredAndResizedLog(object message, Color color, int size, LogTag tag = LogTag.Invalid)
     {
-        var coloredStr = AddColorTag(message.ToString(), color);
-        var str = AddSizeTag(coloredStr, size);
+        var tagdMsg = AddMessageTag(message, tag);
+        var coloredMsg = AddColorTag(tagdMsg, color);
+        var resizedMsg = AddSizeTag(coloredMsg, size);
 
-        Debug.Log(str);
+        Debug.Log(resizedMsg);
     }
 
     
 }
+#endif

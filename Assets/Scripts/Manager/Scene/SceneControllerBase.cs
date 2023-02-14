@@ -21,7 +21,7 @@ public abstract class SceneControllerBase<T> : Singleton<T> where T:SceneControl
         NowScene.Setup();
 
         /* ‚±‚±‚Éˆ—‚ğ’Ç‰Á */
-        
+        BGM.Instance.Stop();
     }
 
     /// <summary>

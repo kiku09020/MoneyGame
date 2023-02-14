@@ -10,7 +10,7 @@ public static class NowScene {
     public static void Setup()
     {
         Scene = SceneManager.GetActiveScene();
-        Debug.Log($"{SceneName} was setuped.");
+        LogController.Log($"{SceneName} was setuped.",LogTag.Scene);
     }
 
     /// <summary>

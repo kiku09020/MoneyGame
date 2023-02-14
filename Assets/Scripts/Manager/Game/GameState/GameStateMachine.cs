@@ -12,6 +12,8 @@ namespace GameController {
 		{
 			MainState = gameObject.AddComponent<MainGameState>();
 			TitleState = gameObject.AddComponent<TitleState>();
+
+			StateInit(MainState);
 		}
 	}
 }

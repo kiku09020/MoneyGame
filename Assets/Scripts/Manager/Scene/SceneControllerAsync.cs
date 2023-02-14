@@ -24,7 +24,7 @@ public class SceneControllerAsync : SceneControllerBase<SceneControllerAsync>
     }
 
     // ÉRÉãÅ[É`Éì
-    IEnumerator LoadIEnumerator(Action<AsyncOperation> loadingAction, int sceneIndex)
+    static IEnumerator LoadIEnumerator(Action<AsyncOperation> loadingAction, int sceneIndex)
     {
         var async = SceneManager.LoadSceneAsync(sceneIndex);
 

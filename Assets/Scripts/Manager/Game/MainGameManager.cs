@@ -12,7 +12,7 @@ public class MainGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        state.StateInit(GameStateMachine.TitleState);
+        
     }
 
     private void Start()
@@ -22,8 +22,6 @@ public class MainGameManager : MonoBehaviour
 
     private void Update()
 	{
-        transform.position = ExtendInput.GetMousePosition_World();
-
         
 	}
 

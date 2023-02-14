@@ -6,7 +6,7 @@ using UnityEngine;
 public class AspectSetter : MonoBehaviour
 {
     [Header("Camera")]
-    [SerializeField] Camera camera;
+    [SerializeField] Camera _camera;
 
     [Header("Parameters")]
     [SerializeField] Vector2 targetAspectVector;
@@ -45,6 +45,6 @@ public class AspectSetter : MonoBehaviour
             rect.y = 0.5f - rect.height * 0.5f;
         }
 
-        camera.rect = rect;
+        _camera.rect = rect;
     }
 }

@@ -52,7 +52,7 @@ public abstract class AudioBase<T> : Singleton<T> where T: AudioBase<T>
 	{
 		// 指定された音声ファイル名が存在しない場合
         if (!dict.ContainsKey(audioName)) {
-			LogController.ColoredLog("指定された音声は存在しません。", Color.red);
+			LogController.ColoredLog("指定された音声は存在しません。", Color.red, LogTag.Audio);
 			return;
         }
 

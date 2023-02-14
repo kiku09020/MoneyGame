@@ -15,9 +15,24 @@ namespace Debug_ {
 
             inputActions.Debug.LoadPrevScene.performed += LoadPrevScene;
             inputActions.Debug.LoadNextScene.performed += LoadNextScene;
+            inputActions.Debug.LoadNowScene.performed += LoadNowScene;
 
             inputActions.Enable();
         }
+
+		private void OnDestroy()
+		{
+            inputActions.Debug.LoadPrevScene.performed -= LoadPrevScene;
+            inputActions.Debug.LoadNextScene.performed -= LoadNextScene;
+            inputActions.Debug.LoadNowScene.performed -= LoadNowScene;
+
+            inputActions.Disable();
+        }
+
+		void LoadNowScene(InputAction.CallbackContext callbackContext)
+		{
+            SceneControllerAsync.Instance.LoadNowScene();
+		}
 
         void LoadPrevScene(InputAction.CallbackContext callbackContext)
         {
