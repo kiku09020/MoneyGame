@@ -33,6 +33,7 @@ public class Singleton<T> : MonoBehaviour where T : Component {
         obj.name = typeof(T).Name;
 
         instance = obj.AddComponent<T>();
+        DontDestroyOnLoad(obj);
     }
 
     // インスタンスの重複削除

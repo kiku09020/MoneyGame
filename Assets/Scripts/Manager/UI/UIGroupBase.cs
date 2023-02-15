@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class UIGroupBase : MonoBehaviour
 {
+    /// <summary>
+    /// UI‚Ì‰Šú‰»
+    /// </summary>
     public abstract void Initialize();
 
     /// <summary>

@@ -31,6 +31,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        uiGroupList.Clear();
+    }
+
     /// <summary>
     /// <typeparamref name="T"/>Œ^‚ÌUIGroup‚ðŽæ“¾‚·‚é
     /// </summary>

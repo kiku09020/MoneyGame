@@ -10,6 +10,8 @@ public abstract class SceneControllerBase<T> : Singleton<T> where T:SceneControl
 
     protected override void Awake()
     {
+        NowScene.Setup();       // 現在の状態のセットアップ
+
         // イベント追加
         SceneManager.sceneLoaded += SceneLoaded;
         sceneCount = SceneManager.sceneCountInBuildSettings;

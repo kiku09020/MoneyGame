@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: dd9126ccc16d52d4cbccc52568b8c2de
+labels:
+- Audio
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

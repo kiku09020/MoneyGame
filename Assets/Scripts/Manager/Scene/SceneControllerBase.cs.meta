@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: f0ece90999425f6419880571788aac82
+labels:
+- Scene
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
