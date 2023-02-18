@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_EDITOR
 /// <summary>
 /// ログ用のタグ
 /// </summary>
@@ -88,4 +87,3 @@ public abstract class LogController : MonoBehaviour
 
     
 }
-#endif
