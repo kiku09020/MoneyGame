@@ -15,4 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Test/Mobile/MobileCamera_2.unity
     guid: 586f3dd201293534aba51903a86a1034
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 6f4803fdd40a1214fbb477b143256c79, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 1a7b81ac671f12d4c889f3faea873d6d, type: 2}
