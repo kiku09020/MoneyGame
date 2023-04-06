@@ -12,10 +12,10 @@ namespace MyEditor {
             {
                 switch (direction) {
                     case Direction.vertical:
-                        return isColored ? new GUILayout.VerticalScope(GUI.skin.box) : new GUILayout.VerticalScope();
+                        return isColored ? new EditorGUILayout.VerticalScope(GUI.skin.box) : new EditorGUILayout.VerticalScope();
 
                     case Direction.horizontal:
-                        return isColored ? new GUILayout.HorizontalScope(GUI.skin.box) : new GUILayout.HorizontalScope();
+                        return isColored ? new EditorGUILayout.HorizontalScope(GUI.skin.box) : new EditorGUILayout.HorizontalScope();
                 }
 
                 return null;
@@ -39,17 +39,19 @@ namespace MyEditor {
             /// </summary>
             public static bool Folder(bool folderFlag, string itemName, Direction direction, Action folderAction)
             {
-                Grouping(direction, false, () =>
-                {
-                    folderFlag = EditorGUILayout.BeginFoldoutHeaderGroup(folderFlag, itemName);
+                folderFlag = EditorGUILayout.BeginFoldoutHeaderGroup(folderFlag, itemName);
 
-                    // 開いている状態のとき、Action実行
-                    if (folderFlag) {
-                        folderAction?.Invoke();
-                    }
+                using (new EditorGUILayout.HorizontalScope()) {
+                    Space(SpaceType.horizontal);
+                    Grouping(direction, false, () => {
+                        // 開いている状態のとき、Action実行
+                        if (folderFlag) {
+                            folderAction?.Invoke();
+                        }
+                    });
 
+                }
                     EditorGUILayout.EndFoldoutHeaderGroup();
-                });
                 return folderFlag;
             }
 
@@ -59,10 +61,13 @@ namespace MyEditor {
             public static bool ToggleGroup(bool toggleFlag,string itemName,Direction direction,Action action)
 			{
                 using (var group = new EditorGUILayout.ToggleGroupScope(itemName, toggleFlag)) {
-                    toggleFlag = group.enabled;
+                    using (new EditorGUILayout.HorizontalScope()) {
+                        toggleFlag = group.enabled;
 
-                    Grouping(direction, false, action);
-				}
+                        Space(SpaceType.horizontal);
+                        Grouping(direction, false, action);
+                    }
+                }
 
                 return toggleFlag;
 			}
@@ -70,10 +75,9 @@ namespace MyEditor {
             /// <summary>
             /// 編集不可にする
             /// </summary>
-            public static void DisableGroup(Action action,  Direction direction = Direction.vertical, bool disable = true)
+            public static void DisableGroup(Action action, Direction direction = Direction.vertical, bool disable = true)
             {
-                Grouping(direction, false, () =>
-                {
+                Grouping(direction, false, () => {
                     EditorGUI.BeginDisabledGroup(disable);
                     action?.Invoke();
                     EditorGUI.EndDisabledGroup();

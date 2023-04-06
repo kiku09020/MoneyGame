@@ -11,6 +11,8 @@ namespace Test {
     public class WindowEditorTest : WindowEditorBase {
 
         bool folder;
+        bool folder2;
+
         Vector2 scrollPos;
         Vector2 scroll_2;
 
@@ -36,6 +38,8 @@ namespace Test {
                     EditorTemplate.Group.Grouping(vertical, true, () => {
                         // ラベルグループ(開閉可能)
                         folder = EditorTemplate.Group.Folder(folder, "Group",vertical, () => {
+
+
                             EditorGUILayout.LabelField("Label");
                             EditorGUILayout.SelectableLabel("Label2");
                         });
