@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Damage
-  - PlatForm
+  - Coin
+  - Bill
   layers:
   - Default
   - TransparentFX
@@ -13,9 +13,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Stage
-  - Item
+  - Money
+  - 
+  - 
   - 
   - 
   - 
@@ -45,4 +45,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Money
+    uniqueID: 3099705697
     locked: 0
