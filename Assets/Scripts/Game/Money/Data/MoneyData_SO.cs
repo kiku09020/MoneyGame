@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="MoneyData",menuName ="ScriptableObject/Money")]
 public class MoneyData_SO : ScriptableObject
 {
-    [SerializeField] List<MoneyData> moneyDatas = new List<MoneyData>();
+    public List<MoneyData> moneyDatas = new List<MoneyData>();
 
     //--------------------------------------------------
 }
