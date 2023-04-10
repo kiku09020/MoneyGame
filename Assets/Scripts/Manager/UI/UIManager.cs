@@ -84,6 +84,23 @@ public class UIManager : MonoBehaviour
     /// UIGroupを表示する
     /// </summary>
     /// <param name="uiGroup">表示するUIGroupのインスタンス</param>
+    public static void ShowUIGroup(UIGroupBase uiGroup)
+    {
+        if (currentUIGroup) {
+            histroy.Push(currentUIGroup);
+            currentUIGroup.Hide();
+        }
+
+        uiGroup.Show();
+        currentUIGroup = uiGroup;
+
+        ShowCommon();
+    }
+
+    /// <summary>
+    /// UIGroupを表示する
+    /// </summary>
+    /// <param name="uiGroup">表示するUIGroupのインスタンス</param>
     /// <param name="remember">履歴に残すか</param>
     public static void ShowUIGroup(UIGroupBase uiGroup, bool remember = true)
     {
