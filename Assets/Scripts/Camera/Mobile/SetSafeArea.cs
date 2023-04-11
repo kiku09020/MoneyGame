@@ -12,7 +12,7 @@ public class SetSafeArea : MonoBehaviour
 		rect = GetComponent<RectTransform>();
 	}
 
-	private void Update()
+	private void LateUpdate()
 	{
 		if (UnityEngine.Device.SystemInfo.deviceType == DeviceType.Handheld) {
 			var area = Screen.safeArea;
