@@ -10,11 +10,26 @@ using GameController;
 
 public class MoneyGenerator : MonoBehaviour
 {
+	[Header("Parameters")]
 	[SerializeField] int waitFrame = 10;
 	[SerializeField] float moveToGroupDuration = 0.1f;
 	[SerializeField] float alignmentMoveDuration = 0.1f;
 
+	[Header("Components")]
 	[SerializeField] GameStateMachine state;
+
+	[Header("MoneyList")]
+	[SerializeField] List<MoneyUnit> moneyUnitList = new List<MoneyUnit>();
+
+	//--------------------------------------------------
+
+	// Proparties
+	/// <summary>
+	/// 生成中かどうか
+	/// </summary>
+	public static bool IsGenerating { get; private set; }
+
+	//--------------------------------------------------
 
 	[Serializable]
 	class MoneyUnit {
@@ -30,8 +45,6 @@ public class MoneyGenerator : MonoBehaviour
 		public MoneyGroup TargetPaymentMG => targetPaymentMG;
 	}
 
-    [SerializeField] List<MoneyUnit> moneyUnitList = new List<MoneyUnit>();
-
 	CancellationToken token;
 
     //--------------------------------------------------
@@ -41,7 +54,12 @@ public class MoneyGenerator : MonoBehaviour
 		token = this.GetCancellationTokenOnDestroy();
     }
 
-    private void OnValidate()
+	private void OnDisable()
+	{
+		IsGenerating = false;
+	}
+
+	private void OnValidate()
 	{
 		foreach(var moneyUnit in moneyUnitList) {
 			if (moneyUnit.Money != null && moneyUnit.Money.Data != null) {
@@ -55,6 +73,8 @@ public class MoneyGenerator : MonoBehaviour
 	/// </summary>
 	public void GenerateAndMove()
 	{
+		IsGenerating = true;
+
 		if (UIManager.GetUIGroup<GameUIGroup>().gameObject.activeSelf) {
 			var moneyObjList = Generate();
 
@@ -82,7 +102,6 @@ public class MoneyGenerator : MonoBehaviour
 		var count = 0;
 		foreach (var moneyUnit in moneyUnitList) {
 			for (int j = 0; j < moneyUnit.Money.Data.GeneratedCount; j++) {
-
 				moneyObjList[count].RectTransform.DOLocalMove(moneyUnit.TargetPlayerMG.RectTransform.localPosition, moveToGroupDuration)
 					.OnComplete(() => MoveCompleted(moneyObjList));
 
@@ -97,20 +116,15 @@ public class MoneyGenerator : MonoBehaviour
 
 		foreach (var moneyUnit in moneyUnitList) {
 			for (int i = 0; i < moneyUnit.Money.Data.GeneratedCount; i++) {
-				var prevPos = moneyObjList[count].RectTransform.position;
+				moneyObjList[count].transform.SetParent(moneyUnit.TargetPlayerMG.transform);        // 親に指定する
 
-
-				moneyObjList[count].transform.SetParent(moneyUnit.TargetPlayerMG.transform);                 // 移動後に親に指定する
-				var targetPos = moneyObjList[count].RectTransform.position;
-
-				moneyObjList[count].RectTransform.position = prevPos;
-
-				await UniTask.DelayFrame(waitFrame, cancellationToken: token);
-
-				moneyObjList[count].RectTransform.DOLocalMove(-targetPos, alignmentMoveDuration);
+				await UniTask.DelayFrame(waitFrame, cancellationToken: token);						// 待機
 
 				count++;
 			}
 		}
-    }
+
+		IsGenerating = false;       // 生成完了
+		state.StateTransition("MainState");		// メイン状態に遷移
+	}
 }
