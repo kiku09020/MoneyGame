@@ -30,4 +30,20 @@ public class MainGameManager : MonoBehaviour
     {
         state.StateUpdate();
     }
+
+    /// <summary>
+    /// ゲームをやり直す
+    /// </summary>
+    public void RestartGame()
+    {
+        SceneControllerAsync.Instance.LoadNowScene();
+    }
+
+    /// <summary>
+    /// ゲームを終了して、タイトルに戻る
+    /// </summary>
+    public void ExitGame()
+    {
+        SceneControllerAsync.Instance.LoadPrevScene();
+    }
 }

@@ -19,7 +19,9 @@ public  class SceneController : SceneControllerBase<SceneController>
     /// </summary>
     public void LoadNextScene()
     {
-        NextSceneLoadCheck(() => SceneManager.LoadScene(NowScene.SceneIndex + 1));
+        if (CheckNextSceneIndex()) {
+            SceneManager.LoadScene(NowScene.SceneIndex + 1);
+        }
     }
 
     /// <summary>
@@ -27,7 +29,9 @@ public  class SceneController : SceneControllerBase<SceneController>
     /// </summary>
     public void LoadPrevScene()
     {
-        PrevSceneLoadCheck(() => SceneManager.LoadScene(NowScene.SceneIndex - 1));
+        if (CheckPrevSceneIndex()) {
+            SceneManager.LoadScene(NowScene.SceneIndex - 1);
+        }
     }
 
     //-------------------------------------------

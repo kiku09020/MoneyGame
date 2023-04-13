@@ -27,36 +27,48 @@ public abstract class SceneControllerBase<T> : Singleton<T> where T:SceneControl
     }
 
     /// <summary>
+    /// 指定されたindexのシーンが存在するかチェック
+    /// </summary>
+    protected static bool CheckSceneIndex(int index)
+    {
+		if (index > 0 && index < sceneCount) {
+            return true;
+        }
+
+        return false;
+	}
+
+    /// <summary>
     /// 次のシーンの読み込みチェック
     /// </summary>
-    /// <param name="loadAction">ロード処理</param>
-    protected static void NextSceneLoadCheck(Action loadAction)
+    protected static bool CheckNextSceneIndex()
     {
         var index = NowScene.SceneIndex + 1;
 
         if (index < sceneCount) {
-            loadAction();
+            return true;
         }
 
         else {
             Debug.LogWarning("次のシーンは存在しません。");
+            return false;
         }
     }
 
     /// <summary>
     /// 前のシーンの読み込みチェック
     /// </summary>
-    /// <param name="loadAction">ロード処理</param>
-    protected static void PrevSceneLoadCheck(Action loadAction)
+    protected static bool CheckPrevSceneIndex()
     {
         var index = NowScene.SceneIndex - 1;
 
         if (0 <= index) {
-            loadAction();
+            return true;
         }
 
         else {
             Debug.LogWarning("前のシーンは存在しません。");
+            return false;
         }
     }
 }

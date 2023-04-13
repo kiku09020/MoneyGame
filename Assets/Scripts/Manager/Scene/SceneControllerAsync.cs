@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using Cysharp.Threading.Tasks;
 
 public class SceneControllerAsync : SceneControllerBase<SceneControllerAsync>
 {
-    public void LoadNowScene(Action<AsyncOperation> loadingAction = null)
+    public async void LoadNowScene(Action<AsyncOperation> loadingAction = null)
     {
-        StartCoroutine(LoadIEnumerator(loadingAction, NowScene.SceneIndex));
+        await LoadIEnumerator(loadingAction, NowScene.SceneIndex);
     }
 
-    public void LoadNextScene(Action<AsyncOperation> loadingAction = null)
+    public async void LoadNextScene(Action<AsyncOperation> loadingAction = null)
     {
-        NextSceneLoadCheck(() =>
-         StartCoroutine(LoadIEnumerator(loadingAction, NowScene.SceneIndex + 1)));
+        if (CheckNextSceneIndex()) {
+            await LoadIEnumerator(loadingAction, NowScene.SceneIndex + 1);
+        }
     }
 
-    public void LoadPrevScene(Action<AsyncOperation> loadingAction = null)
+    public async void LoadPrevScene(Action<AsyncOperation> loadingAction = null)
     {
-        PrevSceneLoadCheck(() =>
-        StartCoroutine(LoadIEnumerator(loadingAction, NowScene.SceneIndex - 1)));
+        if (CheckPrevSceneIndex()) {
+            await LoadIEnumerator(loadingAction, NowScene.SceneIndex - 1);
+        }
     }
 
     // ÉRÉãÅ[É`Éì

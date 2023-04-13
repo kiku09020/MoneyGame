@@ -6,6 +6,7 @@ using UnityEngine;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using GameController;
 
 public class MoneyGenerator : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MoneyGenerator : MonoBehaviour
 	[SerializeField] float moveToGroupDuration = 0.1f;
 	[SerializeField] float alignmentMoveDuration = 0.1f;
 
+	[SerializeField] GameStateMachine state;
 
 	[Serializable]
 	class MoneyUnit {
@@ -51,10 +53,8 @@ public class MoneyGenerator : MonoBehaviour
 	/// <summary>
 	/// ê∂ê¨å„Ç…à⁄ìÆÇ≥ÇπÇÈ
 	/// </summary>
-	public async void GenerateAndMove()
+	public void GenerateAndMove()
 	{
-		await UniTask.Delay(1, cancellationToken: token);
-
 		if (UIManager.GetUIGroup<GameUIGroup>().gameObject.activeSelf) {
 			var moneyObjList = Generate();
 

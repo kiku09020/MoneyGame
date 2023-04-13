@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace GameController {
     public class GameStateMachine : StateMatchineBase<GameStateBase> {
-		void Awake()
+		void Start()
 		{
-			StateInit(0);
+			StateInit("MainState");
 		}
 	}
 }
