@@ -118,7 +118,7 @@ public class MoneyGenerator : MonoBehaviour
 			for (int i = 0; i < moneyUnit.Money.Data.GeneratedCount; i++) {
 				moneyObjList[count].transform.SetParent(moneyUnit.TargetPlayerMG.transform);        // 親に指定する
 
-				await UniTask.DelayFrame(waitFrame, cancellationToken: token);						// 待機
+				await UniTask.DelayFrame(waitFrame,PlayerLoopTiming.FixedUpdate, cancellationToken: token);						// 待機
 
 				count++;
 			}
