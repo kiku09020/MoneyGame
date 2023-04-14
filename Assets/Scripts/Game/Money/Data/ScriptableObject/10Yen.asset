@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 10Yen
   m_EditorClassIdentifier: 
   name: 10Yen
+  number: 2
   type: 0
   value: 10
   generatedCount: 4

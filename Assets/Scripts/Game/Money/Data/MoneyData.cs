@@ -8,6 +8,7 @@ public class MoneyData :ScriptableObject
 {
     [Header("Parameters")]
     [SerializeField] string name;               // 名前
+    [SerializeField] int number;                // 識別番号
     [SerializeField] Type type;                 // 小銭、紙幣
     [SerializeField] int value;                 // 値段
     [SerializeField] int generatedCount;        // 最初に生成される数
@@ -17,6 +18,8 @@ public class MoneyData :ScriptableObject
 
     // properties
     public string Name => name;
+    public int Number => number;
+
     public int Value => value;
     public int GeneratedCount => generatedCount;
 

@@ -29,10 +29,12 @@ public class MoneyGenerator : MonoBehaviour
 	/// </summary>
 	public static bool IsGenerating { get; private set; }
 
+	public List<MoneyUnit> MoneyUnitList => moneyUnitList;
+
 	//--------------------------------------------------
 
 	[Serializable]
-	class MoneyUnit {
+	public class MoneyUnit {
 		public string name;
 		[SerializeField] Money money;
 
@@ -89,6 +91,7 @@ public class MoneyGenerator : MonoBehaviour
 
 		foreach(var moneyUnit in moneyUnitList) {
 			for (int i = 0; i < moneyUnit.Money.Data.GeneratedCount; i++) {
+				moneyUnit.Money.Generated(MoneyUnitList);
 				moneyObjList.Add(Instantiate(moneyUnit.Money, transform));
 			}
 		}
@@ -116,7 +119,7 @@ public class MoneyGenerator : MonoBehaviour
 
 		foreach (var moneyUnit in moneyUnitList) {
 			for (int i = 0; i < moneyUnit.Money.Data.GeneratedCount; i++) {
-				moneyObjList[count].transform.SetParent(moneyUnit.TargetPlayerMG.transform);        // 親に指定する
+				moneyObjList[count].transform.SetParent(moneyUnit.TargetPlayerMG.RectTransform);        // 親に指定する
 
 				await UniTask.DelayFrame(waitFrame,PlayerLoopTiming.FixedUpdate, cancellationToken: token);						// 待機
 

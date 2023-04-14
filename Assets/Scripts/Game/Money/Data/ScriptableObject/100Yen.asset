@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 100Yen
   m_EditorClassIdentifier: 
   name: 100Yen
+  number: 4
   type: 0
   value: 100
   generatedCount: 4
