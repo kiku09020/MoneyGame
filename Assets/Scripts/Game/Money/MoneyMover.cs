@@ -37,7 +37,7 @@ public class MoneyMover : MonoBehaviour
 	/// </summary>
 	public void MoveToPaymentMG()
 	{
-		MoveBase(money.TargetPaymentMG, toPaymentMG);
+		MoveBase(toPaymentMG);
 	}
 
 	/// <summary>
@@ -45,15 +45,22 @@ public class MoneyMover : MonoBehaviour
 	/// </summary>
 	public void MoveToPlayerMG()
 	{
-		MoveBase(money.TargetPlayerMG, toPlayerMG);
+		MoveBase(toPlayerMG);
 	}
 
 	// 基底メソッド
-	void MoveBase(MoneyGroup moneyGroup, MovementParams moveParams)
+	void MoveBase(MovementParams moveParams)
 	{
-		transform.DOMove(moneyGroup.transform.position, moveParams.Duration)
+		transform.DOMove(money.TargetMG.transform.position, moveParams.Duration)
 			.OnComplete(() => {
-				transform.SetParent(moneyGroup.transform);		// 親に指定
+
+				money.TargetMG.MoneyList.Add(money);                // 移動先のMGのリストに追加
+				money.CurrentMG.ChangeButtonAction(() => money.CurrentMG.TargetMoney?.Mover.MoveBase(moveParams));
+				money.CurrentMG.MoneyList.Remove(money);			// 現在のMGのリストから除外
+
+				transform.SetParent(money.TargetMG.RectTransform);      // MGを親に指定
+
+				money.ChangeCurrentMoneyGroup();					// moneyの現在のMoneyGroupを変更
 			});
 	}
 }

@@ -10,21 +10,27 @@ public class Money:MonoBehaviour
 	[Header("Data")]
     [SerializeField] MoneyData data;
 
-	[Header("Target")]
-	[SerializeField] MoneyGroup targetPlayerMG;
-	[SerializeField] MoneyGroup targetPaymentMG;
+
+	[Header("MoneyGroups")]
+	[SerializeField] MoneyGroupUnit playerMG;
+	[SerializeField] MoneyGroupUnit paymentMG;
+
+	public MoneyGroupUnit CurrentMG { get; private set; }
+	public MoneyGroupUnit TargetMG { get; private set; }
 
 	[Header("Components")]
 	[SerializeField] RectTransform rectTransform;
 	[SerializeField] Image image;
+	[SerializeField] MoneyMover mover;
 
     // Proparties
     public MoneyData Data => data;
 
 	public RectTransform RectTransform => rectTransform;
+	public MoneyMover Mover => mover;
 
-	public MoneyGroup TargetPlayerMG => targetPlayerMG;
-	public MoneyGroup TargetPaymentMG => targetPaymentMG;
+	public MoneyGroupUnit PlayerMG => playerMG;
+	public MoneyGroupUnit PaymentMG => paymentMG;
 
 	//--------------------------------------------------
 
@@ -38,7 +44,38 @@ public class Money:MonoBehaviour
 	// ¶¬‚Ìˆ—
 	public void Generated(List<MoneyGenerator.MoneyUnit> moneyList)
 	{
-		targetPaymentMG = moneyList[data.Number].TargetPaymentMG;
-		targetPlayerMG = moneyList[data.Number].TargetPlayerMG;
+		paymentMG = moneyList[data.Number].PaymentMG;
+		playerMG = moneyList[data.Number].PlayerMG;
+
+		TargetMG = paymentMG;
+		CurrentMG = playerMG;
+	}
+
+	/// <summary>
+	/// MoneyGroup‚Ì•ÏX
+	/// </summary>
+	public void ChangeCurrentMoneyGroup(MoneyGroupUnit moneyGroup)
+	{
+		TargetMG = CurrentMG;
+		CurrentMG = moneyGroup;
+	}
+
+	public void ChangeCurrentMoneyGroup(MoneyGroupUnit currentMoneyGroup,MoneyGroupUnit targetMoneyGroup)
+	{
+		TargetMG = targetMoneyGroup;
+		CurrentMG = currentMoneyGroup;
+	}
+
+	public void ChangeCurrentMoneyGroup()
+	{
+		TargetMG = CurrentMG;
+
+		if (CurrentMG == paymentMG) {
+			CurrentMG = playerMG;
+		}
+
+		else if (CurrentMG == playerMG) {
+			CurrentMG = paymentMG;
+		}
 	}
 }

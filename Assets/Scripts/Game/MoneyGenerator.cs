@@ -39,12 +39,12 @@ public class MoneyGenerator : MonoBehaviour
 		[SerializeField] Money money;
 
 		[Header("MoneyGroups")]
-		[SerializeField, Tooltip("目標の所持金グループ")] MoneyGroup targetPlayerMG;
-		[SerializeField, Tooltip("目標の支払いグループ")] MoneyGroup targetPaymentMG;
+		[SerializeField, Tooltip("目標の所持金グループ")] MoneyGroupUnit targetPlayerMG;
+		[SerializeField, Tooltip("目標の支払いグループ")] MoneyGroupUnit targetPaymentMG;
 
 		public Money Money => money;
-		public MoneyGroup TargetPlayerMG => targetPlayerMG;
-		public MoneyGroup TargetPaymentMG => targetPaymentMG;
+		public MoneyGroupUnit PlayerMG => targetPlayerMG;
+		public MoneyGroupUnit PaymentMG => targetPaymentMG;
 	}
 
 	CancellationToken token;
@@ -105,7 +105,7 @@ public class MoneyGenerator : MonoBehaviour
 		var count = 0;
 		foreach (var moneyUnit in moneyUnitList) {
 			for (int j = 0; j < moneyUnit.Money.Data.GeneratedCount; j++) {
-				moneyObjList[count].RectTransform.DOLocalMove(moneyUnit.TargetPlayerMG.RectTransform.localPosition, moveToGroupDuration)
+				moneyObjList[count].RectTransform.DOLocalMove(moneyUnit.PlayerMG.RectTransform.localPosition, moveToGroupDuration)
 					.OnComplete(() => MoveCompleted(moneyObjList));
 
 				count++;
@@ -119,7 +119,13 @@ public class MoneyGenerator : MonoBehaviour
 
 		foreach (var moneyUnit in moneyUnitList) {
 			for (int i = 0; i < moneyUnit.Money.Data.GeneratedCount; i++) {
-				moneyObjList[count].transform.SetParent(moneyUnit.TargetPlayerMG.RectTransform);        // 親に指定する
+				var moneyObj = moneyObjList[count];
+
+				moneyObj.ChangeCurrentMoneyGroup(moneyObj.PlayerMG, moneyObj.PaymentMG);
+				moneyObj.CurrentMG.MoneyList.Add(moneyObj);
+				moneyObj.transform.SetParent(moneyObj.CurrentMG.RectTransform);           // 親に指定する
+				moneyObj.CurrentMG.ChangeButtonAction(moneyObj.Mover.MoveToPaymentMG);    // ボタン
+				moneyObj.TargetMG.ChangeButtonAction(moneyObj.Mover.MoveToPlayerMG);
 
 				await UniTask.DelayFrame(waitFrame,PlayerLoopTiming.FixedUpdate, cancellationToken: token);						// 待機
 

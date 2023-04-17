@@ -95,6 +95,7 @@ MonoBehaviour:
   targetPaymentMG: {fileID: 0}
   rectTransform: {fileID: 752813119728766544}
   image: {fileID: 255158560132825652}
+  mover: {fileID: 3998173695882495202}
 --- !u!114 &3998173695882495202
 MonoBehaviour:
   m_ObjectHideFlags: 0
