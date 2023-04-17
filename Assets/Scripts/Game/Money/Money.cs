@@ -54,12 +54,6 @@ public class Money:MonoBehaviour
 	/// <summary>
 	/// MoneyGroup�̕ύX
 	/// </summary>
-	public void ChangeCurrentMoneyGroup(MoneyGroupUnit moneyGroup)
-	{
-		TargetMG = CurrentMG;
-		CurrentMG = moneyGroup;
-	}
-
 	public void ChangeCurrentMoneyGroup(MoneyGroupUnit currentMoneyGroup,MoneyGroupUnit targetMoneyGroup)
 	{
 		TargetMG = targetMoneyGroup;

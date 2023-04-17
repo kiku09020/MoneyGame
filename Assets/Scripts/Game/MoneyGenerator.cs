@@ -105,6 +105,13 @@ public class MoneyGenerator : MonoBehaviour
 		var count = 0;
 		foreach (var moneyUnit in moneyUnitList) {
 			for (int j = 0; j < moneyUnit.Money.Data.GeneratedCount; j++) {
+				var moneyObj = moneyObjList[count];
+
+				moneyObj.ChangeCurrentMoneyGroup(moneyObj.PlayerMG, moneyObj.PaymentMG);
+				moneyObj.CurrentMG.MoneyList.Add(moneyObj);
+				moneyObj.CurrentMG.ChangeButtonAction(moneyObj.Mover.MoveToPaymentMG);    // ボタン
+				moneyObj.TargetMG.ChangeButtonAction(moneyObj.Mover.MoveToPlayerMG);
+
 				moneyObjList[count].RectTransform.DOLocalMove(moneyUnit.PlayerMG.RectTransform.localPosition, moveToGroupDuration)
 					.OnComplete(() => MoveCompleted(moneyObjList));
 
@@ -121,11 +128,8 @@ public class MoneyGenerator : MonoBehaviour
 			for (int i = 0; i < moneyUnit.Money.Data.GeneratedCount; i++) {
 				var moneyObj = moneyObjList[count];
 
-				moneyObj.ChangeCurrentMoneyGroup(moneyObj.PlayerMG, moneyObj.PaymentMG);
-				moneyObj.CurrentMG.MoneyList.Add(moneyObj);
 				moneyObj.transform.SetParent(moneyObj.CurrentMG.RectTransform);           // 親に指定する
-				moneyObj.CurrentMG.ChangeButtonAction(moneyObj.Mover.MoveToPaymentMG);    // ボタン
-				moneyObj.TargetMG.ChangeButtonAction(moneyObj.Mover.MoveToPlayerMG);
+
 
 				await UniTask.DelayFrame(waitFrame,PlayerLoopTiming.FixedUpdate, cancellationToken: token);						// 待機
 
