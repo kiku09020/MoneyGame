@@ -15,6 +15,6 @@ MonoBehaviour:
   name: 50Yen
   number: 3
   type: 0
-  value: 50
+  amount: 50
   generatedCount: 1
   sprite: {fileID: -876357410, guid: f0cb3c079adc9b345a71adaaee9f8a50, type: 3}

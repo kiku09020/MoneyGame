@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 255158560132825652}
   - component: {fileID: 96989719410403102}
   - component: {fileID: 3998173695882495202}
-  - component: {fileID: 2764588180145735810}
   m_Layer: 5
   m_Name: MoneyImage_Base
   m_TagString: Untagged
@@ -92,12 +91,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 28be6c621cf35f840a12621ec5d487f8, type: 2}
-  playerMG: {fileID: 0}
-  paymentMG: {fileID: 0}
   rectTransform: {fileID: 752813119728766544}
   image: {fileID: 255158560132825652}
   mover: {fileID: 3998173695882495202}
-  calculater: {fileID: 2764588180145735810}
+  calculater: {fileID: 0}
 --- !u!114 &3998173695882495202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,16 +114,3 @@ MonoBehaviour:
   toPlayerMG:
     duration: 0.25
     easeType: 0
---- !u!114 &2764588180145735810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8134065889580042047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c7447bf391e7c4468245389930ec8d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  money: {fileID: 96989719410403102}

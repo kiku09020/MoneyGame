@@ -10,7 +10,7 @@ public class MoneyData :ScriptableObject
     [SerializeField] string name;               // 名前
     [SerializeField] int number;                // 識別番号
     [SerializeField] Type type;                 // 小銭、紙幣
-    [SerializeField] int value;                 // 値段
+    [SerializeField] int amount;                 // 値段
     [SerializeField] int generatedCount;        // 最初に生成される数
 
     [Header("Assets")]
@@ -20,7 +20,7 @@ public class MoneyData :ScriptableObject
     public string Name => name;
     public int Number => number;
 
-    public int Value => value;
+    public int Amount => amount;
     public int GeneratedCount => generatedCount;
 
     public Sprite Sprite => sprite;
@@ -32,9 +32,9 @@ public class MoneyData :ScriptableObject
 
     private void OnValidate()
     {
-        name = value.ToString() + "Yen";
+        name = amount.ToString() + "Yen";
 
-        if (value == 5 || value == 50 || value == 500) {
+        if (amount == 5 || amount == 50 || amount == 500) {
             generatedCount = 1;
         }
 

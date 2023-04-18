@@ -263,6 +263,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68279441}
   m_CullTransparentMesh: 1
+--- !u!114 &115568466 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3361021212318477048, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+  m_PrefabInstance: {fileID: 8126992488973207604}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95f05cf9309ba247b23fdced248e620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &211959024 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3668483806826524705, guid: cc876fc424cd30e408e42e8f4e15cbda, type: 3}
+  m_PrefabInstance: {fileID: 7174137098850011236}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &350964292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,6 +1057,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758964007}
   m_CullTransparentMesh: 1
+--- !u!114 &793621989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5877645047791664744, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+  m_PrefabInstance: {fileID: 8126992488973207604}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &916138536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1366,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a9925a5822432b46b929f80b2c2d6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1206186971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5610424581267776689, guid: cc876fc424cd30e408e42e8f4e15cbda, type: 3}
+  m_PrefabInstance: {fileID: 7174137098850011236}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95f05cf9309ba247b23fdced248e620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1351182199
@@ -1835,36 +1879,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitFrame: 4
   moveToGroupDuration: 0.2
-  alignmentMoveDuration: 0.5
   state: {fileID: 350964293}
   moneyUnitList:
   - name: 1Yen
     money: {fileID: 8292756948990211198, guid: 79f7be2f30f62ec4ab24d2c835b63575, type: 3}
-    targetPlayerMG: {fileID: 8126992488973207622}
+    targetPocketMG: {fileID: 8126992488973207622}
     targetPaymentMG: {fileID: 7174137098850011244}
   - name: 5Yen
     money: {fileID: 438313188121840519, guid: 3998d902bc651c743bca802bca920828, type: 3}
-    targetPlayerMG: {fileID: 1434396121}
+    targetPocketMG: {fileID: 1434396121}
     targetPaymentMG: {fileID: 7174137098850011243}
   - name: 10Yen
     money: {fileID: 438313188121840519, guid: a3b259e548868cd458e0d672c11fd097, type: 3}
-    targetPlayerMG: {fileID: 1120128893}
+    targetPocketMG: {fileID: 1120128893}
     targetPaymentMG: {fileID: 7174137098850011242}
   - name: 50Yen
     money: {fileID: 438313188121840519, guid: 0f1b183de9b98cd408ccadf8c570ce72, type: 3}
-    targetPlayerMG: {fileID: 1947900159}
+    targetPocketMG: {fileID: 1947900159}
     targetPaymentMG: {fileID: 7174137098850011241}
   - name: 100Yen
     money: {fileID: 438313188121840519, guid: d8fd5e7e7601b3b42b96e15303dda0b3, type: 3}
-    targetPlayerMG: {fileID: 8126992488973207621}
+    targetPocketMG: {fileID: 8126992488973207621}
     targetPaymentMG: {fileID: 7174137098850011240}
   - name: 500Yen
     money: {fileID: 438313188121840519, guid: 749f7ea044b64214bbc3be43ab306edb, type: 3}
-    targetPlayerMG: {fileID: 8126992488973207607}
+    targetPocketMG: {fileID: 8126992488973207607}
     targetPaymentMG: {fileID: 7174137098850011239}
   - name: 1000Yen
     money: {fileID: 438313188121840519, guid: f92d710ee0a04b64c862f82d9b5a8f9b, type: 3}
-    targetPlayerMG: {fileID: 8126992488973207606}
+    targetPocketMG: {fileID: 8126992488973207606}
     targetPaymentMG: {fileID: 7174137098850011238}
 --- !u!1 &1693877404
 GameObject:
@@ -2229,6 +2272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1854486984}
+  - component: {fileID: 1854486985}
   m_Layer: 5
   m_Name: GameInfoUI
   m_TagString: Untagged
@@ -2260,6 +2304,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 0, y: 550}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1854486985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854486983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d3e8bc90bdbd54da758c29e95c8d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPaymentAmountText: {fileID: 1693877406}
+  currentPaymentAmountText: {fileID: 211959024}
+  currentCountText: {fileID: 793621989}
 --- !u!1 &1855697420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3528,6 +3587,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5610424581267776689, guid: cc876fc424cd30e408e42e8f4e15cbda, type: 3}
+      propertyPath: targetMoneyGroup
+      value: 
+      objectReference: {fileID: 115568466}
     - target: {fileID: 5748501996844300652, guid: cc876fc424cd30e408e42e8f4e15cbda, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4149,6 +4212,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 238545787773462300, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: m_Name
+      value: Bill_Pocket
+      objectReference: {fileID: 0}
     - target: {fileID: 444094798397445120, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4221,6 +4288,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2534141520418491653, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: m_Name
+      value: 500_Pocket
+      objectReference: {fileID: 0}
     - target: {fileID: 2613038793615124954, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4269,6 +4340,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3361021212318477048, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: targetMoneyGroup
+      value: 
+      objectReference: {fileID: 1206186971}
     - target: {fileID: 3649342540940172344, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4292,6 +4367,10 @@ PrefabInstance:
     - target: {fileID: 3649342540940172344, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4031929444040926445, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: m_Name
+      value: 10_Pocket
       objectReference: {fileID: 0}
     - target: {fileID: 5173388116147978898, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4344,6 +4423,14 @@ PrefabInstance:
     - target: {fileID: 5553344943433074955, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164376077285880507, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: m_Name
+      value: 5_Pocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377928787473950818, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: m_Name
+      value: 1_Pocket
       objectReference: {fileID: 0}
     - target: {fileID: 6765591416902802302, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_Pivot.x
@@ -4468,6 +4555,14 @@ PrefabInstance:
     - target: {fileID: 7592791734198999183, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786257673346785370, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: m_Name
+      value: 50_Pocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220481250231716679, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: m_Name
+      value: 100_Pocket
       objectReference: {fileID: 0}
     - target: {fileID: 8921079270021586174, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchorMax.y

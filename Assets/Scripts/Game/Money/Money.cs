@@ -10,29 +10,19 @@ public class Money:MonoBehaviour
 	[Header("Data")]
     [SerializeField] MoneyData data;
 
-
-	[Header("MoneyGroups")]
-	[SerializeField] MoneyGroupUnit playerMG;
-	[SerializeField] MoneyGroupUnit paymentMG;
-
+	// MoneyGroupUnits
 	public MoneyGroupUnit CurrentMG { get; private set; }
-	public MoneyGroupUnit TargetMG { get; private set; }
 
 	[Header("Components")]
 	[SerializeField] RectTransform rectTransform;
 	[SerializeField] Image image;
 	[SerializeField] MoneyMover mover;
-	[SerializeField] MoneyCalculater calculater;
 
     // Proparties
     public MoneyData Data => data;
 
 	public RectTransform RectTransform => rectTransform;
 	public MoneyMover Mover => mover;
-	public MoneyCalculater Calculater => calculater;
-
-	public MoneyGroupUnit PlayerMG => playerMG;
-	public MoneyGroupUnit PaymentMG => paymentMG;
 
 	//--------------------------------------------------
 
@@ -44,53 +34,50 @@ public class Money:MonoBehaviour
 	}
 
 	// 生成時の処理
-	public void Generated(List<MoneyGenerator.MoneyUnit> moneyList)
+	public void Generated(MoneyGenerator.MoneyUnit moneyUnit)
 	{
-		paymentMG = moneyList[data.Number].PaymentMG;
-		playerMG = moneyList[data.Number].PlayerMG;
-
-		TargetMG = paymentMG;
-		CurrentMG = playerMG;
+		CurrentMG = moneyUnit.PocketMG;
 	}
 
 	/// <summary>
-	/// MoneyGroupの変更
+	/// 現在のMGを変更(入れ替え)する
 	/// </summary>
-	public void ChangeCurrentMoneyGroup(MoneyGroupUnit currentMoneyGroup,MoneyGroupUnit targetMoneyGroup)
+	public void ChangeCurrentMG()
 	{
-		TargetMG = targetMoneyGroup;
-		CurrentMG = currentMoneyGroup;
-	}
-
-	/// <summary>
-	/// 現在のMGを変更(没。後々改良予定)
-	/// </summary>
-	public void ChangeCurrentMoneyGroup()
-	{
-		TargetMG = CurrentMG;
-
-		if (CurrentMG == paymentMG) {
-			CurrentMG = playerMG;
-		}
-
-		else if (CurrentMG == playerMG) {
-			CurrentMG = paymentMG;
-		}
+		var swap = CurrentMG;
+		CurrentMG = CurrentMG.targetMG;
+		CurrentMG.targetMG = swap;
 	}
 
 	/// <summary>
 	/// ボタンのOnClick()にActionを追加
 	/// </summary>
-	public void AddButtonActions()
+	public void AddButtonActions(bool move = true)
 	{
-		// 所持金MG
-		CurrentMG.AddButtonAction(Mover.MoveToPaymentMG);
-		CurrentMG.AddButtonAction(() => Calculater.AddPaymentAmount(true));
-		CurrentMG.AddButtonAction(() => Calculater.AddPaymentCount(true));
+		// 現在のMGのボタンに追加
+		CurrentMG.AddButtonAction(() => {
+			var target = CurrentMG.TargetMoney;
 
-		// 支払額MG
-		TargetMG.AddButtonAction(Mover.MoveToPlayerMG);
-		TargetMG.AddButtonAction(() => Calculater.AddPocketAmount(true));
-		TargetMG.AddButtonAction(() => Calculater.AddPocketAmount(true));
+			if (target != null) {
+				var mg = CurrentMG.MoneyGroup;
+
+				target.Mover.MoveBase();
+				mg.AddAmount(data.Amount);
+				mg.AddCount();
+			}
+		});
+
+		// もう一方のMGのボタンに追加
+		CurrentMG.targetMG.AddButtonAction(() => {
+			var target = CurrentMG.targetMG.TargetMoney;
+
+			if (target != null) {
+				var mg = CurrentMG.targetMG.MoneyGroup;
+
+				target.Mover.MoveBase();
+				mg.AddAmount(data.Amount);
+				mg.AddCount();
+			}
+		});
 	}
 }

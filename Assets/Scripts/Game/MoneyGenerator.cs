@@ -13,7 +13,6 @@ public class MoneyGenerator : MonoBehaviour
 	[Header("Parameters")]
 	[SerializeField] int waitFrame = 10;
 	[SerializeField] float moveToGroupDuration = 0.1f;
-	[SerializeField] float alignmentMoveDuration = 0.1f;
 
 	[Header("Components")]
 	[SerializeField] GameStateMachine state;
@@ -39,11 +38,11 @@ public class MoneyGenerator : MonoBehaviour
 		[SerializeField] Money money;
 
 		[Header("MoneyGroups")]
-		[SerializeField, Tooltip("目標の所持金グループ")] MoneyGroupUnit targetPlayerMG;
+		[SerializeField, Tooltip("目標の所持金グループ")] MoneyGroupUnit targetPocketMG;
 		[SerializeField, Tooltip("目標の支払いグループ")] MoneyGroupUnit targetPaymentMG;
 
 		public Money Money => money;
-		public MoneyGroupUnit PlayerMG => targetPlayerMG;
+		public MoneyGroupUnit PocketMG => targetPocketMG;
 		public MoneyGroupUnit PaymentMG => targetPaymentMG;
 	}
 
@@ -90,13 +89,15 @@ public class MoneyGenerator : MonoBehaviour
 		var moneyObjList = new List<Money>();
 
 		foreach(var moneyUnit in moneyUnitList) {
+			// インスタンス化されたお金をリストに追加
 			for (int i = 0; i < moneyUnit.Money.Data.GeneratedCount; i++) {
-				moneyUnit.Money.Generated(MoneyUnitList);
-				moneyObjList.Add(Instantiate(moneyUnit.Money, transform));
+				var obj = Instantiate(moneyUnit.Money, transform);
+				obj.Generated(moneyUnit);
+				moneyObjList.Add(obj);			
 			}
 		}
 
-		return moneyObjList;
+		return moneyObjList;		// インスタンス化されたお金のリストを返す
 	}
 
 	// プレイヤーのグループに移動させる
@@ -106,14 +107,13 @@ public class MoneyGenerator : MonoBehaviour
 		foreach (var moneyUnit in moneyUnitList) {
 			for (int j = 0; j < moneyUnit.Money.Data.GeneratedCount; j++) {
 				var moneyObj = moneyObjList[generatedCount];
+				moneyUnit.PocketMG.MoneyList.Add(moneyObj);                                     // MGのリストにmoneyObjを追加
 
-				moneyObj.ChangeCurrentMoneyGroup(moneyObj.PlayerMG, moneyObj.PaymentMG);		// 現在のMGを所持金、目標のMGを支払額として設定
-				moneyObj.CurrentMG.MoneyList.Add(moneyObj);										// MGのリストにmoneyObjを追加
+				moneyObj.AddButtonActions();
 
-				moneyObj.AddButtonActions();													// ButtonにActionを追加
 
 				// 移動
-				moneyObjList[generatedCount].RectTransform.DOLocalMove(moneyUnit.PlayerMG.RectTransform.localPosition, moveToGroupDuration)
+				moneyObjList[generatedCount].RectTransform.DOLocalMove(moneyUnit.PocketMG.RectTransform.localPosition, moveToGroupDuration)
 					.OnComplete(() => MoveCompleted(moneyObjList));
 
 				generatedCount++;		// 生成数加算

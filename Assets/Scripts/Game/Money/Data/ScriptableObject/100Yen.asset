@@ -15,6 +15,6 @@ MonoBehaviour:
   name: 100Yen
   number: 4
   type: 0
-  value: 100
+  amount: 100
   generatedCount: 4
   sprite: {fileID: -1862879286, guid: f0cb3c079adc9b345a71adaaee9f8a50, type: 3}

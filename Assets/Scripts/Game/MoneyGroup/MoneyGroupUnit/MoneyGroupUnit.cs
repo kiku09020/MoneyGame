@@ -7,30 +7,46 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MoneyGroupUnit : MonoBehaviour {
+
+    MoneyGroup moneyGroup;
+    public MoneyGroupUnit targetMG;
+
     [Header("Components")]
     [SerializeField] RectTransform rectTransform;
     [SerializeField] Button button;
 
+    // Proparties
     public RectTransform RectTransform => rectTransform;
 
     List<Money> moneyList = new List<Money>();
     public List<Money> MoneyList => moneyList;
 
-    public Money TargetMoney {
-        get {
-            if (moneyList.Count > 0) {
-                return moneyList[moneyList.Count - 1];
-            }
+    /// <summary>
+    /// ç≈êVÇÃÇ®ã‡
+    /// </summary>
+    public Money TargetMoney => (moneyList.Count > 0) ? moneyList[moneyList.Count - 1] : null;
 
-            return null;
-        }
-    }
+    /// <summary>
+    /// êeÇÃMoneyGroup
+    /// </summary>
+    public MoneyGroup MoneyGroup => moneyGroup;
 
-//--------------------------------------------------
+    /// <summary>
+    /// Ç®ã‡Ç™Ç†ÇÈÇ©Ç«Ç§Ç©
+    /// </summary>
+    public bool IsEmpty => (TargetMoney == null) ? true : false;
 
-void Awake()
+	//--------------------------------------------------
+
+	void Awake()
     {
         
+    }
+
+    public void SetMoenyGroups(MoneyGroup moneyGroup, MoneyGroupUnit targetMoneyGroupUnit)
+    {
+        this.moneyGroup = moneyGroup;
+        this.targetMG = targetMoneyGroupUnit;
     }
 
     /// <summary>

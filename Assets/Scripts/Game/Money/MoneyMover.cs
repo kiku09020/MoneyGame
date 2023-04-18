@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using Cysharp.Threading.Tasks;
+using static UnityEngine.GraphicsBuffer;
 
 public class MoneyMover : MonoBehaviour
 {
@@ -10,16 +12,15 @@ public class MoneyMover : MonoBehaviour
 	[SerializeField] Money money;
 
 	[Header("Params")]
-	[SerializeField] MovementParams toPaymentMG;
-	[SerializeField] MovementParams toPlayerMG;
+	[SerializeField] MovementParams moveParams;
 
 	//--------------------------------------------------
 
 	[Serializable]
-	class MovementParams
+	public class MovementParams
 	{
-		[SerializeField] float	duration;
-		[SerializeField] Ease	easeType;
+		[SerializeField] float duration = 0.25f;
+		[SerializeField] Ease easeType = Ease.Unset;
 
 		public float Duration => duration;
 	}
@@ -32,49 +33,17 @@ public class MoneyMover : MonoBehaviour
         
     }
 
-	/// <summary>
-	/// 支払いMoneyGroupに移動
-	/// </summary>
-	public void MoveToPaymentMG()
+	public void MoveBase()
 	{
-		MoveBase(toPaymentMG, money.PlayerMG, money.PaymentMG);
-	}
-
-	/// <summary>
-	/// プレイヤーのMoneyGroupに移動
-	/// </summary>
-	public void MoveToPlayerMG()
-	{
-		MoveBase(toPlayerMG, money.PaymentMG, money.PlayerMG);
-	}
-
-	// 基底メソッド(没。)
-	void MoveBase(MovementParams moveParams)
-	{
-		if (money.TargetMG == null) return;
-
-		money.TargetMG.MoneyList.Add(money);                // 移動先のMGのリストに追加
-		money.CurrentMG.AddButtonAction(() => money.CurrentMG.TargetMoney?.Mover.MoveBase(moveParams));
-		money.CurrentMG.MoneyList.Remove(money);            // 現在のMGのリストから除外
-
-		transform.DOMove(money.TargetMG.transform.position, moveParams.Duration)
+		transform.DOMove(money.CurrentMG.targetMG.transform.position, moveParams.Duration)
 			.OnComplete(() => {
-				transform.SetParent(money.TargetMG.RectTransform);      // MGを親に指定
-				money.ChangeCurrentMoneyGroup();					// moneyの現在のMoneyGroupを変更
+				transform.SetParent(money.CurrentMG.RectTransform);      // MGを親に指定
 			});
-	}
 
-	// 直接現在のMG、目標のMGを指定する(仮)
-	void MoveBase(MovementParams moveParams, MoneyGroupUnit current, MoneyGroupUnit target)
-	{
-		target.MoneyList.Add(money);
-		current.AddButtonAction(() => current.TargetMoney?.Mover.MoveBase(moveParams, current, target));
-		current.MoneyList.Remove(money);
+		money.CurrentMG.targetMG.MoneyList.Add(money);            // 目標のMGのリストに追加
+		money.CurrentMG.MoneyList.Remove(money);        // 現在のMGのリストから除外
+		money.ChangeCurrentMG();
 
-		transform.DOMove(target.transform.position, moveParams.Duration)
-			.OnComplete(() => {
-				transform.SetParent(target.RectTransform);      // MGを親に指定
-				money.ChangeCurrentMoneyGroup();                    // moneyの現在のMoneyGroupを変更
-			});
+		money.AddButtonActions();				// ボタンのActionを変更
 	}
 }
