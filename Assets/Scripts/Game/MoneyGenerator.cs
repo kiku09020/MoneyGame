@@ -102,38 +102,39 @@ public class MoneyGenerator : MonoBehaviour
 	// プレイヤーのグループに移動させる
 	void MoveToPlayerMG(List<Money> moneyObjList)
 	{
-		var count = 0;
+		var generatedCount = 0;
 		foreach (var moneyUnit in moneyUnitList) {
 			for (int j = 0; j < moneyUnit.Money.Data.GeneratedCount; j++) {
-				var moneyObj = moneyObjList[count];
+				var moneyObj = moneyObjList[generatedCount];
 
-				moneyObj.ChangeCurrentMoneyGroup(moneyObj.PlayerMG, moneyObj.PaymentMG);
-				moneyObj.CurrentMG.MoneyList.Add(moneyObj);
-				moneyObj.CurrentMG.ChangeButtonAction(moneyObj.Mover.MoveToPaymentMG);    // ボタン
-				moneyObj.TargetMG.ChangeButtonAction(moneyObj.Mover.MoveToPlayerMG);
+				moneyObj.ChangeCurrentMoneyGroup(moneyObj.PlayerMG, moneyObj.PaymentMG);		// 現在のMGを所持金、目標のMGを支払額として設定
+				moneyObj.CurrentMG.MoneyList.Add(moneyObj);										// MGのリストにmoneyObjを追加
 
-				moneyObjList[count].RectTransform.DOLocalMove(moneyUnit.PlayerMG.RectTransform.localPosition, moveToGroupDuration)
+				moneyObj.AddButtonActions();													// ButtonにActionを追加
+
+				// 移動
+				moneyObjList[generatedCount].RectTransform.DOLocalMove(moneyUnit.PlayerMG.RectTransform.localPosition, moveToGroupDuration)
 					.OnComplete(() => MoveCompleted(moneyObjList));
 
-				count++;
+				generatedCount++;		// 生成数加算
 			}
 		}
 	}
 
 	async void MoveCompleted(List<Money> moneyObjList)
 	{
-		var count = 0;
+		var generatedCount = 0;
 
 		foreach (var moneyUnit in moneyUnitList) {
 			for (int i = 0; i < moneyUnit.Money.Data.GeneratedCount; i++) {
-				var moneyObj = moneyObjList[count];
+				var moneyObj = moneyObjList[generatedCount];
 
 				moneyObj.transform.SetParent(moneyObj.CurrentMG.RectTransform);           // 親に指定する
 
 
 				await UniTask.DelayFrame(waitFrame,PlayerLoopTiming.FixedUpdate, cancellationToken: token);						// 待機
 
-				count++;
+				generatedCount++;
 			}
 		}
 

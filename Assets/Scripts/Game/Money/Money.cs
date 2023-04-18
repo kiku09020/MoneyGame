@@ -22,12 +22,14 @@ public class Money:MonoBehaviour
 	[SerializeField] RectTransform rectTransform;
 	[SerializeField] Image image;
 	[SerializeField] MoneyMover mover;
+	[SerializeField] MoneyCalculater calculater;
 
     // Proparties
     public MoneyData Data => data;
 
 	public RectTransform RectTransform => rectTransform;
 	public MoneyMover Mover => mover;
+	public MoneyCalculater Calculater => calculater;
 
 	public MoneyGroupUnit PlayerMG => playerMG;
 	public MoneyGroupUnit PaymentMG => paymentMG;
@@ -60,6 +62,9 @@ public class Money:MonoBehaviour
 		CurrentMG = currentMoneyGroup;
 	}
 
+	/// <summary>
+	/// Œ»İ‚ÌMG‚ğ•ÏX(–vBŒãX‰ü—Ç—\’è)
+	/// </summary>
 	public void ChangeCurrentMoneyGroup()
 	{
 		TargetMG = CurrentMG;
@@ -71,5 +76,21 @@ public class Money:MonoBehaviour
 		else if (CurrentMG == playerMG) {
 			CurrentMG = paymentMG;
 		}
+	}
+
+	/// <summary>
+	/// ƒ{ƒ^ƒ“‚ÌOnClick()‚ÉAction‚ğ’Ç‰Á
+	/// </summary>
+	public void AddButtonActions()
+	{
+		// Š‹àMG
+		CurrentMG.AddButtonAction(Mover.MoveToPaymentMG);
+		CurrentMG.AddButtonAction(() => Calculater.AddPaymentAmount(true));
+		CurrentMG.AddButtonAction(() => Calculater.AddPaymentCount(true));
+
+		// x•¥ŠzMG
+		TargetMG.AddButtonAction(Mover.MoveToPlayerMG);
+		TargetMG.AddButtonAction(() => Calculater.AddPocketAmount(true));
+		TargetMG.AddButtonAction(() => Calculater.AddPocketAmount(true));
 	}
 }

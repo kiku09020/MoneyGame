@@ -34,11 +34,28 @@ void Awake()
     }
 
     /// <summary>
-    /// ボタンのOnClick()を変更する
+    /// ボタンのOnClick()に追加する
     /// </summary>
-    public void ChangeButtonAction(Action action)
+    public void AddButtonAction(Action action, bool removeOldEvents = true)
     {
-        button.onClick.RemoveAllListeners();
+        if (removeOldEvents) {
+            button.onClick.RemoveAllListeners();
+        }
+
         button.onClick.AddListener(action.Invoke);
     }
+
+    /// <summary>
+    /// 複数のイベントを追加する
+    /// </summary>
+	public void AddButtonAction(bool removeOldEvents = true, params Action[] actions)
+	{
+        if (removeOldEvents) {
+            button.onClick.RemoveAllListeners();
+        }
+
+		foreach(var action in actions) {
+            button.onClick.AddListener(action.Invoke);
+        }
+	}
 }

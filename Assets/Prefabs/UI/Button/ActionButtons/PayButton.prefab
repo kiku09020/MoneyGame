@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2253050436445131251
+--- !u!1001 &4787931874250018506
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,23 +9,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3554290951397720804, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_text
-      value: Revert
+      value: Pay
       objectReference: {fileID: 0}
     - target: {fileID: 5518686872282179737, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_Name
-      value: RevertButton
+      value: PayButton
       objectReference: {fileID: 0}
     - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8187621798205727630}
+      objectReference: {fileID: 7521800123517235101}
     - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnClick
       objectReference: {fileID: 0}
     - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RevertButton, Assembly-CSharp
+      value: PayButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8619609809515918748, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8619609809515918748, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_Pivot.y
@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8619609809515918748, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8619609809515918748, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8619609809515918748, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8619609809515918748, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_AnchorMin.y
@@ -115,23 +115,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1142209400632393654, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
---- !u!1 &6039926436509546858 stripped
+--- !u!1 &1073113266635204179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5518686872282179737, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
-  m_PrefabInstance: {fileID: 2253050436445131251}
+  m_PrefabInstance: {fileID: 4787931874250018506}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8187621798205727630
+--- !u!114 &7521800123517235101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6039926436509546858}
+  m_GameObject: {fileID: 1073113266635204179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 804f6b31c77b2dd41a421957077bf573, type: 3}
+  m_Script: {fileID: 11500000, guid: 136dc117a63e3564ea24d608206c86d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

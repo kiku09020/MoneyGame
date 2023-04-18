@@ -54,7 +54,7 @@ public class MoneyMover : MonoBehaviour
 		if (money.TargetMG == null) return;
 
 		money.TargetMG.MoneyList.Add(money);                // 移動先のMGのリストに追加
-		money.CurrentMG.ChangeButtonAction(() => money.CurrentMG.TargetMoney?.Mover.MoveBase(moveParams));
+		money.CurrentMG.AddButtonAction(() => money.CurrentMG.TargetMoney?.Mover.MoveBase(moveParams));
 		money.CurrentMG.MoneyList.Remove(money);            // 現在のMGのリストから除外
 
 		transform.DOMove(money.TargetMG.transform.position, moveParams.Duration)
@@ -68,7 +68,7 @@ public class MoneyMover : MonoBehaviour
 	void MoveBase(MovementParams moveParams, MoneyGroupUnit current, MoneyGroupUnit target)
 	{
 		target.MoneyList.Add(money);
-		current.ChangeButtonAction(() => current.TargetMoney?.Mover.MoveBase(moveParams, current, target));
+		current.AddButtonAction(() => current.TargetMoney?.Mover.MoveBase(moveParams, current, target));
 		current.MoneyList.Remove(money);
 
 		transform.DOMove(target.transform.position, moveParams.Duration)
