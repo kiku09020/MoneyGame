@@ -110,10 +110,10 @@ public class MoneyGenerator : MonoBehaviour
 				moneyUnit.PocketMG.MoneyList.Add(moneyObj);                                     // MGのリストにmoneyObjを追加
 
 				moneyObj.AddButtonActions();
-
+				moneyObj.CurrentMG.AddMoney();
 
 				// 移動
-				moneyObjList[generatedCount].RectTransform.DOLocalMove(moneyUnit.PocketMG.RectTransform.localPosition, moveToGroupDuration)
+				moneyObj.RectTransform.DOLocalMove(moneyUnit.PocketMG.RectTransform.localPosition, moveToGroupDuration)
 					.OnComplete(() => MoveCompleted(moneyObjList));
 
 				generatedCount++;		// 生成数加算
@@ -130,7 +130,6 @@ public class MoneyGenerator : MonoBehaviour
 				var moneyObj = moneyObjList[generatedCount];
 
 				moneyObj.transform.SetParent(moneyObj.CurrentMG.RectTransform);           // 親に指定する
-
 
 				await UniTask.DelayFrame(waitFrame,PlayerLoopTiming.FixedUpdate, cancellationToken: token);						// 待機
 

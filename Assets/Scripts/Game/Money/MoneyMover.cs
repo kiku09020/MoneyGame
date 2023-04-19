@@ -33,16 +33,21 @@ public class MoneyMover : MonoBehaviour
         
     }
 
-	public void MoveBase()
+	public void MoveBase(bool changeCurrentMG = false)
 	{
 		transform.DOMove(money.CurrentMG.targetMG.transform.position, moveParams.Duration)
 			.OnComplete(() => {
 				transform.SetParent(money.CurrentMG.RectTransform);      // MGを親に指定
 			});
 
-		money.CurrentMG.targetMG.MoneyList.Add(money);            // 目標のMGのリストに追加
-		money.CurrentMG.MoneyList.Remove(money);        // 現在のMGのリストから除外
-		money.ChangeCurrentMG();
+		money.CurrentMG.targetMG?.MoneyList.Add(money);				// 目標のMGのリストに追加
+		money.CurrentMG.MoneyList.Remove(money);					// 現在のMGのリストから除外
+		money.CurrentMG.targetMG.AddMoney(true);
+
+		// 現在のMGを切り替える
+		if (changeCurrentMG) {
+			money.ChangeCurrentMG();
+		}
 
 		money.AddButtonActions();				// ボタンのActionを変更
 	}

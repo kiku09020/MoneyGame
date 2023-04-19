@@ -43,16 +43,19 @@ public class MoneyGroupUnit : MonoBehaviour {
         
     }
 
+    // moneyGroupと目的のmoneyGroupUnitを指定(moneyGroupで適用)
     public void SetMoenyGroups(MoneyGroup moneyGroup, MoneyGroupUnit targetMoneyGroupUnit)
     {
         this.moneyGroup = moneyGroup;
         this.targetMG = targetMoneyGroupUnit;
     }
 
-    /// <summary>
-    /// ボタンのOnClick()に追加する
-    /// </summary>
-    public void AddButtonAction(Action action, bool removeOldEvents = true)
+	//--------------------------------------------------
+
+	/// <summary>
+	/// ボタンのOnClick()に追加する
+	/// </summary>
+	public void AddButtonAction(Action action, bool removeOldEvents = true)
     {
         if (removeOldEvents) {
             button.onClick.RemoveAllListeners();
@@ -73,5 +76,15 @@ public class MoneyGroupUnit : MonoBehaviour {
 		foreach(var action in actions) {
             button.onClick.AddListener(action.Invoke);
         }
+	}
+
+    //--------------------------------------------------
+
+    public void AddMoney(bool removeFlag = false)
+    {
+		if (TargetMoney != null) {
+			MoneyGroup.AddAmount(TargetMoney.Data.Amount,removeFlag);
+            MoneyGroup.AddCount(1, removeFlag);
+		}
 	}
 }

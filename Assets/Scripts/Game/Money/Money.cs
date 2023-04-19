@@ -52,18 +52,14 @@ public class Money:MonoBehaviour
 	/// <summary>
 	/// ボタンのOnClick()にActionを追加
 	/// </summary>
-	public void AddButtonActions(bool move = true)
+	public void AddButtonActions()
 	{
 		// 現在のMGのボタンに追加
 		CurrentMG.AddButtonAction(() => {
 			var target = CurrentMG.TargetMoney;
 
 			if (target != null) {
-				var mg = CurrentMG.MoneyGroup;
-
-				target.Mover.MoveBase();
-				mg.AddAmount(data.Amount);
-				mg.AddCount();
+				target.Mover.MoveBase(true);
 			}
 		});
 
@@ -72,11 +68,7 @@ public class Money:MonoBehaviour
 			var target = CurrentMG.targetMG.TargetMoney;
 
 			if (target != null) {
-				var mg = CurrentMG.targetMG.MoneyGroup;
-
-				target.Mover.MoveBase();
-				mg.AddAmount(data.Amount);
-				mg.AddCount();
+				target.Mover.MoveBase(true);
 			}
 		});
 	}

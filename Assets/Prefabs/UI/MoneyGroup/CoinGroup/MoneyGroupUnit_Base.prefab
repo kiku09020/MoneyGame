@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 4608757781392133850}
   - component: {fileID: 2895642032476470459}
   - component: {fileID: 6755413198750422465}
-  - component: {fileID: 38039376332985421}
   m_Layer: 5
   m_Name: MoneyGroupUnit_Base
   m_TagString: Untagged
@@ -212,21 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9925a5822432b46b929f80b2c2d6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMoneyGroupUnit: {fileID: 0}
+  targetMG: {fileID: 0}
   rectTransform: {fileID: 8907194582085297780}
   button: {fileID: 2895642032476470459}
---- !u!114 &38039376332985421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4491360097744527798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc3ef5e7fadcfe14ca052789c31548b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6515485629019283992
 GameObject:
   m_ObjectHideFlags: 0
