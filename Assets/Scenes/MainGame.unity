@@ -4372,6 +4372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 10_Pocket
       objectReference: {fileID: 0}
+    - target: {fileID: 4927560049332826009, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: infoType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5173388116147978898, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
