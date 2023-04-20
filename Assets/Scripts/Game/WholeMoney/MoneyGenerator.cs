@@ -11,15 +11,10 @@ using System.Net.Sockets;
 
 public class MoneyGenerator : MonoBehaviour
 {
-	[Header("Parameters")]
-	[SerializeField] int waitFrame = 10;
-	[SerializeField] float moveToGroupDuration = 0.1f;
-
 	[Header("Components")]
 	[SerializeField] GameStateMachine state;
 	[SerializeField] WholeMoneyInfo wholeMoneyInfo; 
 
-	CancellationToken token;
 
 	//--------------------------------------------------
 	// Proparties
@@ -29,11 +24,6 @@ public class MoneyGenerator : MonoBehaviour
 	public static bool IsGenerating { get; private set; }
 
 	//--------------------------------------------------
-
-    private void Awake()
-    {
-		token = this.GetCancellationTokenOnDestroy();
-    }
 
 	private void OnDisable()
 	{
@@ -51,11 +41,6 @@ public class MoneyGenerator : MonoBehaviour
 
 	//--------------------------------------------------
 
-	public async UniTask Wait()
-	{
-		await UniTask.DelayFrame(waitFrame, PlayerLoopTiming.FixedUpdate, cancellationToken: token);
-	}
-
 	/// <summary>
 	/// ê∂ê¨å„Ç…à⁄ìÆÇ≥ÇπÇÈ
 	/// </summary>
@@ -67,9 +52,7 @@ public class MoneyGenerator : MonoBehaviour
 			var moneyObjList = Generate();
 
 			foreach(var money in moneyObjList) {
-				money.Mover.MoveToCurrentMG(false);
-
-				await Wait();
+				await money.Mover.MoveToCurrentMG(false, false, true);
 			}
 
 			IsGenerating = false;       // ê∂ê¨äÆóπ
@@ -83,10 +66,10 @@ public class MoneyGenerator : MonoBehaviour
 	/// <param name="changes"></param>
 	public async void GenerateAndMoveChange(List<WholeMoneyCalculator.changeMoneyUnit> changes, Transform parent)
 	{
-		foreach (var money in (GenerateChange(changes, parent))) {
-			money.Mover.MoveToCurrentMG(false);
+		var changeMoneyList = GenerateChange(changes, parent);
 
-			await Wait();
+		for (int i = changeMoneyList.Count - 1; i >= 0; i--) {
+			await changeMoneyList[i].Mover.MoveToCurrentMG(false, false, true);
 		}
 	}
 

@@ -1855,8 +1855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c587f7371572cd94a990b402094cc132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitFrame: 4
-  moveToGroupDuration: 0.2
   state: {fileID: 350964293}
   wholeMoneyInfo: {fileID: 1854486985}
 --- !u!1 &1693877404
@@ -2267,7 +2265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d3e8bc90bdbd54da758c29e95c8d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPocketMoneyMaxCount: 20
+  startPocketMoneyMaxCount: 25
   targetMoneyType: 0
   minTargetMoneyAmount: 200
   maxTargetMoneyAmount: 500
@@ -2316,7 +2314,7 @@ MonoBehaviour:
   wholeMoneyInfo: {fileID: 1854486985}
   moneyGenerator: {fileID: 1570260668}
   paymentMG: {fileID: 1206186971}
-  generatedTransform: {fileID: 1393656279}
+  targetTransform: {fileID: 1393656279}
 --- !u!1 &1855697420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,6 +3249,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1399361290}
     m_Modifications:
+    - target: {fileID: 5137438252302482276, guid: c903dc253ce2ee0418185d9bede9428c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1854486986}
+    - target: {fileID: 5137438252302482276, guid: c903dc253ce2ee0418185d9bede9428c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Revert
+      objectReference: {fileID: 0}
+    - target: {fileID: 5137438252302482276, guid: c903dc253ce2ee0418185d9bede9428c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WholeMoneyCalculator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5137438252302482276, guid: c903dc253ce2ee0418185d9bede9428c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6039926436509546858, guid: c903dc253ce2ee0418185d9bede9428c, type: 3}
       propertyPath: m_Name
       value: RevertButton

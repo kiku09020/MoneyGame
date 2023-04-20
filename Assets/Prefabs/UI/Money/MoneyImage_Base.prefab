@@ -110,3 +110,4 @@ MonoBehaviour:
   moveParams:
     duration: 0.25
     easeType: 7
+    waitFrames: 5

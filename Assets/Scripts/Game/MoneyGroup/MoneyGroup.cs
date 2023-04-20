@@ -7,14 +7,20 @@ public class MoneyGroup : MonoBehaviour
     int moneyCount;     // Ç®ã‡ÇÃñáêî
     int moneyAmount;    // Ç®ã‡ÇÃçáåvã‡äz
 
+    [Header("MoneyGroups")]
     [SerializeField] MoneyGroup targetMoneyGroup;
     [SerializeField] List<MoneyGroupUnit> moneyGroups = new List<MoneyGroupUnit>();
+
+    [Header("Components")]
+    [SerializeField] MoneyGroupMover mover;
 
     // properties
     public int MoneyCount => moneyCount;
     public int MoneyAmount => moneyAmount;
 
     public List<MoneyGroupUnit> MoneyGroupUnitList => moneyGroups;
+
+    public MoneyGroupMover Mover => mover;
 
     //--------------------------------------------------
 
