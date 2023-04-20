@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.UIElements;
 
 public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
+
+	#region Fields
 	[Header("PocketMoneyCount")]
 	[SerializeField, Tooltip("最初のお金の最大枚数")] int startPocketMoneyMaxCount;
 
@@ -15,12 +17,16 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 
 	[SerializeField] TextMeshProUGUI targetMoneyAmountText;
 
-
-
-	[Header("MoneyList")]
+	[Header("Money")]
+	[SerializeField] MoneyGroup paymentMG;
+	[SerializeField] MoneyGroup pocketMG;
 	[SerializeField] List<MoneyUnit> moneyUnitList = new List<MoneyUnit>();
 
+	#endregion
+
 	//--------------------------------------------------
+
+	#region Classes
 
 	[System.Serializable]
 	public class MoneyUnit {
@@ -36,7 +42,11 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 		public MoneyGroupUnit PaymentMG => targetPaymentMG;
 	}
 
+	#endregion
+
 	//--------------------------------------------------
+
+	#region Properties
 
 	// 目標額のタイプ
 	public enum TargetMoneyType {
@@ -57,6 +67,11 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 	/// </summary>
 	public int TargetMoneyAmount { get; private set; }
 
+	public MoneyGroup PaymentMG => paymentMG;
+	public MoneyGroup PocketMG=> pocketMG;
+
+	#endregion
+
 	//--------------------------------------------------
 
 	protected override void Awake()
@@ -68,6 +83,8 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 		SetTargetMoneyAmount();
 	}
 
+	//--------------------------------------------------
+
 	/// <summary>
 	/// 目標額の範囲指定
 	/// </summary>
@@ -76,8 +93,6 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 		minTargetMoneyAmount = min;
 		maxTargetMoneyAmount = max;
 	}
-
-	//--------------------------------------------------
 
 	/// <summary>
 	/// 目標額の指定

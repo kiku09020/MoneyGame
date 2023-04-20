@@ -64,7 +64,7 @@ public class MoneyGenerator : MonoBehaviour
 	/// ‚¨‚Â‚è‚ÌˆÚ“®
 	/// </summary>
 	/// <param name="changes"></param>
-	public async void GenerateAndMoveChange(List<WholeMoneyCalculator.changeMoneyUnit> changes, Transform parent)
+	public async void GenerateAndMoveChange(List<WholeMoneyCalculator.ChangeMoneyUnit> changes, Transform parent)
 	{
 		var changeMoneyList = GenerateChange(changes, parent);
 
@@ -95,7 +95,7 @@ public class MoneyGenerator : MonoBehaviour
 	/// <summary>
 	/// ‚¨‚Â‚è‚Ì¶¬
 	/// </summary>
-	List<Money> GenerateChange(List<WholeMoneyCalculator.changeMoneyUnit> changes,Transform parent)
+	List<Money> GenerateChange(List<WholeMoneyCalculator.ChangeMoneyUnit> changes,Transform parent)
 	{
 		var moneyObjList = new List<Money>();
 

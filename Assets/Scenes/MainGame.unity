@@ -2222,6 +2222,7 @@ GameObject:
   - component: {fileID: 1854486984}
   - component: {fileID: 1854486985}
   - component: {fileID: 1854486986}
+  - component: {fileID: 1854486987}
   m_Layer: 5
   m_Name: GameInfoUI
   m_TagString: Untagged
@@ -2266,10 +2267,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPocketMoneyMaxCount: 25
-  targetMoneyType: 0
+  targetMoneyType: 1
   minTargetMoneyAmount: 200
   maxTargetMoneyAmount: 500
   targetMoneyAmountText: {fileID: 1693877406}
+  paymentMG: {fileID: 1206186971}
+  pocketMG: {fileID: 115568466}
   moneyUnitList:
   - name: 1Yen
     money: {fileID: 8292756948990211198, guid: 79f7be2f30f62ec4ab24d2c835b63575, type: 3}
@@ -2313,8 +2316,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeMoneyInfo: {fileID: 1854486985}
   moneyGenerator: {fileID: 1570260668}
-  paymentMG: {fileID: 1206186971}
   targetTransform: {fileID: 1393656279}
+--- !u!114 &1854486987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854486983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd78d0e5e9634c8479cafa7cc872bd65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wholeMoneyInfo: {fileID: 1854486985}
 --- !u!1 &1855697420
 GameObject:
   m_ObjectHideFlags: 0

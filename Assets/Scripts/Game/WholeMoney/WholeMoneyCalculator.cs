@@ -10,9 +10,6 @@ public class WholeMoneyCalculator : MonoBehaviour
     [SerializeField] WholeMoneyInfo wholeMoneyInfo;
 	[SerializeField] MoneyGenerator moneyGenerator;
 
-	[Header("MoneyGroup")]
-	[SerializeField] MoneyGroup paymentMG;
-
 	[Header("Change")]
 	[SerializeField] Transform targetTransform;
 
@@ -21,15 +18,15 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// <summary>
 	/// 支払い可能かどうか(支払額が目標額よりも大きければ支払える)
 	/// </summary>
-	public bool CanPay => (paymentMG.MoneyAmount >= wholeMoneyInfo.TargetMoneyAmount) ? true : false;
+	public bool CanPay => (wholeMoneyInfo.PaymentMG.MoneyAmount >= wholeMoneyInfo.TargetMoneyAmount) ? true : false;
 
 	//--------------------------------------------------
 
-	public class changeMoneyUnit {
+	public class ChangeMoneyUnit {
 		public readonly WholeMoneyInfo.MoneyUnit moneyUnit;
 		public readonly int count;
 
-		public changeMoneyUnit(WholeMoneyInfo.MoneyUnit money, int count)
+		public ChangeMoneyUnit(WholeMoneyInfo.MoneyUnit money, int count)
 		{
 			this.moneyUnit = money;
 			this.count = count;
@@ -46,12 +43,13 @@ public class WholeMoneyCalculator : MonoBehaviour
 	{
 		if (CanPay) {
 			// おつり生成して移動
-			moneyGenerator.GenerateAndMoveChange(GetCharge(), targetTransform);
+			moneyGenerator.GenerateAndMoveChange(GetChangeMoneyList(), targetTransform);
 
 			// 目標額transformに移動
-			paymentMG.Mover.MoveToTargetTransform(targetTransform);
+			wholeMoneyInfo.PaymentMG.Mover.MoveToTargetTransform(targetTransform);
 
-
+			// 目標額指定
+			wholeMoneyInfo.SetTargetMoneyAmount();
 		}
 	}
 
@@ -60,19 +58,19 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// </summary>
 	public void Revert()
 	{
-		paymentMG.Mover.MoveToTarget(true, true, false);
+		wholeMoneyInfo.PaymentMG.Mover.MoveToTarget(true, true, false);
 	}
 
 	//--------------------------------------------------
 
 	// おつりの枚数の取得
-	List<changeMoneyUnit> GetCharge()
+	List<ChangeMoneyUnit> GetChangeMoneyList()
 	{
-		var changeMoneyList = new List<changeMoneyUnit>();		// おつりリスト
+		var changeMoneyList = new List<ChangeMoneyUnit>();		// おつりリスト
 		var count = 0;      // おつりの数
 
 		// おつり = 支払額 - 目標額
-		var change = paymentMG.MoneyAmount - wholeMoneyInfo.TargetMoneyAmount;
+		var change = wholeMoneyInfo.PaymentMG.MoneyAmount - wholeMoneyInfo.TargetMoneyAmount;
 
 		// 大きい方からチェック
 		for (int i = wholeMoneyInfo.MoneyUnitList.Count -1; i >= 0; i--) {
@@ -85,40 +83,12 @@ public class WholeMoneyCalculator : MonoBehaviour
 			}
 
 			// 0以下になった場合、おつりのリストに追加
-			changeMoneyList.Add(new changeMoneyUnit(moneyUnit, count));     // リスト追加
+			changeMoneyList.Add(new ChangeMoneyUnit(moneyUnit, count));     // リスト追加
 			count = 0;                                                  // カウントリセット
 		}
 
 		return changeMoneyList;
 	}
 
-	// ミス判定
-	bool CheckMiss()
-	{
-		var reached = false;    // 支払額が目標額に到達したかどうか
 
-		var paidAmount = 0;     // 支払額
-
-		foreach (var mgUnit in paymentMG.MoneyGroupUnitList) {
-			foreach (var money in mgUnit.MoneyList) {
-
-				// 到達していなければ加算
-				if (!reached) {
-					paidAmount += money.Data.Amount;        // 支払額に加算
-
-					// 目標額よりも支払額が多くなったら、到達フラグ立てる
-					if (wholeMoneyInfo.TargetMoneyAmount < paidAmount) {
-						reached = true;
-					}
-				}
-
-				// 到達したのに繰り返しが続く場合、余分に支払ったため、ミス判定とする
-				else {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
 }
