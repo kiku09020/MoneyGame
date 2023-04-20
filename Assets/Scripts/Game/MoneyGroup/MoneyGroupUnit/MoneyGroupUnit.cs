@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MoneyGroupUnit : MonoBehaviour {
@@ -14,6 +13,7 @@ public class MoneyGroupUnit : MonoBehaviour {
     [Header("Components")]
     [SerializeField] RectTransform rectTransform;
     [SerializeField] Button button;
+    [SerializeField] TextMeshProUGUI text;
 
     // Proparties
     public RectTransform RectTransform => rectTransform;
@@ -43,8 +43,13 @@ public class MoneyGroupUnit : MonoBehaviour {
         
     }
 
-    // moneyGroupと目的のmoneyGroupUnitを指定(moneyGroupで適用)
-    public void SetMoenyGroups(MoneyGroup moneyGroup, MoneyGroupUnit targetMoneyGroupUnit)
+	private void FixedUpdate()
+	{
+        text.text = moneyList.Count.ToString();
+	}
+
+	// moneyGroupと目的のmoneyGroupUnitを指定(moneyGroupで適用)
+	public void SetMoenyGroups(MoneyGroup moneyGroup, MoneyGroupUnit targetMoneyGroupUnit)
     {
         this.moneyGroup = moneyGroup;
         this.targetMG = targetMoneyGroupUnit;
@@ -87,4 +92,12 @@ public class MoneyGroupUnit : MonoBehaviour {
             MoneyGroup.AddCount(1, removeFlag);
 		}
 	}
+
+    public void RemoveMoney()
+    {
+        if (TargetMoney != null) {
+            MoneyGroup.AddAmount(-TargetMoney.Data.Amount, false);
+            MoneyGroup.AddCount(-1, false);
+        }
+    }
 }

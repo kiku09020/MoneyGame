@@ -1857,7 +1857,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitFrame: 4
   moveToGroupDuration: 0.2
-  generatedTransform: {fileID: 1393656279}
   state: {fileID: 350964293}
   wholeMoneyInfo: {fileID: 1854486985}
 --- !u!1 &1693877404
@@ -2317,6 +2316,7 @@ MonoBehaviour:
   wholeMoneyInfo: {fileID: 1854486985}
   moneyGenerator: {fileID: 1570260668}
   paymentMG: {fileID: 1206186971}
+  generatedTransform: {fileID: 1393656279}
 --- !u!1 &1855697420
 GameObject:
   m_ObjectHideFlags: 0

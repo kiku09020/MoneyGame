@@ -94,7 +94,6 @@ MonoBehaviour:
   rectTransform: {fileID: 752813119728766544}
   image: {fileID: 255158560132825652}
   mover: {fileID: 3998173695882495202}
-  calculater: {fileID: 0}
 --- !u!114 &3998173695882495202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,9 +107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: {fileID: 96989719410403102}
-  toPaymentMG:
+  moveParams:
     duration: 0.25
-    easeType: 0
-  toPlayerMG:
-    duration: 0.25
-    easeType: 0
+    easeType: 7

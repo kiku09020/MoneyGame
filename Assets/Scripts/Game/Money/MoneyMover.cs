@@ -53,6 +53,7 @@ public class MoneyMover : MonoBehaviour
 	void MoveBase(MoneyGroupUnit targetMoneyGroup, bool changeCurrentMG = true, bool removeTargetMoney = false)
 	{
 		transform.DOMove(targetMoneyGroup.transform.position, moveParams.Duration)
+			.SetEase (moveParams.EaseType)
 			.OnComplete(() => {
 				transform.SetParent(targetMoneyGroup.RectTransform);    // MGを親に指定
 			});
@@ -85,5 +86,21 @@ public class MoneyMover : MonoBehaviour
 	public void MoveToCurrentMG(bool changeCurrentMG = true, bool removeTargetMoney = false)
 	{
 		MoveBase(money.CurrentMG, changeCurrentMG,removeTargetMoney);
+	}
+
+	/// <summary>
+	/// MGからレクトに移動する
+	/// </summary>
+	public void MGMoneyToTargetRect(Transform transform)
+	{
+		// 移動
+		money.transform.DOMove(transform.position, moveParams.Duration)
+			.SetEase(moveParams.EaseType)
+			.OnComplete(() => {
+				Destroy(money.gameObject);
+			});
+			
+
+		money.CurrentMG.RemoveMoney();                   // 減らす
 	}
 }

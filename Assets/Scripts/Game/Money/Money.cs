@@ -59,7 +59,7 @@ public class Money:MonoBehaviour
 			var target = CurrentMG.TargetMoney;
 
 			if (target != null) {
-				target.Mover.ButonMove(true);
+				target.Mover.ButonMove();
 			}
 		});
 
@@ -68,7 +68,7 @@ public class Money:MonoBehaviour
 			var target = CurrentMG.targetMG.TargetMoney;
 
 			if (target != null) {
-				target.Mover.ButonMove(true);
+				target.Mover.ButonMove();
 			}
 		});
 	}

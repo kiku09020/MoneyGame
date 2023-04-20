@@ -13,6 +13,9 @@ public class WholeMoneyCalculator : MonoBehaviour
 	[Header("MoneyGroup")]
 	[SerializeField] MoneyGroup paymentMG;
 
+	[Header("Change")]
+	[SerializeField] Transform generatedTransform;
+
 	//--------------------------------------------------
 
 	/// <summary>
@@ -42,11 +45,26 @@ public class WholeMoneyCalculator : MonoBehaviour
 	public void Payment()
 	{
 		if (CanPay) {
-			moneyGenerator.GenerateAndMoveChange(GetCharge());
+			PayToTarget();
 
+			var change = GetCharge();
+			moneyGenerator.GenerateAndMoveChange(change, generatedTransform);
 
 			// おつりの金額から必要な小銭の枚数を求める
 			// ミス判定の場合、タイムを減らす
+		}
+	}
+
+	async void PayToTarget()
+	{
+		foreach (var moneyGroupUnit in paymentMG.MoneyGroupUnitList) {
+			foreach (var money in moneyGroupUnit.MoneyList) {
+				money.Mover.MGMoneyToTargetRect(generatedTransform);
+
+				await moneyGenerator.Wait();
+			}
+
+			moneyGroupUnit.MoneyList.Clear();
 		}
 	}
 

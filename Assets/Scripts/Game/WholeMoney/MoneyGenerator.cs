@@ -15,9 +15,6 @@ public class MoneyGenerator : MonoBehaviour
 	[SerializeField] int waitFrame = 10;
 	[SerializeField] float moveToGroupDuration = 0.1f;
 
-	[Header("Change")]
-	[SerializeField] Transform generatedTransform;
-
 	[Header("Components")]
 	[SerializeField] GameStateMachine state;
 	[SerializeField] WholeMoneyInfo wholeMoneyInfo; 
@@ -54,6 +51,11 @@ public class MoneyGenerator : MonoBehaviour
 
 	//--------------------------------------------------
 
+	public async UniTask Wait()
+	{
+		await UniTask.DelayFrame(waitFrame, PlayerLoopTiming.FixedUpdate, cancellationToken: token);
+	}
+
 	/// <summary>
 	/// ê∂ê¨å„Ç…à⁄ìÆÇ≥ÇπÇÈ
 	/// </summary>
@@ -67,7 +69,7 @@ public class MoneyGenerator : MonoBehaviour
 			foreach(var money in moneyObjList) {
 				money.Mover.MoveToCurrentMG(false);
 
-				await UniTask.DelayFrame(waitFrame, PlayerLoopTiming.FixedUpdate, cancellationToken: token);
+				await Wait();
 			}
 
 			IsGenerating = false;       // ê∂ê¨äÆóπ
@@ -79,12 +81,12 @@ public class MoneyGenerator : MonoBehaviour
 	/// Ç®Ç¬ÇËÇÃà⁄ìÆ
 	/// </summary>
 	/// <param name="changes"></param>
-	public async void GenerateAndMoveChange(List<WholeMoneyCalculator.changeMoneyUnit> changes)
+	public async void GenerateAndMoveChange(List<WholeMoneyCalculator.changeMoneyUnit> changes, Transform parent)
 	{
-		foreach (var money in (GenerateChange(changes))) {
+		foreach (var money in (GenerateChange(changes, parent))) {
 			money.Mover.MoveToCurrentMG(false);
 
-			await UniTask.DelayFrame(waitFrame, PlayerLoopTiming.FixedUpdate, cancellationToken: token);
+			await Wait();
 		}
 	}
 
@@ -110,13 +112,13 @@ public class MoneyGenerator : MonoBehaviour
 	/// <summary>
 	/// Ç®Ç¬ÇËÇÃê∂ê¨
 	/// </summary>
-	List<Money> GenerateChange(List<WholeMoneyCalculator.changeMoneyUnit> changes)
+	List<Money> GenerateChange(List<WholeMoneyCalculator.changeMoneyUnit> changes,Transform parent)
 	{
 		var moneyObjList = new List<Money>();
 
 		foreach(var change in changes) {
 			for (int i = 0; i < change.count; i++) {
-				var obj = Instantiate(change.moneyUnit.Money, generatedTransform);
+				var obj = Instantiate(change.moneyUnit.Money, parent);
 				obj.Generated(change.moneyUnit.PocketMG);
 				moneyObjList.Add(obj);
 			}
