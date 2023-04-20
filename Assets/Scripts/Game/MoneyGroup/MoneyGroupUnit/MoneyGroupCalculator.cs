@@ -36,8 +36,7 @@ public class MoneyGroupCalculator : MonoBehaviour
     {
         switch(infoType) {
             case DispInfoType.amount:
-                var amountText = String.Format("{0:#,0}", moneyGroup.MoneyAmount);
-                text.text = $"¥{amountText}";
+                text.text = WholeMoneyInfo.SeparatedAmountText(moneyGroup.MoneyAmount);
                 break;
 
             case DispInfoType.count:

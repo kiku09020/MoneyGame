@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class MoneyGroupUnit : MonoBehaviour {
 
     MoneyGroup moneyGroup;
-    public MoneyGroupUnit targetMG;
+    [HideInInspector] public MoneyGroupUnit targetMG;
 
     [Header("Components")]
     [SerializeField] RectTransform rectTransform;

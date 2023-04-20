@@ -34,9 +34,9 @@ public class Money:MonoBehaviour
 	}
 
 	// ¶¬‚Ìˆ—
-	public void Generated(MoneyGenerator.MoneyUnit moneyUnit)
+	public void Generated(MoneyGroupUnit moneyGroup)
 	{
-		CurrentMG = moneyUnit.PocketMG;
+		CurrentMG = moneyGroup;
 	}
 
 	/// <summary>
@@ -59,7 +59,7 @@ public class Money:MonoBehaviour
 			var target = CurrentMG.TargetMoney;
 
 			if (target != null) {
-				target.Mover.MoveBase(true);
+				target.Mover.ButonMove(true);
 			}
 		});
 
@@ -68,7 +68,7 @@ public class Money:MonoBehaviour
 			var target = CurrentMG.targetMG.TargetMoney;
 
 			if (target != null) {
-				target.Mover.MoveBase(true);
+				target.Mover.ButonMove(true);
 			}
 		});
 	}

@@ -14,6 +14,8 @@ public class MoneyGroup : MonoBehaviour
     public int MoneyCount => moneyCount;
     public int MoneyAmount => moneyAmount;
 
+    public List<MoneyGroupUnit> MoneyGroupUnitList => moneyGroups;
+
     //--------------------------------------------------
 
     void Awake()

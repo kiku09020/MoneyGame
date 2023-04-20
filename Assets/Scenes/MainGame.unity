@@ -274,17 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95f05cf9309ba247b23fdced248e620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &211959024 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3668483806826524705, guid: cc876fc424cd30e408e42e8f4e15cbda, type: 3}
-  m_PrefabInstance: {fileID: 7174137098850011236}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &350964292
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &645363851
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1057,17 +1046,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758964007}
   m_CullTransparentMesh: 1
---- !u!114 &793621989 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5877645047791664744, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
-  m_PrefabInstance: {fileID: 8126992488973207604}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &916138536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,36 +1857,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitFrame: 4
   moveToGroupDuration: 0.2
+  generatedTransform: {fileID: 1393656279}
   state: {fileID: 350964293}
-  moneyUnitList:
-  - name: 1Yen
-    money: {fileID: 8292756948990211198, guid: 79f7be2f30f62ec4ab24d2c835b63575, type: 3}
-    targetPocketMG: {fileID: 8126992488973207622}
-    targetPaymentMG: {fileID: 7174137098850011244}
-  - name: 5Yen
-    money: {fileID: 438313188121840519, guid: 3998d902bc651c743bca802bca920828, type: 3}
-    targetPocketMG: {fileID: 1434396121}
-    targetPaymentMG: {fileID: 7174137098850011243}
-  - name: 10Yen
-    money: {fileID: 438313188121840519, guid: a3b259e548868cd458e0d672c11fd097, type: 3}
-    targetPocketMG: {fileID: 1120128893}
-    targetPaymentMG: {fileID: 7174137098850011242}
-  - name: 50Yen
-    money: {fileID: 438313188121840519, guid: 0f1b183de9b98cd408ccadf8c570ce72, type: 3}
-    targetPocketMG: {fileID: 1947900159}
-    targetPaymentMG: {fileID: 7174137098850011241}
-  - name: 100Yen
-    money: {fileID: 438313188121840519, guid: d8fd5e7e7601b3b42b96e15303dda0b3, type: 3}
-    targetPocketMG: {fileID: 8126992488973207621}
-    targetPaymentMG: {fileID: 7174137098850011240}
-  - name: 500Yen
-    money: {fileID: 438313188121840519, guid: 749f7ea044b64214bbc3be43ab306edb, type: 3}
-    targetPocketMG: {fileID: 8126992488973207607}
-    targetPaymentMG: {fileID: 7174137098850011239}
-  - name: 1000Yen
-    money: {fileID: 438313188121840519, guid: f92d710ee0a04b64c862f82d9b5a8f9b, type: 3}
-    targetPocketMG: {fileID: 8126992488973207606}
-    targetPaymentMG: {fileID: 7174137098850011238}
+  wholeMoneyInfo: {fileID: 1854486985}
 --- !u!1 &1693877404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,6 +2224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854486984}
   - component: {fileID: 1854486985}
+  - component: {fileID: 1854486986}
   m_Layer: 5
   m_Name: GameInfoUI
   m_TagString: Untagged
@@ -2316,9 +2268,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d3e8bc90bdbd54da758c29e95c8d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPaymentAmountText: {fileID: 1693877406}
-  currentPaymentAmountText: {fileID: 211959024}
-  currentCountText: {fileID: 793621989}
+  startPocketMoneyMaxCount: 20
+  targetMoneyType: 0
+  minTargetMoneyAmount: 200
+  maxTargetMoneyAmount: 500
+  targetMoneyAmountText: {fileID: 1693877406}
+  moneyUnitList:
+  - name: 1Yen
+    money: {fileID: 8292756948990211198, guid: 79f7be2f30f62ec4ab24d2c835b63575, type: 3}
+    targetPocketMG: {fileID: 8126992488973207622}
+    targetPaymentMG: {fileID: 7174137098850011244}
+  - name: 5Yen
+    money: {fileID: 438313188121840519, guid: 3998d902bc651c743bca802bca920828, type: 3}
+    targetPocketMG: {fileID: 1434396121}
+    targetPaymentMG: {fileID: 7174137098850011243}
+  - name: 10Yen
+    money: {fileID: 438313188121840519, guid: a3b259e548868cd458e0d672c11fd097, type: 3}
+    targetPocketMG: {fileID: 1120128893}
+    targetPaymentMG: {fileID: 7174137098850011242}
+  - name: 50Yen
+    money: {fileID: 438313188121840519, guid: 0f1b183de9b98cd408ccadf8c570ce72, type: 3}
+    targetPocketMG: {fileID: 1947900159}
+    targetPaymentMG: {fileID: 7174137098850011241}
+  - name: 100Yen
+    money: {fileID: 438313188121840519, guid: d8fd5e7e7601b3b42b96e15303dda0b3, type: 3}
+    targetPocketMG: {fileID: 8126992488973207621}
+    targetPaymentMG: {fileID: 7174137098850011240}
+  - name: 500Yen
+    money: {fileID: 438313188121840519, guid: 749f7ea044b64214bbc3be43ab306edb, type: 3}
+    targetPocketMG: {fileID: 8126992488973207607}
+    targetPaymentMG: {fileID: 7174137098850011239}
+  - name: 1000Yen
+    money: {fileID: 438313188121840519, guid: f92d710ee0a04b64c862f82d9b5a8f9b, type: 3}
+    targetPocketMG: {fileID: 8126992488973207606}
+    targetPaymentMG: {fileID: 7174137098850011238}
+--- !u!114 &1854486986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854486983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9149e01e330f9de4690fe224ea740f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wholeMoneyInfo: {fileID: 1854486985}
+  moneyGenerator: {fileID: 1570260668}
+  paymentMG: {fileID: 1206186971}
 --- !u!1 &1855697420
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,6 +4087,18 @@ PrefabInstance:
     - target: {fileID: 1073113266635204179, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
       propertyPath: m_Name
       value: PayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908839168634954845, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1854486986}
+    - target: {fileID: 1908839168634954845, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Payment
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908839168634954845, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WholeMoneyCalculator, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3885805896312978262, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
       propertyPath: m_Pivot.x
