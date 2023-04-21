@@ -4,7 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting.Antlr3.Runtime;
 using System.Threading;
 
 public class MoneyMover : MonoBehaviour
