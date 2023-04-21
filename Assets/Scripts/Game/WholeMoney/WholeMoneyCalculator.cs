@@ -1,8 +1,8 @@
-using Cysharp.Threading.Tasks.Triggers;
-using System.Collections;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class WholeMoneyCalculator : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 
 	[Header("Change")]
 	[SerializeField] Transform targetTransform;
+	[SerializeField] TextMeshProUGUI changeText;
 
 	//--------------------------------------------------
 
@@ -20,6 +21,10 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// </summary>
 	public bool CanPay => (wholeMoneyInfo.PaymentMG.MoneyAmount >= wholeMoneyInfo.TargetMoneyAmount) ? true : false;
 
+	/// <summary>
+	/// おつり
+	/// </summary>
+	int Change => wholeMoneyInfo.PaymentMG.MoneyAmount - wholeMoneyInfo.TargetMoneyAmount;
 	//--------------------------------------------------
 
 	public class ChangeMoneyUnit {
@@ -39,19 +44,23 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// <summary>
 	/// 支払い
 	/// </summary>
-	public void Payment()
+	public async void Payment()
 	{
 		if (CanPay) {
+			// おつりのテキスト生成
+			GenerateChangeText();
+
 			// おつり生成して移動
 			moneyGenerator.GenerateAndMoveChange(GetChangeMoneyList(), targetTransform);
 
 			// 目標額transformに移動
 			wholeMoneyInfo.PaymentMG.Mover.MoveToTargetTransform(targetTransform);
 
+			// 札生成
+			CheckBillCount();
+
 			// 目標額指定
 			wholeMoneyInfo.SetTargetMoneyAmount();
-
-			CheckBillCount();
 		}
 	}
 
@@ -70,17 +79,15 @@ public class WholeMoneyCalculator : MonoBehaviour
 	{
 		var changeMoneyList = new List<ChangeMoneyUnit>();		// おつりリスト
 		var count = 0;      // おつりの数
-
-		// おつり = 支払額 - 目標額
-		var change = wholeMoneyInfo.PaymentMG.MoneyAmount - wholeMoneyInfo.TargetMoneyAmount;
+		var _change = wholeMoneyInfo.PaymentMG.MoneyAmount - wholeMoneyInfo.TargetMoneyAmount;
 
 		// 大きい方からチェック
 		for (int i = wholeMoneyInfo.MoneyUnitList.Count -1; i >= 0; i--) {
 			var moneyUnit = wholeMoneyInfo.MoneyUnitList[i];
 
 			// おつりから各金額分引いた結果が0より大きい場合、数を追加
-			while ((change - moneyUnit.Money.Data.Amount) >= 0) {
-				change -= moneyUnit.Money.Data.Amount;
+			while ((_change - moneyUnit.Money.Data.Amount) >= 0) {
+				_change -= moneyUnit.Money.Data.Amount;
 				count++;
 			}
 
@@ -98,5 +105,18 @@ public class WholeMoneyCalculator : MonoBehaviour
 		if (wholeMoneyInfo.PocketMG.MoneyGroupUnitList[6].MoneyList.Count < wholeMoneyInfo.MoneyUnitList[6].Money.Data.GeneratedCount) {
 			moneyGenerator.GenerateAndMoveBill(wholeMoneyInfo.MoneyUnitList[6].PocketMG);
 		}
+	}
+
+	void GenerateChangeText()
+	{
+
+		var obj = Instantiate(changeText, transform);
+
+		obj.text = $"+{Change.ToString()}";
+
+		obj.rectTransform.DOAnchorPosY(50, 1)
+			.OnComplete(() => {
+				Destroy(obj);
+			});
 	}
 }

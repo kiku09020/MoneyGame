@@ -2317,6 +2317,7 @@ MonoBehaviour:
   wholeMoneyInfo: {fileID: 1854486985}
   moneyGenerator: {fileID: 1570260668}
   targetTransform: {fileID: 1393656279}
+  changeText: {fileID: 983918638018291991, guid: b93b56f728c4e5548ac39d98ea062fc7, type: 3}
 --- !u!114 &1854486987
 MonoBehaviour:
   m_ObjectHideFlags: 0
