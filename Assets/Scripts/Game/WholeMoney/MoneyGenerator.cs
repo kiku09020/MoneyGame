@@ -1,20 +1,14 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
-using DG.Tweening;
-using Cysharp.Threading.Tasks;
-using System.Threading;
 using GameController;
-using System.Net.Sockets;
 
 public class MoneyGenerator : MonoBehaviour
 {
 	[Header("Components")]
 	[SerializeField] GameStateMachine state;
-	[SerializeField] WholeMoneyInfo wholeMoneyInfo; 
+	[SerializeField] WholeMoneyInfo wholeMoneyInfo;
 
+	Money bill => wholeMoneyInfo.MoneyUnitList[6].Money;
 
 	//--------------------------------------------------
 	// Proparties
@@ -111,4 +105,14 @@ public class MoneyGenerator : MonoBehaviour
 	}
 
 	//--------------------------------------------------
+
+	/// <summary>
+	/// Ç®éDÇÃê∂ê¨ÅAà⁄ìÆ
+	/// </summary>
+	public async void GenerateAndMoveBill(MoneyGroupUnit moneyGroupUnit)
+	{
+		var billObj = Instantiate(bill,transform);
+		billObj.Generated(moneyGroupUnit);
+		await billObj.Mover.MoveBase(moneyGroupUnit, false, false, true);
+	}
 }

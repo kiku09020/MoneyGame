@@ -50,6 +50,8 @@ public class WholeMoneyCalculator : MonoBehaviour
 
 			// ñ⁄ïWäzéwíË
 			wholeMoneyInfo.SetTargetMoneyAmount();
+
+			CheckBillCount();
 		}
 	}
 
@@ -90,5 +92,11 @@ public class WholeMoneyCalculator : MonoBehaviour
 		return changeMoneyList;
 	}
 
-
+	void CheckBillCount()
+	{
+		// Ç∑Ç≠Ç»Ç≠Ç»Ç¡ÇΩÇÁÅAê∂ê¨
+		if (wholeMoneyInfo.PocketMG.MoneyGroupUnitList[6].MoneyList.Count < wholeMoneyInfo.MoneyUnitList[6].Money.Data.GeneratedCount) {
+			moneyGenerator.GenerateAndMoveBill(wholeMoneyInfo.MoneyUnitList[6].PocketMG);
+		}
+	}
 }

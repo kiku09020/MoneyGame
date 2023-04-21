@@ -68,7 +68,7 @@ public class MoneyMover : MonoBehaviour
 
 	//--------------------------------------------------
 
-	async UniTask MoveBase(MoneyGroupUnit targetMoneyGroup, bool changeCurrentMG = true, bool removeTargetMoney = false, bool wait = false)
+	public async UniTask MoveBase(MoneyGroupUnit targetMoneyGroup, bool changeCurrentMG = true, bool removeTargetMoney = false, bool wait = false)
 	{
 		transform.DOMove(targetMoneyGroup.transform.position, moveParams.Duration)
 			.SetEase (moveParams.EaseType)

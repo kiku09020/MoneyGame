@@ -54,22 +54,24 @@ public class Money:MonoBehaviour
 	/// </summary>
 	public void AddButtonActions()
 	{
-		// 現在のMGのボタンに追加
-		CurrentMG.AddButtonAction(() => {
-			var target = CurrentMG.TargetMoney;
+		if (CurrentMG) {
+			// 現在のMGのボタンに追加
+			CurrentMG.AddButtonAction(() => {
+				var target = CurrentMG.TargetMoney;
 
-			if (target != null) {
-				target.Mover.ButonMove();
-			}
-		});
+				if (target != null) {
+					target.Mover.ButonMove();
+				}
+			});
 
-		// もう一方のMGのボタンに追加
-		CurrentMG.targetMG.AddButtonAction(() => {
-			var target = CurrentMG.targetMG.TargetMoney;
+			// もう一方のMGのボタンに追加
+			CurrentMG.targetMG?.AddButtonAction(() => {
+				var target = CurrentMG.targetMG.TargetMoney;
 
-			if (target != null) {
-				target.Mover.ButonMove();
-			}
-		});
+				if (target != null) {
+					target.Mover.ButonMove();
+				}
+			});
+		}
 	}
 }
