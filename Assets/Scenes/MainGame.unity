@@ -1404,6 +1404,7 @@ MonoBehaviour:
     targetPos: {x: 0, y: 100}
     message: Start!
   text: {fileID: 758964009}
+  state: {fileID: 350964293}
 --- !u!1 &1393656278
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ namespace GameController {
 		[SerializeField] GameStateMachine state;
 		[SerializeField] ReadyTextController textController;
 
+		bool onceActionFlag ;
+
 		//--------------------------------------------------
 
 		public override void OnEnter()
@@ -18,15 +20,15 @@ namespace GameController {
 
 		public override void OnUpdate()
 		{
-			// ê∂ê¨èIóπå„Ç…ëJà⁄
-			if (!MoneyGenerator.IsGenerating) {
-				state.StateTransition<MainState>();
+			if (!MoneyGenerator.IsGenerating && !onceActionFlag) {
+				textController.StartingAction();
+				onceActionFlag = true;
 			}
 		}
 
 		public override void OnExit()
 		{
-			textController.StartingAction();
+
 		}
 	}
 }

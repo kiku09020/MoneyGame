@@ -8,6 +8,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using GameController;
 
 public class ReadyTextController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class ReadyTextController : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] TextMeshProUGUI text;
+    [SerializeReference] GameStateMachine state;
 
     //--------------------------------------------------
     CancellationToken token;
@@ -38,7 +40,7 @@ public class ReadyTextController : MonoBehaviour
         [Header("Message")]
         [SerializeField] string message;
 
-        public async void DispText(TextMeshProUGUI text,CancellationToken token)
+        public async void DispText(TextMeshProUGUI text, CancellationToken token, Action action = null)
         {
             text.rectTransform.DOLocalMove(targetPos, inDuration);
 
@@ -53,7 +55,9 @@ public class ReadyTextController : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(textDuration), cancellationToken: token);
 
             // フェードアウト
-            text.DOFade(0, outDuration);
+            text.DOFade(0, outDuration).OnComplete(() => {
+                action?.Invoke();
+                });
         }
     }
 
@@ -76,6 +80,10 @@ public class ReadyTextController : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(waitDuration), cancellationToken: token);
 
         text.rectTransform.anchoredPosition = prevPos;      // もとに戻す
-        startText.DispText(text,token);
+
+        // 遷移
+        startText.DispText(text, token, () => {
+            state.StateTransition<MainState>();
+        });
     }
 }
