@@ -18,16 +18,10 @@ public class GameTimer : MonoBehaviour
     /// </summary>
     public static bool Enabled { get; set; }
 
-    /// <summary>
-    /// タイマー終了したか
-    /// </summary>
-    public static bool Finished { get; private set; }
-
     //--------------------------------------------------
 
     void Awake()
     {
-        Finished = false;
         Enabled = false;
 
         time = startTime;       // 開始
@@ -50,7 +44,7 @@ public class GameTimer : MonoBehaviour
         // 0秒をすぎたら、0秒にする
         else {
 			time = 0f;
-            Finished = true;
+			MainGameManager.isGameEnd = true;       // ゲーム終了
 		}
 
 		var min = Mathf.FloorToInt(time / 60);

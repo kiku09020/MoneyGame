@@ -8,8 +8,17 @@ public class MainGameManager : MonoBehaviour
 {
     [SerializeField] GameStateMachine state;
 
-    private void Start()
+    /// <summary>
+    /// ゲーム終了フラグ
+    /// </summary>
+    public static bool isGameEnd;
+
+	//--------------------------------------------------
+
+	private void Start()
     {
+        isGameEnd = false;
+
         state.StateInit();
         BGM.Instance.Play(AudioNames.BGM_PALETTE, 0, 0.5f, 1);
     }
