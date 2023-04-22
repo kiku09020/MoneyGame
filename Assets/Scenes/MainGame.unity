@@ -284,6 +284,9 @@ GameObject:
   m_Component:
   - component: {fileID: 350964294}
   - component: {fileID: 350964293}
+  - component: {fileID: 350964297}
+  - component: {fileID: 350964296}
+  - component: {fileID: 350964295}
   m_Layer: 0
   m_Name: GameStateController
   m_TagString: Untagged
@@ -303,86 +306,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2067f1fe4b786a459edac84c4d907da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateList:
-  - name: SetUpState
-    enterEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1559323579}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: ShowUIGroup
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1847926837}
-            m_ObjectArgumentAssemblyTypeName: UIGroupBase, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1570260668}
-          m_TargetAssemblyTypeName: MoneyGenerator, Assembly-CSharp
-          m_MethodName: GenerateAndMove
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    updateEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    exitEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1351182201}
-          m_TargetAssemblyTypeName: ReadyTextController, Assembly-CSharp
-          m_MethodName: StartingAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - name: MainState
-    enterEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    updateEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    exitEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - name: PauseState
-    enterEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1559323579}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: ShowUIGroup
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 645363854}
-            m_ObjectArgumentAssemblyTypeName: UIGroupBase, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    updateEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    exitEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  initStateName: SetUpState
+  initState: {fileID: 350964297}
+  states:
+  - {fileID: 350964297}
+  - {fileID: 350964296}
+  - {fileID: 350964295}
 --- !u!4 &350964294
 Transform:
   m_ObjectHideFlags: 0
@@ -398,6 +326,46 @@ Transform:
   m_Father: {fileID: 570712176}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &350964295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350964292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a0bc1bebaaef440bd8f82971b1d5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &350964296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350964292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6712c0f535a95745a4c57ef048640c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameInfoUI: {fileID: 1854486984}
+--- !u!114 &350964297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350964292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a69ef5972fae90f4f836857bf7cac387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generator: {fileID: 1570260668}
+  state: {fileID: 350964293}
+  textController: {fileID: 1351182201}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,6 +2301,10 @@ MonoBehaviour:
   moneyGenerator: {fileID: 1570260668}
   targetTransform: {fileID: 1393656279}
   changeText: {fileID: 983918638018291991, guid: b93b56f728c4e5548ac39d98ea062fc7, type: 3}
+  moveParams:
+    duration: 0.75
+    easeType: 6
+  moveDistance: 75
 --- !u!114 &1854486987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3029,21 +3001,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1854486984}
     m_Modifications:
-    - target: {fileID: 4718520710373016196, guid: debaa72d689b1624fba81409ccd5a4d6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718520710373016196, guid: debaa72d689b1624fba81409ccd5a4d6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+    - target: {fileID: 1370818452039856659, guid: debaa72d689b1624fba81409ccd5a4d6, type: 3}
+      propertyPath: state
       value: 
       objectReference: {fileID: 350964293}
     - target: {fileID: 4718520710373016196, guid: debaa72d689b1624fba81409ccd5a4d6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StateTransition
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4718520710373016196, guid: debaa72d689b1624fba81409ccd5a4d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StateMatchineBase`1[[GameController.GameStateBase, Assembly-CSharp
+      value: PauseButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4718520710373016196, guid: debaa72d689b1624fba81409ccd5a4d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument

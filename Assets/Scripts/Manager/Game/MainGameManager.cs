@@ -10,6 +10,7 @@ public class MainGameManager : MonoBehaviour
 
     private void Start()
     {
+        state.StateInit();
         BGM.Instance.Play(AudioNames.BGM_PALETTE, 0, 0.5f, 1);
     }
 

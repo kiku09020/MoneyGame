@@ -11,6 +11,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ebdb4f140b21ae44facaf7f6fc207c21, type: 3}
+    - target: {fileID: 7811112450449721792, guid: 49bd7f15e4df2b045b86e39274929834, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1370818452039856659}
+    - target: {fileID: 7811112450449721792, guid: 49bd7f15e4df2b045b86e39274929834, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811112450449721792, guid: 49bd7f15e4df2b045b86e39274929834, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811112450449721792, guid: 49bd7f15e4df2b045b86e39274929834, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7811112450449721794, guid: 49bd7f15e4df2b045b86e39274929834, type: 3}
       propertyPath: m_Name
       value: PauseButton
@@ -101,3 +117,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49bd7f15e4df2b045b86e39274929834, type: 3}
+--- !u!1 &4718520710373016198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7811112450449721794, guid: 49bd7f15e4df2b045b86e39274929834, type: 3}
+  m_PrefabInstance: {fileID: 3250799540553665348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1370818452039856659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718520710373016198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e328948371c31449463327d03860fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: {fileID: 0}

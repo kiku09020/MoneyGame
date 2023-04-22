@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 701371038372780698, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: changeColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 815990878782804075, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -55,6 +59,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1702528898691527047, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: changeColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2433363499733463886, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -79,6 +87,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2534459420410755519, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: changeColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3227880424698456471, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -103,6 +115,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3324362940343952230, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: changeColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5501863196939105584, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: changeColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5671075585236123585, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -126,6 +146,10 @@ PrefabInstance:
     - target: {fileID: 5671075585236123585, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6378739002387340504, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: changeColor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6515841199415236137, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
       propertyPath: m_AnchorMax.y

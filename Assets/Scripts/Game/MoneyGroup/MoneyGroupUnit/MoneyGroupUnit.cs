@@ -13,7 +13,6 @@ public class MoneyGroupUnit : MonoBehaviour {
     [Header("Components")]
     [SerializeField] RectTransform rectTransform;
     [SerializeField] Button button;
-    [SerializeField] TextMeshProUGUI text;
 
     // Proparties
     public RectTransform RectTransform => rectTransform;
@@ -37,16 +36,6 @@ public class MoneyGroupUnit : MonoBehaviour {
     public bool IsEmpty => (TargetMoney == null) ? true : false;
 
 	//--------------------------------------------------
-
-	void Awake()
-    {
-        
-    }
-
-	private void FixedUpdate()
-	{
-        text.text = moneyList.Count.ToString();
-	}
 
 	// moneyGroupと目的のmoneyGroupUnitを指定(moneyGroupで適用)
 	public void SetMoenyGroups(MoneyGroup moneyGroup, MoneyGroupUnit targetMoneyGroupUnit)

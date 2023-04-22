@@ -50,7 +50,6 @@ public class MoneyGenerator : MonoBehaviour
 			}
 
 			IsGenerating = false;       // ¶¬Š®—¹
-			state.StateTransition("MainState");     // ƒƒCƒ“ó‘Ô‚É‘JˆÚ
 		}
 	}
 

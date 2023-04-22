@@ -13,6 +13,9 @@ public class WholeMoneyCalculator : MonoBehaviour
 	[SerializeField] Transform targetTransform;
 	[SerializeField] TextMeshProUGUI changeText;
 
+	[SerializeField] MovementParams moveParams;
+	[SerializeField] float moveDistance;
+
 	//--------------------------------------------------
 
 	/// <summary>
@@ -43,7 +46,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// <summary>
 	/// 支払い
 	/// </summary>
-	public async void Payment()
+	public void Payment()
 	{
 		if (CanPay) {
 			// おつりのテキスト生成
@@ -113,9 +116,10 @@ public class WholeMoneyCalculator : MonoBehaviour
 
 		obj.text = $"+{Change.ToString()}";
 
-		obj.rectTransform.DOAnchorPosY(50, 1)
+		obj.rectTransform.DOAnchorPosY(moveDistance, moveParams.Duration)
+			.SetEase(moveParams.EaseType)
 			.OnComplete(() => {
-				Destroy(obj);
+				Destroy(obj.gameObject);
 			});
 	}
 }
