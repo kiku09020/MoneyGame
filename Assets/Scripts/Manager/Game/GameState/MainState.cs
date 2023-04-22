@@ -23,7 +23,8 @@ namespace GameController {
 		{
 			gameInfoUI.DOScale(1, .5f);
 
-			GameTimer.Enabled = true;		// タイマー有効化
+			GameTimer.Enabled = true;			// タイマー有効化
+			MainGameManager.isOperable = true;	// 操作可能にする
 		}
 
 		public override void OnUpdate()

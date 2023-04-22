@@ -71,7 +71,9 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// </summary>
 	public void Revert()
 	{
-		wholeMoneyInfo.PaymentMG.Mover.MoveToTarget(true, true, false);
+		if (MainGameManager.isOperable) {
+			wholeMoneyInfo.PaymentMG.Mover.MoveToTarget(true, true, false);
+		}
 	}
 
 	//--------------------------------------------------
