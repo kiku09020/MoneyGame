@@ -691,6 +691,7 @@ GameObject:
   - component: {fileID: 570712176}
   - component: {fileID: 570712177}
   - component: {fileID: 570712178}
+  - component: {fileID: 570712179}
   m_Layer: 0
   m_Name: GameManager_Sub
   m_TagString: Untagged
@@ -742,6 +743,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1516861123}
   startTime: 60
+--- !u!114 &570712179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570712175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54a2acdad2129140b5ee594b43d7d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &585336920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,19 +1609,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 758964009}
+  message: Ready...
+  fadable: 1
+  inDuration: 0.25
+  outDuration: 0.25
+  normalDuration: 0.5
+  movable: 1
+  movingDuration: 0.5
+  targetPosition: {x: 0, y: 100}
+  scalable: 1
+  scalingDuration: 0.5
+  targetScale: {x: 1.5, y: 1.5}
   waitDuration: 1
-  readyText:
-    inDuration: 0.25
-    outDuration: 0.25
-    textDuration: 0.75
-    targetPos: {x: 0, y: 100}
-    message: Ready...
-  startText:
-    inDuration: 0.2
-    outDuration: 0.25
-    textDuration: 0.5
-    targetPos: {x: 0, y: 100}
-    message: Start!
   state: {fileID: 350964293}
 --- !u!1 &1381806026
 GameObject:
@@ -1661,12 +1673,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 477208454}
-  textUnit:
-    inDuration: 0.2
-    outDuration: 0.2
-    textDuration: 1
-    targetPos: {x: 0, y: 200}
-    message: Finish!
+  message: Finish!
+  fadable: 0
+  inDuration: 0
+  outDuration: 0
+  normalDuration: 0
+  movable: 1
+  movingDuration: 0.5
+  targetPosition: {x: 0, y: 50}
+  scalable: 1
+  scalingDuration: 0.5
+  targetScale: {x: 1.25, y: 1.25}
 --- !u!1 &1393656278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,6 +2579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeMoneyInfo: {fileID: 1854486985}
   moneyGenerator: {fileID: 1570260668}
+  evaluator: {fileID: 1854486987}
   targetTransform: {fileID: 1393656279}
   changeText: {fileID: 983918638018291991, guid: b93b56f728c4e5548ac39d98ea062fc7, type: 3}
   moveParams:
@@ -2580,6 +2598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd78d0e5e9634c8479cafa7cc872bd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miss_RemovedTime: 10
+  over_RemovedTime: 5
+  parfectAddedTime: 10
+  addedTime: 2
   wholeMoneyInfo: {fileID: 1854486985}
 --- !u!1 &1855697420
 GameObject:

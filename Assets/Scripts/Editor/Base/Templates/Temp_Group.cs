@@ -55,10 +55,25 @@ namespace MyEditor {
                 return folderFlag;
             }
 
-            /// <summary>
-            ///  有効化、無効化できるグループ
-            /// </summary>
-            public static bool ToggleGroup(bool toggleFlag,string itemName,Direction direction,Action action)
+			/// <summary>
+			/// 開閉できるグループを作成
+			/// </summary>
+			public static bool OpenableGroup(Direction direction, bool value, string name, Action action, GUIStyle style = null, params GUILayoutOption[] options)
+			{
+				value = EditorGUILayout.BeginFoldoutHeaderGroup(value, name, style);     // value適用
+
+                Grouping(direction, true, () => {
+                    if (value) action?.Invoke();       // 開いていたら、Action実行
+                });
+
+				EditorGUILayout.EndFoldoutHeaderGroup();
+				return value;
+			}
+
+			/// <summary>
+			///  有効化、無効化できるグループ
+			/// </summary>
+			public static bool ToggleGroup(bool toggleFlag,string itemName,Direction direction,Action action)
 			{
                 using (var group = new EditorGUILayout.ToggleGroupScope(itemName, toggleFlag)) {
                     using (new EditorGUILayout.HorizontalScope()) {
