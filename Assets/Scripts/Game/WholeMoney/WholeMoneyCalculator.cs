@@ -1,5 +1,8 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 
@@ -14,12 +17,22 @@ public class WholeMoneyCalculator : MonoBehaviour
 	[Header("Change")]
 	[SerializeField] Transform targetTransform;
 
+	[Header("Payment")]
+	[SerializeField, Tooltip("éxï•Ç¢å„ÇÃë“ã@éûä‘")] float waitPaymentDuration = 1;
+
 	//--------------------------------------------------
+
+	CancellationToken token;
 
 	/// <summary>
 	/// éxï•Ç¢â¬î\Ç©Ç«Ç§Ç©(éxï•äzÇ™ñ⁄ïWäzÇÊÇËÇ‡ëÂÇ´ÇØÇÍÇŒéxï•Ç¶ÇÈ)
 	/// </summary>
 	public bool CanPay => (wholeMoneyInfo.PaymentMG.MoneyAmount >= wholeMoneyInfo.TargetMoneyAmount) ? true : false;
+
+	/// <summary>
+	/// éxï•Ç¢å„ÇÃë“ã@íÜÇ©Ç«Ç§Ç©
+	/// </summary>
+	public static bool IsWaitingPayment { get; private set; }
 
 	//--------------------------------------------------
 
@@ -37,10 +50,17 @@ public class WholeMoneyCalculator : MonoBehaviour
 	//--------------------------------------------------
 
 
+	private void Awake()
+	{
+		token = this.GetCancellationTokenOnDestroy();
+
+		IsWaitingPayment = false;
+	}
+
 	/// <summary>
 	/// éxï•Ç¢
 	/// </summary>
-	public void Payment()
+	public async void Payment()
 	{
 		if (CanPay) {
 			// ï]âø
@@ -58,8 +78,16 @@ public class WholeMoneyCalculator : MonoBehaviour
 			// éDê∂ê¨
 			CheckBillCount();
 
+			IsWaitingPayment = true;
+
+			// ë“ã@
+			await UniTask.Delay(TimeSpan.FromSeconds(1), false, PlayerLoopTiming.FixedUpdate, token);
+
+			IsWaitingPayment = false;
+
 			// ñ⁄ïWäzéwíË
 			wholeMoneyInfo.SetTargetMoneyAmount();
+
 		}
 	}
 

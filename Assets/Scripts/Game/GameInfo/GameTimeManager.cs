@@ -29,7 +29,7 @@ public class GameTimeManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Enabled) {
+        if (Enabled && !WholeMoneyCalculator.IsWaitingPayment) {
             Timer();
         }
     }

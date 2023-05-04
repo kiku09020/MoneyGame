@@ -23,7 +23,7 @@ public class MoneyEvaluator : MonoBehaviour
 	/// <summary>
 	/// 所持枚数が最大数よりも多いか
 	/// </summary>
-	bool IsOverPocketMoney => (wholeMoneyInfo.PocketMG.MoneyAmount > wholeMoneyInfo.PocketMoneyMaxCount) ? true : false;
+	bool IsOverPocketMoney => (wholeMoneyInfo.PocketMG.MoneyCount > wholeMoneyInfo.PocketMoneyMaxCount) ? true : false;
 
 	/// <summary>
 	/// パーフェクト判定。おつりが0円かどうか
@@ -110,8 +110,8 @@ public class MoneyEvaluator : MonoBehaviour
 	{
 		// タイム、スコア、コンボ加算
 		GameTimeManager.AddTimer(time);		
-		ScoreManager.AddScore(score);
 		ScoreManager.AddCombo();
+		ScoreManager.AddScore(score);
 
 		// テキスト生成
 		timeText.GenerateAndDispText(time);

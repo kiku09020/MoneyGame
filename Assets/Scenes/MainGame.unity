@@ -2127,13 +2127,14 @@ MonoBehaviour:
   movable: 1
   movingDuration: 0.5
   startPosition: {x: 160, y: -75}
-  targetPosition: {x: 0, y: -100}
+  targetPosition: {x: 160, y: -150}
   movingEaseType: 9
   scalable: 0
   scalingDuration: 0.5
   targetScale: {x: 1, y: 1}
   scalingEaseType: 0
   destroyable: 1
+  totalScoreText: {fileID: 585336922}
 --- !u!1 &1570260666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,6 +2677,7 @@ MonoBehaviour:
   evaluator: {fileID: 1854486987}
   changeTextController: {fileID: 1393656282}
   targetTransform: {fileID: 1393656279}
+  waitPaymentDuration: 3.5
 --- !u!114 &1854486987
 MonoBehaviour:
   m_ObjectHideFlags: 0
