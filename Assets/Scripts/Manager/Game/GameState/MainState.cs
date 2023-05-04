@@ -16,14 +16,14 @@ namespace GameController {
 		{
 			gameInfoUI.localScale = Vector3.zero;
 
-			GameTimer.Enabled = false;
+			GameTimeManager.Enabled = false;
 		}
 
 		public override void OnEnter()
 		{
 			gameInfoUI.DOScale(1, .5f);
 
-			GameTimer.Enabled = true;			// タイマー有効化
+			GameTimeManager.Enabled = true;			// タイマー有効化
 			MainGameManager.isOperable = true;	// 操作可能にする
 		}
 

@@ -8,6 +8,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 	[Header("Components")]
     [SerializeField] WholeMoneyInfo wholeMoneyInfo;
 	[SerializeField] MoneyGenerator moneyGenerator;
+	[SerializeField] MoneyEvaluator evaluator;
 
 	[Header("Change")]
 	[SerializeField] Transform targetTransform;
@@ -23,10 +24,6 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// </summary>
 	public bool CanPay => (wholeMoneyInfo.PaymentMG.MoneyAmount >= wholeMoneyInfo.TargetMoneyAmount) ? true : false;
 
-	/// <summary>
-	/// おつり
-	/// </summary>
-	int Change => wholeMoneyInfo.PaymentMG.MoneyAmount - wholeMoneyInfo.TargetMoneyAmount;
 	//--------------------------------------------------
 
 	public class ChangeMoneyUnit {
@@ -49,6 +46,9 @@ public class WholeMoneyCalculator : MonoBehaviour
 	public void Payment()
 	{
 		if (CanPay) {
+			// 評価
+			evaluator.EvaluatePaidMoney();
+
 			// おつりのテキスト生成
 			GenerateChangeText();
 
@@ -116,7 +116,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 
 		var obj = Instantiate(changeText, transform);
 
-		obj.text = $"+{Change.ToString()}";
+		obj.text = $"+{wholeMoneyInfo.Change.ToString()}";
 
 		obj.rectTransform.DOAnchorPosY(moveDistance, moveParams.Duration)
 			.SetEase(moveParams.EaseType)

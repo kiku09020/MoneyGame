@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameTimer : MonoBehaviour
+public class GameTimeManager : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] TextMeshProUGUI timerText;
@@ -11,7 +11,7 @@ public class GameTimer : MonoBehaviour
     [Header("Params")]
     [SerializeField] int startTime = 45;            // 開始時の時間
 
-    float time;     // 時間
+    static float time;     // 時間
 
     /// <summary>
     /// 有効か
@@ -58,4 +58,27 @@ public class GameTimer : MonoBehaviour
     {
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", min, sec, milSec);
 	}
+
+	//--------------------------------------------------
+
+    /// <summary>
+    /// タイマー加算
+    /// </summary>
+    public static void AddTimer(float addedTime)
+    {
+        time += addedTime;
+    }
+
+    /// <summary>
+    /// タイマー減算
+    /// </summary>
+    public static void RemoveTimer(float remmovedTime)
+    {
+        time -= remmovedTime;
+
+        // 0以下だったら0にする
+        if (time < 0) {
+            time = 0;
+        }
+    }
 }

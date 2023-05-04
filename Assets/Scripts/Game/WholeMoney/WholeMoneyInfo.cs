@@ -20,7 +20,9 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 	[Header("Money")]
 	[SerializeField] MoneyGroup paymentMG;
 	[SerializeField] MoneyGroup pocketMG;
-	[SerializeField] List<MoneyUnit> moneyUnitList = new List<MoneyUnit>();
+
+	[SerializeField,Tooltip("お金に加えて、MoneyGroupを指定したクラスのリスト")]
+	List<MoneyUnit> moneyUnitList = new List<MoneyUnit>();
 
 	#endregion
 
@@ -47,14 +49,9 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 	//--------------------------------------------------
 
 	#region Properties
-
-	// 目標額のタイプ
-	public enum TargetMoneyType {
-		constant,               // 定数
-		random,                 // ランダム値
-		randomWithScore,        // スコアに応じた範囲内のランダム値
-	}
-
+	/// <summary>
+	/// お金に加えて、MoneyGroupを指定したクラスのリスト
+	/// </summary>
 	public List<MoneyUnit> MoneyUnitList => moneyUnitList;
 
 	/// <summary>
@@ -67,10 +64,29 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 	/// </summary>
 	public int TargetMoneyAmount { get; private set; }
 
+	/// <summary>
+	/// 支払いMoneyGroup
+	/// </summary>
 	public MoneyGroup PaymentMG => paymentMG;
+	/// <summary>
+	/// 所持金MoneyGroup
+	/// </summary>
 	public MoneyGroup PocketMG=> pocketMG;
 
+	/// <summary>
+	/// おつり
+	/// </summary>
+	public int Change => paymentMG.MoneyAmount - TargetMoneyAmount;
 	#endregion
+
+	/// <summary>
+	/// 目標額のタイプ
+	/// </summary>
+	public enum TargetMoneyType {
+		constant,               // 定数
+		random,                 // ランダム値
+		randomWithScore,        // スコアに応じた範囲内のランダム値
+	}
 
 	//--------------------------------------------------
 
@@ -78,9 +94,9 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 	{
 		base.Awake();
 
-		PocketMoneyMaxCount = startPocketMoneyMaxCount;
+		PocketMoneyMaxCount = startPocketMoneyMaxCount;		// 所持金の最大枚数を指定
 
-		SetTargetMoneyAmount();
+		SetTargetMoneyAmount();								// 目標額指定
 	}
 
 	//--------------------------------------------------
@@ -100,15 +116,16 @@ public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 	public void SetTargetMoneyAmount()
 	{
 		switch (targetMoneyType) {
-			case TargetMoneyType.constant:
+			case TargetMoneyType.constant:		// 定数
 				TargetMoneyAmount = 1111;
 				break;
 
-			case TargetMoneyType.random:
+			case TargetMoneyType.random:		// 乱数
 				TargetMoneyAmount = Random.Range(minTargetMoneyAmount, maxTargetMoneyAmount);
 				break;
 		}
 
+		// 目標額のテキスト指定
 		targetMoneyAmountText.text = SeparatedAmountText(TargetMoneyAmount);
 	}
 
