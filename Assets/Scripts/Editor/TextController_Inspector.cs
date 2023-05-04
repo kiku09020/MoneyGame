@@ -21,6 +21,11 @@ public class TextController_Inspector : Editor
 		Space(SpaceType.vertical);
 		open = Group.OpenableGroup(Direction.vertical, open, "Options", () => {
 
+			// 色
+			targ.colorable = Group.ToggleGroup(targ.colorable, "Colorable", Direction.vertical, () => {
+				targ.targetColor = EditorGUILayout.ColorField("TargetColor", targ.targetColor);
+			});
+
 			// フェード
 			targ.fadable = Group.ToggleGroup(targ.fadable, "Fadable", Direction.vertical, () => {
 				targ.inDuration = EditorGUILayout.Slider("FadeInDuration", targ.inDuration, 0, 1);              // フェードイン時間

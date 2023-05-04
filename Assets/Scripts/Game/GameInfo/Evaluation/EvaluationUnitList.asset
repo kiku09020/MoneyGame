@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d8e4158435c4549bf18b0be8e3f16b, type: 3}
+  m_Name: EvaluationUnitList
+  m_EditorClassIdentifier: 
+  evaluationMessages:
+  - name: Perfect
+    message: Perfect!!
+    messageColor: {r: 1, g: 0.5907637, b: 0.22075468, a: 1}
+    type: 0
+  - name: Normal
+    message: Good!
+    messageColor: {r: 0.75749534, g: 1, b: 0.29622638, a: 1}
+    type: 1
+  - name: Missed
+    message: Miss!
+    messageColor: {r: 1, g: 0.24820276, b: 0.1641509, a: 1}
+    type: 2
+  - name: Over
+    message: Over!
+    messageColor: {r: 1, g: 0.24820276, b: 0.1641509, a: 1}
+    type: 3

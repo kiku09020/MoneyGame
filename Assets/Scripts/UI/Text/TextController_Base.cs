@@ -14,6 +14,9 @@ public class TextController_Base : MonoBehaviour
 	[SerializeField] string message;
 
 	// フェード
+	[HideInInspector] public bool colorable;
+	[HideInInspector] public Color targetColor;
+
 	[HideInInspector] public bool fadable;
 	[HideInInspector] public float inDuration		= .25f;
 	[HideInInspector] public float outDuration		= .25f;
@@ -50,10 +53,15 @@ public class TextController_Base : MonoBehaviour
 	/// <summary>
 	/// テキストの表示
 	/// </summary>
-	public async void DispText(TextMeshProUGUI text, CancellationToken token, Action completeAction = null)
+	public async void DispText(TextMeshProUGUI text, Action completeAction = null)
 	{
 		// 文字変更
 		text.text = message;
+
+		// 文字色変更
+		if (colorable) {
+			text.color = targetColor;
+		}
 
 		// 移動、スケーリング
 		if (movable) {
@@ -86,14 +94,57 @@ public class TextController_Base : MonoBehaviour
 	/// <summary>
 	/// テキストの表示(メッセージ指定可能)
 	/// </summary>
-	public async void DispText(TextMeshProUGUI text,string message, CancellationToken token, Action completeAction = null)
+	public async void DispText(TextMeshProUGUI text,string message, Action completeAction = null)
 	{
 		// 文字変更
 		text.text = message;
 
+		// 文字色変更
+		if (colorable) {
+			text.color = targetColor;
+		}
+
 		// 移動、スケーリング
 		if (movable) {
 			text.rectTransform.DOLocalMove(startPosition, 0);		// 初期座標に移動
+			text.rectTransform.DOLocalMove(targetPosition, movingDuration).SetEase(movingEaseType);
+		}
+
+		if (scalable) {
+			text.rectTransform.DOScale(targetScale, scalingDuration).SetEase(scalingEaseType);
+		}
+
+		// フェードイン
+		if (fadable) {
+			text.DOFade(0, 0);
+			text.DOFade(1, inDuration);
+
+			// 待機
+			await UniTask.Delay(TimeSpan.FromSeconds(normalDuration), cancellationToken: token);
+
+			// フェードアウト
+			text.DOFade(0, outDuration).OnComplete(() => {
+				completeAction?.Invoke();
+			});
+		}
+
+		else {
+			completeAction?.Invoke();
+		}
+	}
+
+	/// <summary>
+	/// テキストの表示(色の指定可能)
+	/// </summary>
+	public async void DispText(TextMeshProUGUI text, Color color, Action completeAction = null)
+	{
+		// 文字変更
+		text.text = message;
+		text.color = color;
+
+		// 移動、スケーリング
+		if (movable) {
+			text.rectTransform.DOLocalMove(startPosition, 0);       // 初期座標に移動
 			text.rectTransform.DOLocalMove(targetPosition, movingDuration).SetEase(movingEaseType);
 		}
 

@@ -304,6 +304,7 @@ RectTransform:
   m_Children:
   - {fileID: 1351182200}
   - {fileID: 1381806027}
+  - {fileID: 702938515}
   m_Father: {fileID: 1847926834}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1112,6 +1113,73 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &702938514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702938515}
+  - component: {fileID: 702938516}
+  m_Layer: 5
+  m_Name: EvaluateTextController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &702938515
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702938514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 289336888}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 600, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &702938516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702938514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82721503f50e5ef4587f33051b04915d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  message: 
+  colorable: 1
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
+  fadable: 0
+  inDuration: 0.25
+  outDuration: 0.25
+  normalDuration: 0.5
+  movable: 0
+  movingDuration: 0.5
+  startPosition: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 0}
+  movingEaseType: 0
+  scalable: 0
+  scalingDuration: 0.5
+  targetScale: {x: 1, y: 1}
+  scalingEaseType: 0
+  destroyable: 1
 --- !u!1 &758964007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,6 +1678,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 758964009}
   message: Ready...
+  colorable: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
   fadable: 1
   inDuration: 0.25
   outDuration: 0.25
@@ -1678,6 +1748,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 477208454}
   message: Finish!
+  colorable: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
   fadable: 0
   inDuration: 0
   outDuration: 0
@@ -1783,6 +1855,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: b93b56f728c4e5548ac39d98ea062fc7, type: 3}
   message: wwww
+  colorable: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
   fadable: 1
   inDuration: 0.25
   outDuration: 0.5
@@ -2120,6 +2194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: 9005b7fd973bd9b4da9755a99b17942f, type: 3}
   message: 
+  colorable: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
   fadable: 1
   inDuration: 0.25
   outDuration: 0.25
@@ -2413,6 +2489,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
   message: 
+  colorable: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
   fadable: 1
   inDuration: 0.25
   outDuration: 0.25
@@ -2694,9 +2772,11 @@ MonoBehaviour:
   over_RemovedTime: 5
   parfectAddedTime: 10
   addedTime: 2
+  evaluationManager: {fileID: 11400000, guid: 62d5b1e0132be2d4cb44d66d01fc0bcd, type: 2}
   wholeMoneyInfo: {fileID: 1854486985}
   scoreText: {fileID: 1566678736}
   timeText: {fileID: 1704909473}
+  evaluateText: {fileID: 0}
 --- !u!1 &1855697420
 GameObject:
   m_ObjectHideFlags: 0

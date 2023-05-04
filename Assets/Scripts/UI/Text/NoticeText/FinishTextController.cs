@@ -10,6 +10,6 @@ public class FinishTextController : TextController_Base
     {
 		text.gameObject.SetActive(true);        // •\Ž¦
 
-        DispText(text, token);
+        DispText(text);
 	}
 }

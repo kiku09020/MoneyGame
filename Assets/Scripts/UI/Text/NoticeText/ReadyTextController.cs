@@ -23,14 +23,14 @@ public class ReadyTextController : TextController_Base
         var prevPos = text.rectTransform.anchoredPosition;
         var prevScale = text.rectTransform.localScale;
 
-        DispText(text,token);
+        DispText(text);
         await UniTask.Delay(TimeSpan.FromSeconds(waitDuration), cancellationToken: token);
 
         text.rectTransform.anchoredPosition = prevPos;      // ‚à‚Æ‚É–ß‚·
         text.rectTransform.localScale = prevScale;
 
         // ‘JˆÚ
-        DispText(text, startMessage, token, () => {
+        DispText(text, startMessage, () => {
             state.StateTransition<MainState>();
         });
     }
