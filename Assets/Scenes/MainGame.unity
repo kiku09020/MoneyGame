@@ -1162,23 +1162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82721503f50e5ef4587f33051b04915d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  message: 
-  colorable: 1
-  targetColor: {r: 0, g: 0, b: 0, a: 0}
-  fadable: 0
-  inDuration: 0.25
-  outDuration: 0.25
-  normalDuration: 0.5
-  movable: 0
-  movingDuration: 0.5
-  startPosition: {x: 0, y: 0}
-  targetPosition: {x: 0, y: 0}
-  movingEaseType: 0
-  scalable: 0
-  scalingDuration: 0.5
-  targetScale: {x: 1, y: 1}
-  scalingEaseType: 0
+  text: {fileID: 983918638018291991, guid: d8dff479e0e71f64cabcdbf51222623e, type: 3}
+  textParameter: {fileID: 11400000, guid: 109424165ea741745825c9901fa0056a, type: 2}
   destroyable: 1
 --- !u!1 &758964007
 GameObject:
@@ -1677,22 +1662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 758964009}
-  message: Ready...
-  colorable: 0
-  targetColor: {r: 0, g: 0, b: 0, a: 0}
-  fadable: 1
-  inDuration: 0.25
-  outDuration: 0.25
-  normalDuration: 0.5
-  movable: 1
-  movingDuration: 0.5
-  startPosition: {x: 0, y: 0}
-  targetPosition: {x: 0, y: 100}
-  movingEaseType: 0
-  scalable: 1
-  scalingDuration: 0.25
-  targetScale: {x: 1.25, y: 1.25}
-  scalingEaseType: 9
+  textParameter: {fileID: 11400000, guid: 66ce5eb60d1969e40a7140801b20a887, type: 2}
   startMessage: Start!
   waitDuration: 1
   state: {fileID: 350964293}
@@ -1747,22 +1717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 477208454}
-  message: Finish!
-  colorable: 0
-  targetColor: {r: 0, g: 0, b: 0, a: 0}
-  fadable: 0
-  inDuration: 0
-  outDuration: 0
-  normalDuration: 0
-  movable: 1
-  movingDuration: 0.5
-  startPosition: {x: 0, y: 0}
-  targetPosition: {x: 0, y: 50}
-  movingEaseType: 0
-  scalable: 1
-  scalingDuration: 0.5
-  targetScale: {x: 1.25, y: 1.25}
-  scalingEaseType: 0
+  textParameter: {fileID: 11400000, guid: d19b61c06018bb54c962c8a7791981bc, type: 2}
 --- !u!1 &1393656278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,22 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: b93b56f728c4e5548ac39d98ea062fc7, type: 3}
-  message: wwww
-  colorable: 0
-  targetColor: {r: 0, g: 0, b: 0, a: 0}
-  fadable: 1
-  inDuration: 0.25
-  outDuration: 0.5
-  normalDuration: 0.5
-  movable: 1
-  movingDuration: 0.4
-  startPosition: {x: 0, y: 0}
-  targetPosition: {x: 0, y: 150}
-  movingEaseType: 4
-  scalable: 1
-  scalingDuration: 0.4
-  targetScale: {x: 1.25, y: 1.25}
-  scalingEaseType: 9
+  textParameter: {fileID: 11400000, guid: a190519b06cb0c24c9ea876f6660e30e, type: 2}
   destroyable: 0
 --- !u!1 &1399361289
 GameObject:
@@ -2193,22 +2133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: 9005b7fd973bd9b4da9755a99b17942f, type: 3}
-  message: 
-  colorable: 0
-  targetColor: {r: 0, g: 0, b: 0, a: 0}
-  fadable: 1
-  inDuration: 0.25
-  outDuration: 0.25
-  normalDuration: 0.5
-  movable: 1
-  movingDuration: 0.5
-  startPosition: {x: 160, y: -75}
-  targetPosition: {x: 160, y: -150}
-  movingEaseType: 9
-  scalable: 0
-  scalingDuration: 0.5
-  targetScale: {x: 1, y: 1}
-  scalingEaseType: 0
+  textParameter: {fileID: 11400000, guid: c37b3e3404b78184581926c3827ce412, type: 2}
   destroyable: 1
   totalScoreText: {fileID: 585336922}
 --- !u!1 &1570260666
@@ -2488,22 +2413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
-  message: 
-  colorable: 0
-  targetColor: {r: 0, g: 0, b: 0, a: 0}
-  fadable: 1
-  inDuration: 0.25
-  outDuration: 0.25
-  normalDuration: 0.5
-  movable: 1
-  movingDuration: 0.5
-  startPosition: {x: 0, y: -120}
-  targetPosition: {x: 0, y: -100}
-  movingEaseType: 6
-  scalable: 0
-  scalingDuration: 0.5
-  targetScale: {x: 1, y: 1}
-  scalingEaseType: 0
+  textParameter: {fileID: 11400000, guid: 3909f94862029b54392b706b8849c16a, type: 2}
   destroyable: 1
 --- !u!1 &1806596795
 GameObject:
@@ -2755,7 +2665,7 @@ MonoBehaviour:
   evaluator: {fileID: 1854486987}
   changeTextController: {fileID: 1393656282}
   targetTransform: {fileID: 1393656279}
-  waitPaymentDuration: 3.5
+  waitPaymentDuration: 3
 --- !u!114 &1854486987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2776,7 +2686,7 @@ MonoBehaviour:
   wholeMoneyInfo: {fileID: 1854486985}
   scoreText: {fileID: 1566678736}
   timeText: {fileID: 1704909473}
-  evaluateText: {fileID: 0}
+  evaluateText: {fileID: 702938516}
 --- !u!1 &1855697420
 GameObject:
   m_ObjectHideFlags: 0

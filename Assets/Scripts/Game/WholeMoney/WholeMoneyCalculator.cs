@@ -81,7 +81,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 			IsWaitingPayment = true;
 
 			// ‘Ò‹@
-			await UniTask.Delay(TimeSpan.FromSeconds(1), false, PlayerLoopTiming.FixedUpdate, token);
+			await UniTask.Delay(TimeSpan.FromSeconds(waitPaymentDuration), false, PlayerLoopTiming.FixedUpdate, token);
 
 			IsWaitingPayment = false;
 
