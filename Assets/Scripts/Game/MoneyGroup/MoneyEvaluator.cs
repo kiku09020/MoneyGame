@@ -16,6 +16,8 @@ public class MoneyEvaluator : MonoBehaviour
 
 	[Header("Components")]
     [SerializeField] WholeMoneyInfo wholeMoneyInfo;
+	[SerializeField] ScoreTextController scoreText;
+	[SerializeField] TimeTextController timeText;
 
 	// Properties
 	/// <summary>
@@ -98,7 +100,9 @@ public class MoneyEvaluator : MonoBehaviour
 	void Missed(float removedTime)
 	{
 		GameTimeManager.RemoveTimer(removedTime);		// タイム減算
-		ScoreManager.ResetCombo();				// コンボリセット
+		ScoreManager.ResetCombo();						// コンボリセット
+
+		timeText.GenerateAndDispText(-removedTime);		// タイムテキスト生成
 	}
 
 	// ミス以外の時の処理
@@ -108,5 +112,9 @@ public class MoneyEvaluator : MonoBehaviour
 		GameTimeManager.AddTimer(time);		
 		ScoreManager.AddScore(score);
 		ScoreManager.AddCombo();
+
+		// テキスト生成
+		timeText.GenerateAndDispText(time);
+		scoreText.GenerateAndDispText(score);
 	}
 }

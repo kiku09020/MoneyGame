@@ -22,6 +22,7 @@ public class TextController_Base : MonoBehaviour
 	// 移動
 	[HideInInspector] public bool movable;
 	[HideInInspector] public float movingDuration	= .5f;
+	[HideInInspector] public Vector2 startPosition;
 	[HideInInspector] public Vector2 targetPosition;
 	[HideInInspector] public Ease movingEaseType;
 
@@ -51,24 +52,35 @@ public class TextController_Base : MonoBehaviour
 	/// </summary>
 	public async void DispText(TextMeshProUGUI text, CancellationToken token, Action completeAction = null)
 	{
-		// 移動、スケーリング
-		text.rectTransform.DOLocalMove(targetPosition, movingDuration).SetEase(movingEaseType);
-		text.rectTransform.DOScale(targetScale, scalingDuration).SetEase(scalingEaseType);
-
 		// 文字変更
 		text.text = message;
 
+		// 移動、スケーリング
+		if (movable) {
+			text.rectTransform.DOLocalMove(targetPosition, movingDuration).SetEase(movingEaseType);
+		}
+
+		if (scalable) {
+			text.rectTransform.DOScale(targetScale, scalingDuration).SetEase(scalingEaseType);
+		}
+
 		// フェードイン
-		text.DOFade(0, 0);
-		text.DOFade(1, inDuration);
+		if (fadable) {
+			text.DOFade(0, 0);
+			text.DOFade(1, inDuration);
 
-		// 待機
-		await UniTask.Delay(TimeSpan.FromSeconds(normalDuration), cancellationToken: token);
+			// 待機
+			await UniTask.Delay(TimeSpan.FromSeconds(normalDuration), cancellationToken: token);
 
-		// フェードアウト
-		text.DOFade(0, outDuration).OnComplete(() => {
+			// フェードアウト
+			text.DOFade(0, outDuration).OnComplete(() => {
+				completeAction?.Invoke();
+			});
+		}
+
+		else {
 			completeAction?.Invoke();
-		});
+		}
 	}
 
 	/// <summary>
@@ -76,23 +88,35 @@ public class TextController_Base : MonoBehaviour
 	/// </summary>
 	public async void DispText(TextMeshProUGUI text,string message, CancellationToken token, Action completeAction = null)
 	{
-		// 移動、スケーリング
-		text.rectTransform.DOLocalMove(targetPosition, movingDuration).SetEase(movingEaseType);
-		text.rectTransform.DOScale(targetScale, scalingDuration).SetEase(scalingEaseType);
-
 		// 文字変更
 		text.text = message;
 
+		// 移動、スケーリング
+		if (movable) {
+			text.rectTransform.DOLocalMove(startPosition, 0);		// 初期座標に移動
+			text.rectTransform.DOLocalMove(targetPosition, movingDuration).SetEase(movingEaseType);
+		}
+
+		if (scalable) {
+			text.rectTransform.DOScale(targetScale, scalingDuration).SetEase(scalingEaseType);
+		}
+
 		// フェードイン
-		text.DOFade(0, 0);
-		text.DOFade(1, inDuration);
+		if (fadable) {
+			text.DOFade(0, 0);
+			text.DOFade(1, inDuration);
 
-		// 待機
-		await UniTask.Delay(TimeSpan.FromSeconds(normalDuration), cancellationToken: token);
+			// 待機
+			await UniTask.Delay(TimeSpan.FromSeconds(normalDuration), cancellationToken: token);
 
-		// フェードアウト
-		text.DOFade(0, outDuration).OnComplete(() => {
+			// フェードアウト
+			text.DOFade(0, outDuration).OnComplete(() => {
+				completeAction?.Invoke();
+			});
+		}
+
+		else {
 			completeAction?.Invoke();
-		});
+		}
 	}
 }

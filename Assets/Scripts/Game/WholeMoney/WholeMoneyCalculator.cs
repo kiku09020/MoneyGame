@@ -9,13 +9,10 @@ public class WholeMoneyCalculator : MonoBehaviour
     [SerializeField] WholeMoneyInfo wholeMoneyInfo;
 	[SerializeField] MoneyGenerator moneyGenerator;
 	[SerializeField] MoneyEvaluator evaluator;
+	[SerializeField] ChangeTextController changeTextController;
 
 	[Header("Change")]
 	[SerializeField] Transform targetTransform;
-	[SerializeField] TextMeshProUGUI changeText;
-
-	[SerializeField] MovementParams moveParams;
-	[SerializeField] float moveDistance;
 
 	//--------------------------------------------------
 
@@ -50,7 +47,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 			evaluator.EvaluatePaidMoney();
 
 			// おつりのテキスト生成
-			GenerateChangeText();
+			changeTextController.GenerateAndDispText(wholeMoneyInfo.Change);
 
 			// おつり生成して移動
 			moneyGenerator.GenerateAndMoveChange(GetChangeMoneyList(), targetTransform);
@@ -109,19 +106,5 @@ public class WholeMoneyCalculator : MonoBehaviour
 		if (wholeMoneyInfo.PocketMG.MoneyGroupUnitList[6].MoneyList.Count < wholeMoneyInfo.MoneyUnitList[6].Money.Data.GeneratedCount) {
 			moneyGenerator.GenerateAndMoveBill(wholeMoneyInfo.MoneyUnitList[6].PocketMG);
 		}
-	}
-
-	void GenerateChangeText()
-	{
-
-		var obj = Instantiate(changeText, transform);
-
-		obj.text = $"+{wholeMoneyInfo.Change.ToString()}";
-
-		obj.rectTransform.DOAnchorPosY(moveDistance, moveParams.Duration)
-			.SetEase(moveParams.EaseType)
-			.OnComplete(() => {
-				Destroy(obj.gameObject);
-			});
 	}
 }

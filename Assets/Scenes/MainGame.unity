@@ -1616,10 +1616,14 @@ MonoBehaviour:
   normalDuration: 0.5
   movable: 1
   movingDuration: 0.5
+  startPosition: {x: 0, y: 0}
   targetPosition: {x: 0, y: 100}
+  movingEaseType: 0
   scalable: 1
-  scalingDuration: 0.5
-  targetScale: {x: 1.5, y: 1.5}
+  scalingDuration: 0.25
+  targetScale: {x: 1.25, y: 1.25}
+  scalingEaseType: 9
+  startMessage: Start!
   waitDuration: 1
   state: {fileID: 350964293}
 --- !u!1 &1381806026
@@ -1680,10 +1684,13 @@ MonoBehaviour:
   normalDuration: 0
   movable: 1
   movingDuration: 0.5
+  startPosition: {x: 0, y: 0}
   targetPosition: {x: 0, y: 50}
+  movingEaseType: 0
   scalable: 1
   scalingDuration: 0.5
   targetScale: {x: 1.25, y: 1.25}
+  scalingEaseType: 0
 --- !u!1 &1393656278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1702,7 @@ GameObject:
   - component: {fileID: 1393656279}
   - component: {fileID: 1393656281}
   - component: {fileID: 1393656280}
+  - component: {fileID: 1393656282}
   m_Layer: 5
   m_Name: TargetPrice
   m_TagString: Untagged
@@ -1761,6 +1769,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393656278}
   m_CullTransparentMesh: 1
+--- !u!114 &1393656282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393656278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af094c2fb98f997439312df1fe740ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 983918638018291991, guid: b93b56f728c4e5548ac39d98ea062fc7, type: 3}
+  message: wwww
+  fadable: 1
+  inDuration: 0.25
+  outDuration: 0.5
+  normalDuration: 0.5
+  movable: 1
+  movingDuration: 0.4
+  startPosition: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 150}
+  movingEaseType: 4
+  scalable: 1
+  scalingDuration: 0.4
+  targetScale: {x: 1.25, y: 1.25}
+  scalingEaseType: 9
+  destroyable: 0
 --- !u!1 &1399361289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2076,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1566678735}
+  - component: {fileID: 1566678736}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -2069,6 +2106,34 @@ RectTransform:
   m_AnchoredPosition: {x: 25, y: 0}
   m_SizeDelta: {x: 320, y: 150}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1566678736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566678734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f6d2ec29abcb24c8a8069d773aa77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 983918638018291991, guid: 9005b7fd973bd9b4da9755a99b17942f, type: 3}
+  message: 
+  fadable: 1
+  inDuration: 0.25
+  outDuration: 0.25
+  normalDuration: 0.5
+  movable: 1
+  movingDuration: 0.5
+  startPosition: {x: 160, y: -75}
+  targetPosition: {x: 0, y: -100}
+  movingEaseType: 9
+  scalable: 0
+  scalingDuration: 0.5
+  targetScale: {x: 1, y: 1}
+  scalingEaseType: 0
+  destroyable: 1
 --- !u!1 &1570260666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,6 +2331,7 @@ GameObject:
   - component: {fileID: 1704909470}
   - component: {fileID: 1704909472}
   - component: {fileID: 1704909471}
+  - component: {fileID: 1704909473}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -2332,6 +2398,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704909469}
   m_CullTransparentMesh: 1
+--- !u!114 &1704909473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704909469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2dda9749f496642915f051a834804d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+  message: 
+  fadable: 1
+  inDuration: 0.25
+  outDuration: 0.25
+  normalDuration: 0.5
+  movable: 1
+  movingDuration: 0.5
+  startPosition: {x: 0, y: -120}
+  targetPosition: {x: 0, y: -100}
+  movingEaseType: 6
+  scalable: 0
+  scalingDuration: 0.5
+  targetScale: {x: 1, y: 1}
+  scalingEaseType: 0
+  destroyable: 1
 --- !u!1 &1806596795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,12 +2674,8 @@ MonoBehaviour:
   wholeMoneyInfo: {fileID: 1854486985}
   moneyGenerator: {fileID: 1570260668}
   evaluator: {fileID: 1854486987}
+  changeTextController: {fileID: 1393656282}
   targetTransform: {fileID: 1393656279}
-  changeText: {fileID: 983918638018291991, guid: b93b56f728c4e5548ac39d98ea062fc7, type: 3}
-  moveParams:
-    duration: 0.75
-    easeType: 6
-  moveDistance: 75
 --- !u!114 &1854486987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,6 +2693,8 @@ MonoBehaviour:
   parfectAddedTime: 10
   addedTime: 2
   wholeMoneyInfo: {fileID: 1854486985}
+  scoreText: {fileID: 1566678736}
+  timeText: {fileID: 1704909473}
 --- !u!1 &1855697420
 GameObject:
   m_ObjectHideFlags: 0

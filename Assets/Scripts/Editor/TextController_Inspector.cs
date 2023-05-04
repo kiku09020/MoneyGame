@@ -31,6 +31,7 @@ public class TextController_Inspector : Editor
 			// 移動
 			targ.movable = Group.ToggleGroup(targ.movable, "Movable", Direction.vertical, () => {
 				targ.movingDuration = EditorGUILayout.Slider("MovingDuration", targ.movingDuration, 0, 3);      // 移動時間
+				targ.startPosition = EditorGUILayout.Vector2Field("StartPosition", targ.startPosition);			// 初期位置
 				targ.targetPosition = EditorGUILayout.Vector2Field("TargetPosition", targ.targetPosition);      // 目標座標
 				targ.movingEaseType = (Ease)EditorGUILayout.EnumPopup("MovingEaseType", targ.movingEaseType);   // イージングの種類
 			});
