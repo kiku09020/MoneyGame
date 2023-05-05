@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class FinishTextController : TextController_Base
 {
+    [Header("Parameters")]
+    [SerializeField] string message;
     //--------------------------------------------------
 
     public void StartingAction()
     {
 		text.gameObject.SetActive(true);        // •\Ž¦
 
-        DispText(text);
+        DispText(text, message);
 	}
 }

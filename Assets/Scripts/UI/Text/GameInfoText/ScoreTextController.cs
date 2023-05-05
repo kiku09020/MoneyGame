@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ScoreTextController : TextController_Generatable
 {
+	[Header("Components")]
 	[SerializeField] TextMeshProUGUI totalScoreText;
 
 	private void Awake()

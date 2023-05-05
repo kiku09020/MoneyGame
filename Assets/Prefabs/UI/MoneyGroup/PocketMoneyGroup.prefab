@@ -119,6 +119,30 @@ PrefabInstance:
       propertyPath: changeColor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4629613938717148062, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629613938717148062, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629613938717148062, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629613938717148062, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629613938717148062, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629613938717148062, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5501863196939105584, guid: db2f5d1ea16f6514e92d498bfcd1ee67, type: 3}
       propertyPath: changeColor
       value: 1

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class TextController_Generatable : TextController_Base
 {
+	[Header("Parameters")]
 	[SerializeField] bool destroyable;
 
     //--------------------------------------------------
