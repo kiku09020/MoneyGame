@@ -510,6 +510,54 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "GameState",
+            "id": "73e9cc0e-18e6-4678-9234-4be13e7b3941",
+            "actions": [
+                {
+                    "name": "TransitionToEnd",
+                    "type": "Button",
+                    "id": "978539e2-8ac3-404e-87b3-53650a28040b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TransitionToResult",
+                    "type": "Button",
+                    "id": "74e2b17b-6286-43e1-bc9d-526f69af67a8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ce231eeb-e833-4819-b5bf-40421fdc5d13",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TransitionToEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a88d268-916e-4afa-b55e-6b8a207a8aa4",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TransitionToResult",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

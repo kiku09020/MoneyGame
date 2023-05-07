@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+#if DEBUG
 namespace Debug_ {
     public class TimeDebugger : MonoBehaviour {
         DebugInput inputActions;
@@ -11,6 +12,9 @@ namespace Debug_ {
 
         void Awake()
         {
+            // デバッグビルド以外は早期リターン
+            if (!Debug.isDebugBuild) return;
+
             inputActions = new DebugInput();
 
             inputActions.Time.Stop.performed += OnStop;
@@ -43,3 +47,5 @@ namespace Debug_ {
         }
     }
 }
+
+#endif

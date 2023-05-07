@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 1563355241432942175}
   - component: {fileID: 1563355241432942160}
   - component: {fileID: 1563355241432942161}
+  - component: {fileID: 6272511599438602243}
   m_Layer: 0
   m_Name: DebugManager
   m_TagString: Untagged
@@ -89,6 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f81b7296b66b4344b530d0fa66adb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugUnits: []
+  mainSceneName: MainGame
 --- !u!114 &1563355241432942161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +102,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ae586b3c8c6058479fed3f938b09c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6272511599438602243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563355241432942174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a760fd4f17cb5e499c5140846358250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1563355241448070238

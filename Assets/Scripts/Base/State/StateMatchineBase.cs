@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace GameController {
@@ -53,6 +54,15 @@ namespace GameController {
 			StateTransition(GetState<State>());
 		}
 
+		/// <summary>
+		/// 状態遷移
+		/// </summary>
+		/// <param name="stateName">遷移先の状態の名前</param>
+		public void StateTransition(string stateName)
+		{
+			StateTransition(GetState(stateName));
+		}
+
 		//--------------------------------------------------
 
 		// State判定
@@ -78,7 +88,28 @@ namespace GameController {
 				state = targetState;
 			});
 
-			return state;
+			if (state != null) {
+				return state;
+			}
+
+			throw new Exception("指定されたStateは存在しません");
+		}
+
+		/// <summary>
+		/// 指定した名前のStateがあれば、それを返す
+		/// </summary>
+		/// <param name="stateName">状態の名前</param>
+		/// <returns>指定された名前の状態</returns>
+		public T GetState(string stateName)
+		{
+			foreach(var state in states) {
+
+				if(state.Name == stateName) {
+					return state;
+				}
+			}
+
+			throw new Exception("指定された名前のStateは存在しません");
 		}
 	}
 }

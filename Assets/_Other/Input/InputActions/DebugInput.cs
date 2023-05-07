@@ -532,6 +532,54 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""GameState"",
+            ""id"": ""73e9cc0e-18e6-4678-9234-4be13e7b3941"",
+            ""actions"": [
+                {
+                    ""name"": ""TransitionToEnd"",
+                    ""type"": ""Button"",
+                    ""id"": ""978539e2-8ac3-404e-87b3-53650a28040b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TransitionToResult"",
+                    ""type"": ""Button"",
+                    ""id"": ""74e2b17b-6286-43e1-bc9d-526f69af67a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ce231eeb-e833-4819-b5bf-40421fdc5d13"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TransitionToEnd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a88d268-916e-4afa-b55e-6b8a207a8aa4"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TransitionToResult"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -546,6 +594,10 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
         m_Time_Stop = m_Time.FindAction("Stop", throwIfNotFound: true);
         m_Time_FastSpeed = m_Time.FindAction("FastSpeed", throwIfNotFound: true);
         m_Time_SlowSpeed = m_Time.FindAction("SlowSpeed", throwIfNotFound: true);
+        // GameState
+        m_GameState = asset.FindActionMap("GameState", throwIfNotFound: true);
+        m_GameState_TransitionToEnd = m_GameState.FindAction("TransitionToEnd", throwIfNotFound: true);
+        m_GameState_TransitionToResult = m_GameState.FindAction("TransitionToResult", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -699,6 +751,47 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
         }
     }
     public TimeActions @Time => new TimeActions(this);
+
+    // GameState
+    private readonly InputActionMap m_GameState;
+    private IGameStateActions m_GameStateActionsCallbackInterface;
+    private readonly InputAction m_GameState_TransitionToEnd;
+    private readonly InputAction m_GameState_TransitionToResult;
+    public struct GameStateActions
+    {
+        private @DebugInput m_Wrapper;
+        public GameStateActions(@DebugInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @TransitionToEnd => m_Wrapper.m_GameState_TransitionToEnd;
+        public InputAction @TransitionToResult => m_Wrapper.m_GameState_TransitionToResult;
+        public InputActionMap Get() { return m_Wrapper.m_GameState; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameStateActions set) { return set.Get(); }
+        public void SetCallbacks(IGameStateActions instance)
+        {
+            if (m_Wrapper.m_GameStateActionsCallbackInterface != null)
+            {
+                @TransitionToEnd.started -= m_Wrapper.m_GameStateActionsCallbackInterface.OnTransitionToEnd;
+                @TransitionToEnd.performed -= m_Wrapper.m_GameStateActionsCallbackInterface.OnTransitionToEnd;
+                @TransitionToEnd.canceled -= m_Wrapper.m_GameStateActionsCallbackInterface.OnTransitionToEnd;
+                @TransitionToResult.started -= m_Wrapper.m_GameStateActionsCallbackInterface.OnTransitionToResult;
+                @TransitionToResult.performed -= m_Wrapper.m_GameStateActionsCallbackInterface.OnTransitionToResult;
+                @TransitionToResult.canceled -= m_Wrapper.m_GameStateActionsCallbackInterface.OnTransitionToResult;
+            }
+            m_Wrapper.m_GameStateActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @TransitionToEnd.started += instance.OnTransitionToEnd;
+                @TransitionToEnd.performed += instance.OnTransitionToEnd;
+                @TransitionToEnd.canceled += instance.OnTransitionToEnd;
+                @TransitionToResult.started += instance.OnTransitionToResult;
+                @TransitionToResult.performed += instance.OnTransitionToResult;
+                @TransitionToResult.canceled += instance.OnTransitionToResult;
+            }
+        }
+    }
+    public GameStateActions @GameState => new GameStateActions(this);
     public interface ISceneActions
     {
         void OnLoadPrevScene(InputAction.CallbackContext context);
@@ -710,5 +803,10 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
         void OnStop(InputAction.CallbackContext context);
         void OnFastSpeed(InputAction.CallbackContext context);
         void OnSlowSpeed(InputAction.CallbackContext context);
+    }
+    public interface IGameStateActions
+    {
+        void OnTransitionToEnd(InputAction.CallbackContext context);
+        void OnTransitionToResult(InputAction.CallbackContext context);
     }
 }

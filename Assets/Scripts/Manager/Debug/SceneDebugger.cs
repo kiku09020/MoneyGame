@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+#if DEBUG
 namespace Debug_ {
     public class SceneDebugger : MonoBehaviour {
 
@@ -10,6 +11,9 @@ namespace Debug_ {
 
         private void Awake()
         {
+            // デバッグビルド以外は早期リターン
+            if (!Debug.isDebugBuild) return;
+
             inputActions = new DebugInput();
 
 
@@ -45,3 +49,4 @@ namespace Debug_ {
         }
     }
 }
+#endif
