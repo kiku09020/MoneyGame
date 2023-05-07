@@ -9,7 +9,7 @@ namespace GameController {
 
 		public override void OnEnter()
 		{
-
+			UIManager.ShowUIGroup<ResultUIGroup>();
 		}
 
 		public override void OnUpdate()

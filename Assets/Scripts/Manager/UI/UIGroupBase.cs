@@ -7,7 +7,7 @@ public abstract class UIGroupBase : MonoBehaviour
     /// <summary>
     /// UI‚Ì‰Šú‰»
     /// </summary>
-    public abstract void Initialize();
+    public virtual void Initialize() { }
 
     /// <summary>
     /// UI‚ğ”ñ•\¦‚É‚·‚é

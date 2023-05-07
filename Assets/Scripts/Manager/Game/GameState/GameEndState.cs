@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace GameController {
@@ -9,9 +9,10 @@ namespace GameController {
     {
 		[Header("Components")]
 		[SerializeField] GameStateMachine state;
-
-		[SerializeField] int endDuration;
 		[SerializeField] FinishTextController finishText;
+
+		[Header("Parameters")]
+		[SerializeField,Tooltip("終了後の待機時間")] int endWaitDuration;
 
 		//--------------------------------------------------
 
@@ -19,9 +20,9 @@ namespace GameController {
 		{
 			MainGameManager.isOperable = false;		// 操作不能にする
 
-			finishText.StartingAction();
+			finishText.StartingAction();			// 終了テキストのアニメーション開始
 
-			Wait();
+			TransitionToResult();
 		}
 
 		public override void OnUpdate()
@@ -34,11 +35,12 @@ namespace GameController {
 
 		}
 
-		async void Wait()
+		// 結果状態に遷移
+		async void TransitionToResult()
 		{
-			await UniTask.DelayFrame(endDuration);
+			await UniTask.Delay(TimeSpan.FromSeconds(endWaitDuration));		// 待機
 
-			state.StateTransition<ResultState>();		// 結果状態に遷移
+			state.StateTransition<ResultState>();							// 遷移
 		}
 	}
 }
