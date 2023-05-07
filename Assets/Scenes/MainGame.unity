@@ -1241,6 +1241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: d8dff479e0e71f64cabcdbf51222623e, type: 3}
   textParameter: {fileID: 11400000, guid: 109424165ea741745825c9901fa0056a, type: 2}
+  startDeactivate: 0
   destroyable: 1
 --- !u!1 &758964007
 GameObject:
@@ -1686,6 +1687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1136012883}
+  - component: {fileID: 1136012884}
   m_Layer: 5
   m_Name: ScoreGroup
   m_TagString: Untagged
@@ -1715,6 +1717,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 110}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1136012884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136012882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f6d2ec29abcb24c8a8069d773aa77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 983918638018291991, guid: 9005b7fd973bd9b4da9755a99b17942f, type: 3}
+  textParameter: {fileID: 11400000, guid: c37b3e3404b78184581926c3827ce412, type: 2}
+  startDeactivate: 0
+  destroyable: 1
+  totalScoreText: {fileID: 585336922}
 --- !u!114 &1206186971 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5610424581267776689, guid: cc876fc424cd30e408e42e8f4e15cbda, type: 3}
@@ -1778,6 +1797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 758964009}
   textParameter: {fileID: 11400000, guid: 66ce5eb60d1969e40a7140801b20a887, type: 2}
+  startDeactivate: 1
   readyMessage: Ready...
   startMessage: Start!
   waitDuration: 1
@@ -1834,6 +1854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 477208454}
   textParameter: {fileID: 11400000, guid: d19b61c06018bb54c962c8a7791981bc, type: 2}
+  startDeactivate: 1
   message: Finish!
 --- !u!1 &1393656278
 GameObject:
@@ -1927,6 +1948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: b93b56f728c4e5548ac39d98ea062fc7, type: 3}
   textParameter: {fileID: 11400000, guid: a190519b06cb0c24c9ea876f6660e30e, type: 2}
+  startDeactivate: 0
   destroyable: 1
 --- !u!1 &1399361289
 GameObject:
@@ -2207,7 +2229,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1566678735}
-  - component: {fileID: 1566678736}
   m_Layer: 5
   m_Name: ScoreArea
   m_TagString: Untagged
@@ -2237,22 +2258,6 @@ RectTransform:
   m_AnchoredPosition: {x: 25, y: 0}
   m_SizeDelta: {x: 320, y: 240}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &1566678736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566678734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f6d2ec29abcb24c8a8069d773aa77b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 983918638018291991, guid: 9005b7fd973bd9b4da9755a99b17942f, type: 3}
-  textParameter: {fileID: 11400000, guid: c37b3e3404b78184581926c3827ce412, type: 2}
-  destroyable: 1
-  totalScoreText: {fileID: 585336922}
 --- !u!1 &1570260666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2531,6 +2536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
   textParameter: {fileID: 11400000, guid: 3909f94862029b54392b706b8849c16a, type: 2}
+  startDeactivate: 0
   destroyable: 1
 --- !u!1 &1806596795
 GameObject:
@@ -2828,9 +2834,10 @@ MonoBehaviour:
   addedTime: 2
   evaluationManager: {fileID: 11400000, guid: 62d5b1e0132be2d4cb44d66d01fc0bcd, type: 2}
   wholeMoneyInfo: {fileID: 1854486985}
-  scoreText: {fileID: 1566678736}
+  scoreText: {fileID: 1136012884}
   timeText: {fileID: 1704909473}
   evaluateText: {fileID: 702938516}
+  comboText: {fileID: 1915238112}
 --- !u!1 &1855697420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3091,6 +3098,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1915238111}
+  - component: {fileID: 1915238112}
   m_Layer: 5
   m_Name: ComboGroup
   m_TagString: Untagged
@@ -3119,6 +3127,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 120}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1915238112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915238110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16358d6f22bcc114ab4d3c7c245c968a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1935318790}
+  textParameter: {fileID: 0}
+  startDeactivate: 0
 --- !u!1 &1935318788
 GameObject:
   m_ObjectHideFlags: 0

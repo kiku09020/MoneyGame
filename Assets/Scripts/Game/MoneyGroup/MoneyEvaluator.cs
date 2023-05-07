@@ -24,6 +24,7 @@ public class MoneyEvaluator : MonoBehaviour
 	[SerializeField] ScoreTextController scoreText;
 	[SerializeField] TimeTextController timeText;
 	[SerializeField] EvaluateTextController evaluateText;
+	[SerializeField] ComboTextController comboText;
 	#endregion
 
 	#region Properties
@@ -123,7 +124,8 @@ public class MoneyEvaluator : MonoBehaviour
 		GameTimeManager.RemoveTimer(removedTime);		// タイム減算
 		ScoreManager.ResetCombo();						// コンボリセット
 
-		timeText.GenerateAndDispText(-removedTime);		// タイムテキスト生成
+		timeText.GenerateAndDispText(-removedTime);     // タイムテキスト生成
+		comboText.SetText();							// コンボテキスト変更
 	}
 
 	// ミス以外の時の処理
@@ -137,5 +139,6 @@ public class MoneyEvaluator : MonoBehaviour
 		// テキスト生成
 		timeText.GenerateAndDispText(time);
 		scoreText.GenerateAndDispText(score);
+		comboText.SetText();							// コンボテキスト変更
 	}
 }

@@ -10,8 +10,9 @@ public class TextControllersParameter : ScriptableObject
 
 	//--------------------------------------------------
 
-	// 遅延
-	[SerializeField] public float delay;
+	// その他
+	[SerializeField] public bool	startDeactivate;		// 初期化時に非表示にするか
+	[SerializeField] public float	delay;					// 遅延
 
 	// フェード
 	[SerializeField] public bool	colorable;

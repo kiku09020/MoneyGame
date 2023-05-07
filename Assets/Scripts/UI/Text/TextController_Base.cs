@@ -12,8 +12,9 @@ public class TextController_Base : MonoBehaviour
 	[Header("Components")]
 	[SerializeField] protected TextMeshProUGUI text;
 
+	[Header("Parameters")]
 	[SerializeField] protected TextControllersParameter textParameter;
-
+	[SerializeField,Tooltip("‰Šú‰»‚É”ñ•\¦‚É‚·‚é‚©")] protected bool startDeactivate;
 
 	//--------------------------------------------------
 
@@ -26,7 +27,9 @@ public class TextController_Base : MonoBehaviour
 		token = this.GetCancellationTokenOnDestroy();
 
 		// ”ñ•\¦
-		text.gameObject.SetActive(false);
+		if (startDeactivate) {
+			text.gameObject.SetActive(false);
+		}
 	}
 
 	/// <summary>

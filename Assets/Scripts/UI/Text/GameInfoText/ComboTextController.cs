@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ComboTextController : MonoBehaviour
+public class ComboTextController : TextController_Base
 {
 
-    //--------------------------------------------------
+	//--------------------------------------------------
 
-    void Awake()
-    {
-        
-    }
+	private void Awake()
+	{
+		SetText();
+	}
 
-    void Update()
+	public void SetText()
     {
-        
+        var comboText = ScoreManager.Combo.ToString();
+
+        text.text = $"x{comboText}";
     }
 }
