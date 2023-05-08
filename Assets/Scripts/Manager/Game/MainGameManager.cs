@@ -39,6 +39,8 @@ public class MainGameManager : MonoBehaviour
     /// </summary>
     public void RestartGame()
     {
+        state.NowState.OnExit();        // Œ»İ‚Ìó‘Ô‚ÌState‚ÌI—¹ˆ—‚ğ‚·‚é
+
         SceneControllerAsync.Instance.LoadNowScene();
     }
 
@@ -47,6 +49,8 @@ public class MainGameManager : MonoBehaviour
     /// </summary>
     public void ExitGame()
     {
-        SceneControllerAsync.Instance.LoadPrevScene();
+		state.NowState.OnExit();        // Œ»İ‚Ìó‘Ô‚ÌState‚ÌI—¹ˆ—‚ğ‚·‚é
+
+		SceneControllerAsync.Instance.LoadPrevScene();
     }
 }

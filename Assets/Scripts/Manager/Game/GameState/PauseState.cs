@@ -10,7 +10,10 @@ namespace GameController {
 
 		public override void OnEnter()
 		{
-			UIManager.ShowUIGroup<PauseUIGroup>();
+			UIManager.ShowUIGroup<PauseUIGroup>();		// UIï\é¶
+
+			TimeController.Stop();						// éûä‘í‚é~
+			AudioController.PauseAllAudio();			// âπê∫í‚é~
 		}
 
 		public override void OnUpdate()
@@ -20,7 +23,10 @@ namespace GameController {
 
 		public override void OnExit()
 		{
-			UIManager.ShowLastUIGroup();
+			UIManager.ShowLastUIGroup();				// UIÇ‡Ç∆Ç…Ç‡Ç«Ç∑
+
+			TimeController.ResetTimeScale();			// éûä‘í‚é~âèú
+			AudioController.UnPauseAllAudio();			// âπê∫í‚é~âèú
 		}
 	}
 }
