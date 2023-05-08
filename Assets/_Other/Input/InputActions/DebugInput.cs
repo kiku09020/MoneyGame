@@ -554,6 +554,15 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipSetup"",
+                    ""type"": ""Button"",
+                    ""id"": ""b247d91c-39b5-43d5-b0b2-f28fc20e8f5b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -578,6 +587,17 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
                     ""action"": ""TransitionToResult"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f76f948-5a5d-4fc3-88a0-42a00fa22de6"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipSetup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -598,6 +618,7 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
         m_GameState = asset.FindActionMap("GameState", throwIfNotFound: true);
         m_GameState_TransitionToEnd = m_GameState.FindAction("TransitionToEnd", throwIfNotFound: true);
         m_GameState_TransitionToResult = m_GameState.FindAction("TransitionToResult", throwIfNotFound: true);
+        m_GameState_SkipSetup = m_GameState.FindAction("SkipSetup", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -757,12 +778,14 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
     private IGameStateActions m_GameStateActionsCallbackInterface;
     private readonly InputAction m_GameState_TransitionToEnd;
     private readonly InputAction m_GameState_TransitionToResult;
+    private readonly InputAction m_GameState_SkipSetup;
     public struct GameStateActions
     {
         private @DebugInput m_Wrapper;
         public GameStateActions(@DebugInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @TransitionToEnd => m_Wrapper.m_GameState_TransitionToEnd;
         public InputAction @TransitionToResult => m_Wrapper.m_GameState_TransitionToResult;
+        public InputAction @SkipSetup => m_Wrapper.m_GameState_SkipSetup;
         public InputActionMap Get() { return m_Wrapper.m_GameState; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -778,6 +801,9 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
                 @TransitionToResult.started -= m_Wrapper.m_GameStateActionsCallbackInterface.OnTransitionToResult;
                 @TransitionToResult.performed -= m_Wrapper.m_GameStateActionsCallbackInterface.OnTransitionToResult;
                 @TransitionToResult.canceled -= m_Wrapper.m_GameStateActionsCallbackInterface.OnTransitionToResult;
+                @SkipSetup.started -= m_Wrapper.m_GameStateActionsCallbackInterface.OnSkipSetup;
+                @SkipSetup.performed -= m_Wrapper.m_GameStateActionsCallbackInterface.OnSkipSetup;
+                @SkipSetup.canceled -= m_Wrapper.m_GameStateActionsCallbackInterface.OnSkipSetup;
             }
             m_Wrapper.m_GameStateActionsCallbackInterface = instance;
             if (instance != null)
@@ -788,6 +814,9 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
                 @TransitionToResult.started += instance.OnTransitionToResult;
                 @TransitionToResult.performed += instance.OnTransitionToResult;
                 @TransitionToResult.canceled += instance.OnTransitionToResult;
+                @SkipSetup.started += instance.OnSkipSetup;
+                @SkipSetup.performed += instance.OnSkipSetup;
+                @SkipSetup.canceled += instance.OnSkipSetup;
             }
         }
     }
@@ -808,5 +837,6 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
     {
         void OnTransitionToEnd(InputAction.CallbackContext context);
         void OnTransitionToResult(InputAction.CallbackContext context);
+        void OnSkipSetup(InputAction.CallbackContext context);
     }
 }

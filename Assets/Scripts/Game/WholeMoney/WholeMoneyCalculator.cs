@@ -62,7 +62,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// </summary>
 	public async void Payment()
 	{
-		if (CanPay) {
+		if (CanPay && !IsWaitingPayment) {
 			// 評価
 			evaluator.EvaluatePaidMoney();
 
@@ -78,12 +78,16 @@ public class WholeMoneyCalculator : MonoBehaviour
 			// 札生成
 			CheckBillCount();
 
-			IsWaitingPayment = true;
+			// SetFlags
+			IsWaitingPayment = true;					// 待機中
+			MainGameManager.isOperable = false;			// 操作不可
 
 			// 待機
 			await UniTask.Delay(TimeSpan.FromSeconds(waitPaymentDuration), false, PlayerLoopTiming.FixedUpdate, token);
 
-			IsWaitingPayment = false;
+			// ResetFlags
+			IsWaitingPayment = false;					
+			MainGameManager.isOperable = true;			
 
 			// 目標額指定
 			wholeMoneyInfo.SetTargetMoneyAmount();
@@ -96,7 +100,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// </summary>
 	public void Revert()
 	{
-		if (MainGameManager.isOperable) {
+		if (MainGameManager.isOperable && !IsWaitingPayment) {
 			wholeMoneyInfo.PaymentMG.Mover.MoveToTarget(true, true, false);
 		}
 	}
