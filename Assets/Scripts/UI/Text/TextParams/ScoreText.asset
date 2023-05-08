@@ -23,7 +23,7 @@ MonoBehaviour:
   movable: 1
   movingDuration: 0.5
   startPosition: {x: 0, y: -100}
-  targetPosition: {x: 0, y: 0}
+  targetPosition: {x: 0, y: -50}
   movingEaseType: 9
   scalable: 0
   scalingDuration: 0.5

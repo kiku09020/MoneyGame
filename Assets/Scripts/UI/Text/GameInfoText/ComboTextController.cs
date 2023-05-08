@@ -14,7 +14,7 @@ public class ComboTextController : TextController_Base
 
 	public void SetText()
     {
-        var comboText = ScoreManager.Combo.ToString();
+        var comboText = ScoreManager.ComboCount.ToString();
 
         text.text = $"x{comboText}";
     }

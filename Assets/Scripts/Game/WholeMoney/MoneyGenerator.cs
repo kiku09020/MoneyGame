@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameController;
+using Cysharp.Threading.Tasks;
 
 public class MoneyGenerator : MonoBehaviour
 {
@@ -108,7 +109,7 @@ public class MoneyGenerator : MonoBehaviour
 	/// <summary>
 	/// Ç®éDÇÃê∂ê¨ÅAà⁄ìÆ
 	/// </summary>
-	public async void GenerateAndMoveBill(MoneyGroupUnit moneyGroupUnit)
+	public async UniTask GenerateAndMoveBill(MoneyGroupUnit moneyGroupUnit)
 	{
 		var billObj = Instantiate(bill,transform);
 		billObj.Generated(moneyGroupUnit);

@@ -10,6 +10,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 {
 	[Header("Components")]
     [SerializeField] WholeMoneyInfo wholeMoneyInfo;
+	[SerializeField] TargetPriceSetter priceSetter; 
 	[SerializeField] MoneyGenerator moneyGenerator;
 	[SerializeField] MoneyEvaluator evaluator;
 	[SerializeField] ChangeTextController changeTextController;
@@ -27,7 +28,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 	/// <summary>
 	/// x•¥‚¢‰Â”\‚©‚Ç‚¤‚©(x•¥Šz‚ª–Ú•WŠz‚æ‚è‚à‘å‚«‚¯‚ê‚Îx•¥‚¦‚é)
 	/// </summary>
-	public bool CanPay => (wholeMoneyInfo.PaymentMG.MoneyAmount >= wholeMoneyInfo.TargetMoneyAmount) ? true : false;
+	public bool CanPay => (wholeMoneyInfo.PaymentMG.MoneyAmount >= TargetPriceSetter.TargetPrice) ? true : false;
 
 	/// <summary>
 	/// x•¥‚¢Œã‚Ì‘Ò‹@’†‚©‚Ç‚¤‚©
@@ -92,7 +93,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 			MainGameManager.isOperable = true;			
 
 			// –Ú•WŠzw’è
-			wholeMoneyInfo.SetTargetMoneyAmount();
+			priceSetter.SetTargetMoneyAmount();
 
 		}
 	}
@@ -148,11 +149,18 @@ public class WholeMoneyCalculator : MonoBehaviour
 	}
 
 	// ‚¨D‚Ì”‚ğŠm”F‚µ‚ÄA­‚È‚¢ê‡‚É¶¬‚·‚é
-	void CheckBillCount()
+	async void CheckBillCount()
 	{
-		// ‚·‚­‚È‚­‚È‚Á‚½‚çA¶¬
-		if (wholeMoneyInfo.PocketMG.MoneyGroupUnitList[6].MoneyList.Count < wholeMoneyInfo.MoneyUnitList[6].Money.Data.GeneratedCount) {
-			moneyGenerator.GenerateAndMoveBill(wholeMoneyInfo.MoneyUnitList[6].PocketMG);
+		var pocketBillCount = wholeMoneyInfo.PocketMG.MoneyGroupUnitList[6].MoneyList.Count;		// Š‹à‚Ì‚¨D‚Ì”
+		var startBillCount = wholeMoneyInfo.MoneyUnitList[6].Money.Data.GeneratedCount;			// ‚¨D‚Ì‰Šú–‡”
+
+		// ‚·‚­‚È‚­‚È‚Á‚½‚çA‚»‚Ì•ª¶¬
+		if (pocketBillCount < startBillCount) {
+			var targetCount = startBillCount - pocketBillCount;
+
+			for (int i = 0; i < targetCount; i++) {
+				await moneyGenerator.GenerateAndMoveBill(wholeMoneyInfo.MoneyUnitList[6].PocketMG);
+			}
 		}
 	}
 }

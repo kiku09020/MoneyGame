@@ -64,13 +64,13 @@ public class MoneyEvaluator : MonoBehaviour
 
 		// パーフェクトチェック
 		if (IsPerfect) {
-			Corrected(parfectAddedTime, wholeMoneyInfo.TargetMoneyAmount);
+			Corrected(parfectAddedTime, TargetPriceSetter.TargetPrice);
 			GenerateEvaluationText(EvaluationManager.EvaluationType.Perfect);
 			return true;
 		}
 
 		// 通常処理
-		Corrected(addedTime, wholeMoneyInfo.TargetMoneyAmount);
+		Corrected(addedTime, TargetPriceSetter.TargetPrice);
 		GenerateEvaluationText(EvaluationManager.EvaluationType.Normal);
 		return true;
 	}
@@ -107,7 +107,7 @@ public class MoneyEvaluator : MonoBehaviour
 					paidAmount += money.Data.Amount;        // 支払額に加算
 
 					// 目標額よりも支払額が多くなったら、到達フラグ立てる
-					if (wholeMoneyInfo.TargetMoneyAmount < paidAmount) {
+					if (TargetPriceSetter.TargetPrice < paidAmount) {
 						reached = true;
 					}
 				}

@@ -12,14 +12,14 @@ public class ScoreManager : MonoBehaviour
     /// <summary>
     /// ÉRÉìÉ{êî
     /// </summary>
-    public static int Combo { get; private set; }
+    public static int ComboCount { get; private set; }
 
 	//--------------------------------------------------
 
 	private void Awake()
 	{
 		Score = 0; 
-        Combo = 0;
+        ComboCount = 0;
 	}
 
 	/// <summary>
@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour
 	/// </summary>
 	public static void AddScore(int value)
     {
-        Score += value * Combo;
+        Score += value * ComboCount;
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
 	public static void AddCombo()
 	{
-        Combo++;
+        ComboCount++;
 	}
 
     /// <summary>
@@ -43,6 +43,6 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     public static void ResetCombo()
     {
-        Combo = 0;
+        ComboCount = 0;
     }
 }

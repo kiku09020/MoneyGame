@@ -541,6 +541,15 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SkipNowPrice",
+                    "type": "Button",
+                    "id": "b809b369-37ea-4eb6-a4ec-6d1dc803207e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -574,6 +583,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SkipSetup",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "373de4bf-b288-465a-87ea-f31582870c58",
+                    "path": "<Keyboard>/f5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipNowPrice",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
