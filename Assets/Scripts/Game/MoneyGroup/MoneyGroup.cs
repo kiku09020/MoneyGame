@@ -15,7 +15,14 @@ public class MoneyGroup : MonoBehaviour
     [SerializeField] MoneyGroupMover mover;
 
     // properties
+    /// <summary>
+    /// Groupì‡ÇÃçáåvñáêî
+    /// </summary>
     public int MoneyCount => moneyCount;
+
+    /// <summary>
+    /// Groupì‡ÇÃçáåvã‡äz
+    /// </summary>
     public int MoneyAmount => moneyAmount;
 
     public List<MoneyGroupUnit> MoneyGroupUnitList => moneyGroups;

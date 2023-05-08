@@ -66,7 +66,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 			var changeList = GetChangeMoneyList();
 
 			// 評価
-			evaluator.EvaluatePaidMoney(changeList);
+			evaluator.EvaluatePaidMoney(changeList,GetChangeCount());
 
 			// おつりのテキスト生成
 			changeTextController.GenerateAndDispText(wholeMoneyInfo.Change);
@@ -109,7 +109,7 @@ public class WholeMoneyCalculator : MonoBehaviour
 
 	//--------------------------------------------------
 
-	// おつりの枚数の取得
+	// おつりのリストを取得
 	List<ChangeMoneyUnit> GetChangeMoneyList()
 	{
 		var changeMoneyList = new List<ChangeMoneyUnit>();					// おつりリスト
@@ -134,6 +134,20 @@ public class WholeMoneyCalculator : MonoBehaviour
 		return changeMoneyList;
 	}
 
+	// おつりの枚数を取得
+	public int GetChangeCount()
+	{
+		var list = GetChangeMoneyList();
+		var count = 0;
+
+		foreach (var changeUnit in list) {
+			count += changeUnit.MoneyList.Count;
+		}
+
+		return count;
+	}
+
+	// お札の数を確認して、少ない場合に生成する
 	void CheckBillCount()
 	{
 		// すくなくなったら、生成

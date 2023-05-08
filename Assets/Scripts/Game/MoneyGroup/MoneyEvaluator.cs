@@ -45,7 +45,7 @@ public class MoneyEvaluator : MonoBehaviour
 	/// 支払い金額を評価する
 	/// </summary>
 	/// <returns>評価した結果が、高評価(ミスをしていない)かどうか</returns>
-	public bool EvaluatePaidMoney(List<WholeMoneyCalculator.ChangeMoneyUnit> changeList)
+	public bool EvaluatePaidMoney(List<WholeMoneyCalculator.ChangeMoneyUnit> changeList,int changeCount)
 	{
 		// ミス判定チェック
 		if (CheckMiss(changeList)) {
@@ -56,7 +56,7 @@ public class MoneyEvaluator : MonoBehaviour
 		}
 
 		// 所持金枚数チェック
-		if(IsOverPocketMoney) {
+		if(CheckOver(changeCount)) {
 			Missed(over_RemovedTime);
 			GenerateEvaluationText(EvaluationManager.EvaluationType.Over);
 			return false;
@@ -78,7 +78,21 @@ public class MoneyEvaluator : MonoBehaviour
 	//--------------------------------------------------
 
 	/// <summary>
-	/// ミス判定
+	/// 枚数越えを判定
+	/// </summary>
+	bool CheckOver(int changeCount)
+	{
+		if (changeCount + wholeMoneyInfo.PocketMG.MoneyCount > wholeMoneyInfo.PocketMoneyMaxCount) {
+			return true;
+		}
+
+		return false;
+	}
+
+	//--------------------------------------------------
+
+	/// <summary>
+	/// ミス判定(旧版)
 	/// </summary>
 	bool CheckMiss()
 	{
