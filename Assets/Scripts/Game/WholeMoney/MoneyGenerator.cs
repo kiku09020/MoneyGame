@@ -92,11 +92,11 @@ public class MoneyGenerator : MonoBehaviour
 	{
 		var moneyObjList = new List<Money>();
 
-		foreach(var change in changes) {
-			for (int i = 0; i < change.count; i++) {
-				var obj = Instantiate(change.moneyUnit.Money, parent);
-				obj.Generated(change.moneyUnit.PocketMG);
-				moneyObjList.Add(obj);
+		foreach(var changeUnit in changes) {
+			foreach(var change in changeUnit.MoneyList) {
+				var obj = Instantiate(change.Money, parent);		// ¶¬
+				obj.Generated(change.PocketMG);						// ¶¬‚³‚ê‚½‚Æ‚«‚Ìˆ—
+				moneyObjList.Add(obj);								// ƒŠƒXƒg‚É’Ç‰Á
 			}
 		}
 

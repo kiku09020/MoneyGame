@@ -45,10 +45,10 @@ public class MoneyEvaluator : MonoBehaviour
 	/// 支払い金額を評価する
 	/// </summary>
 	/// <returns>評価した結果が、高評価(ミスをしていない)かどうか</returns>
-	public bool EvaluatePaidMoney()
+	public bool EvaluatePaidMoney(List<WholeMoneyCalculator.ChangeMoneyUnit> changeList)
 	{
 		// ミス判定チェック
-		if (CheckMiss()) {
+		if (CheckMiss(changeList)) {
 			Missed(miss_RemovedTime);
 			GenerateEvaluationText(EvaluationManager.EvaluationType.Missed);
 			
@@ -102,6 +102,27 @@ public class MoneyEvaluator : MonoBehaviour
 				else {
 					return true;
 				}
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
+	/// おつりに支払ったお金が含まれていたらミス判定
+	/// </summary>
+	/// <param name="changeList"></param>
+	/// <returns></returns>
+	bool CheckMiss(List<WholeMoneyCalculator.ChangeMoneyUnit> changeList)
+	{
+		// 順序を反転
+		changeList.Reverse();
+
+		for (int i = 0; i < changeList.Count; i++) {
+			if (changeList[i]?.MoneyList?.Count <= 0) continue;     // おつりの単位リストの数が少なければ、早期リターン
+
+			if (changeList[i].MoneyList[0].Money == wholeMoneyInfo.PaymentMG.MoneyGroupUnitList[i].TargetMoney) {
+				return true;
 			}
 		}
 

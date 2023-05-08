@@ -78,4 +78,29 @@ public class Money:MonoBehaviour
 			});
 		}
 	}
+
+	//--------------------------------------------------
+
+	/// <summary>
+	/// ƒf[ƒ^‚Ì”Ô†‚Å“™‚µ‚¢‚©”»’è‚·‚é
+	/// </summary>
+	public static bool operator ==(Money money,Money targetMoney)
+	{
+		return (money?.data.Number == targetMoney?.data.Number) ? true : false;
+	}
+
+	public static bool operator !=(Money money,Money targetMoney)
+	{
+		return (money?.data.Number != targetMoney?.data.Number) ? true : false;
+	}
+
+	public override bool Equals(object other)
+	{
+		return base.Equals(other);
+	}
+
+	public override int GetHashCode()
+	{
+		return base.GetHashCode();
+	}
 }

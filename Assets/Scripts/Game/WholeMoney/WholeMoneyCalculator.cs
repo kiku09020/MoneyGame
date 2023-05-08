@@ -37,13 +37,13 @@ public class WholeMoneyCalculator : MonoBehaviour
 	//--------------------------------------------------
 
 	public class ChangeMoneyUnit {
-		public readonly WholeMoneyInfo.MoneyUnit moneyUnit;
-		public readonly int count;
+		List<WholeMoneyInfo.MoneyUnit> moneyList = new List<WholeMoneyInfo.MoneyUnit>();
 
-		public ChangeMoneyUnit(WholeMoneyInfo.MoneyUnit money, int count)
+		public List<WholeMoneyInfo.MoneyUnit> MoneyList => moneyList;
+
+		public ChangeMoneyUnit(List<WholeMoneyInfo.MoneyUnit> moneyList)
 		{
-			this.moneyUnit = money;
-			this.count = count;
+			this.moneyList = moneyList;
 		}
 	}
 
@@ -63,14 +63,16 @@ public class WholeMoneyCalculator : MonoBehaviour
 	public async void Payment()
 	{
 		if (CanPay && !IsWaitingPayment) {
+			var changeList = GetChangeMoneyList();
+
 			// 評価
-			evaluator.EvaluatePaidMoney();
+			evaluator.EvaluatePaidMoney(changeList);
 
 			// おつりのテキスト生成
 			changeTextController.GenerateAndDispText(wholeMoneyInfo.Change);
 
 			// おつり生成して移動
-			moneyGenerator.GenerateAndMoveChange(GetChangeMoneyList(), targetTransform);
+			moneyGenerator.GenerateAndMoveChange(changeList, targetTransform);
 
 			// 目標額transformに移動
 			wholeMoneyInfo.PaymentMG.Mover.MoveToTargetTransform(targetTransform);
@@ -110,23 +112,23 @@ public class WholeMoneyCalculator : MonoBehaviour
 	// おつりの枚数の取得
 	List<ChangeMoneyUnit> GetChangeMoneyList()
 	{
-		var changeMoneyList = new List<ChangeMoneyUnit>();		// おつりリスト
-		var count = 0;      // おつりの数
-		var _change = wholeMoneyInfo.PaymentMG.MoneyAmount - wholeMoneyInfo.TargetMoneyAmount;
+		var changeMoneyList = new List<ChangeMoneyUnit>();					// おつりリスト
+		var _change = wholeMoneyInfo.Change;								// おつりから差し引きされる値
 
 		// 大きい方からチェック
 		for (int i = wholeMoneyInfo.MoneyUnitList.Count -1; i >= 0; i--) {
-			var moneyUnit = wholeMoneyInfo.MoneyUnitList[i];
+			var moneyUnitList = new List<WholeMoneyInfo.MoneyUnit>();		// おつりの単位ごとのリスト
+			var moneyUnit = wholeMoneyInfo.MoneyUnitList[i];				// おつりの単位
 
-			// おつりから各金額分引いた結果が0より大きい場合、数を追加
+			// おつりから各単位の金額分引いた結果が0より大きい場合
+			// おつりの単位リストに追加
 			while ((_change - moneyUnit.Money.Data.Amount) >= 0) {
-				_change -= moneyUnit.Money.Data.Amount;
-				count++;
+				_change -= moneyUnit.Money.Data.Amount;						// おつりから差し引く
+				moneyUnitList.Add(moneyUnit);								// 追加
 			}
 
 			// 0以下になった場合、おつりのリストに追加
-			changeMoneyList.Add(new ChangeMoneyUnit(moneyUnit, count));     // リスト追加
-			count = 0;                                                  // カウントリセット
+			changeMoneyList.Add(new ChangeMoneyUnit(moneyUnitList));		// 単位リストをおつりリストに追加
 		}
 
 		return changeMoneyList;
