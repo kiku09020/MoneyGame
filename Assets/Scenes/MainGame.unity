@@ -3174,7 +3174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priceSetType: 2
   minTargetPrice: 200
-  maxTargetPrice: 500
+  maxTargetPrice: 4000
+  multiplicandMinValue: 10
   maxComboCount: 50
   priceText: {fileID: 1693877406}
 --- !u!1 &1399361289
@@ -3936,7 +3937,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.94188035}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

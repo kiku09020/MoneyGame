@@ -10,7 +10,11 @@ public class TargetPriceSetter : MonoBehaviour
 	[SerializeField, Tooltip("目標額の指定タイプ")] PriceSetType priceSetType;
 	[SerializeField,Tooltip("最小値")] int minTargetPrice = 200;
 	[SerializeField,Tooltip("最大値")] int maxTargetPrice = 500;
+	[SerializeField] float multiplicandMinValue = 2;
 	[SerializeField,Tooltip("目標額に反映される最大コンボ数")] int maxComboCount = 50;
+
+	float currentMinValue;
+	float currentMaxValue;
 
 	[SerializeField] TextMeshProUGUI priceText;
 
@@ -24,6 +28,16 @@ public class TargetPriceSetter : MonoBehaviour
 	private void Awake()
 	{
 		SetTargetMoneyAmount();                             // 目標額指定
+	}
+
+	private void OnGUI()
+	{
+		GUI.color = Color.black;
+
+		var guiStyle = new GUIStyle(GUI.skin.label);
+		guiStyle.fontSize = 48;
+
+		GUI.Label(new Rect(0, 0, 400, 200), $"({currentMinValue},{currentMaxValue})", guiStyle);
 	}
 
 	/// <summary>
@@ -40,10 +54,12 @@ public class TargetPriceSetter : MonoBehaviour
 	/// </summary>
 	void RandomizePriceWithCombo()
 	{
-		var currentMinValue = minTargetPrice * (ScoreManager.ComboCount + 1);								// 現在の最小値
-		var currentMaxValue = minTargetPrice + maxTargetPrice * ((ScoreManager.ComboCount + 1) / (maxComboCount + 1));       // 現在の最大値
+		var comboRate = ((float)(ScoreManager.ComboCount + 1) / (float)(maxComboCount + 1));        // コンボ率
 
-		TargetPrice = Random.Range(currentMinValue, currentMaxValue);
+		currentMinValue = minTargetPrice * (1 + comboRate*multiplicandMinValue);					// コンボ率から現在の最小値算出
+		currentMaxValue = currentMinValue + (maxTargetPrice * comboRate);							// コンボ率から現在の最大値算出
+
+		TargetPrice = (int)Random.Range(currentMinValue, currentMaxValue);							// 目標額ランダム指定
 	}
 
 	/// <summary>
