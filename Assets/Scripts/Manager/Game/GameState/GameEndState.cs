@@ -10,6 +10,7 @@ namespace GameController {
 		[Header("Components")]
 		[SerializeField] GameStateMachine state;
 		[SerializeField] FinishTextController finishText;
+		[SerializeField] GameDataManager dataManager; 
 
 		[Header("Parameters")]
 		[SerializeField,Tooltip("終了後の待機時間")] int endWaitDuration;
@@ -38,7 +39,9 @@ namespace GameController {
 		// 結果状態に遷移
 		async void TransitionToResult()
 		{
-			await UniTask.Delay(TimeSpan.FromSeconds(endWaitDuration));		// 待機
+			await UniTask.Delay(TimeSpan.FromSeconds(endWaitDuration));     // 待機
+
+			dataManager.Save();												// ハイスコア保存
 
 			state.StateTransition<ResultState>();							// 遷移
 		}

@@ -7,7 +7,7 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 
-public class TextController_Base : MonoBehaviour
+public abstract class TextController_Base : MonoBehaviour
 {
 	[Header("Components")]
 	[SerializeField] protected TextMeshProUGUI text;
@@ -35,7 +35,7 @@ public class TextController_Base : MonoBehaviour
 	/// <summary>
 	/// テキストの表示(メッセージ指定可能)
 	/// </summary>
-	public async void DispText(TextMeshProUGUI text, string message = null, Action completeAction = null)
+	public async void DispText(string message = null, Action completeAction = null)
 	{
 		// 文字変更
 		text.text = message;
@@ -46,14 +46,9 @@ public class TextController_Base : MonoBehaviour
 		}
 
 		// 移動、スケーリング
-		if (textParameter.movable) {
-			text.rectTransform.DOLocalMove(textParameter.startPosition, 0);		// 初期座標に移動
-			text.rectTransform.DOLocalMove(textParameter.targetPosition, textParameter.movingDuration).SetEase(textParameter.movingEaseType);
-		}
+		DoMove();
 
-		if (textParameter.scalable) {
-			text.rectTransform.DOScale(textParameter.targetScale, textParameter.scalingDuration).SetEase(textParameter.scalingEaseType);
-		}
+		DoScale();
 
 		// フェードイン
 		if (textParameter.fadable) {
@@ -77,13 +72,13 @@ public class TextController_Base : MonoBehaviour
 	/// <summary>
 	/// テキストの表示(色の指定可能)
 	/// </summary>
-	public async void DispText(TextMeshProUGUI text, Color color, string message = null,  Action completeAction = null)
+	public async void DispText(TextMeshProUGUI text, string message = null,  Action completeAction = null)
 	{
 		// 文字変更
 		text.text = message;
 
 		if (textParameter.colorable) {
-			text.color = color;
+			text.color = textParameter.targetColor;
 		}
 
 		// 移動、スケーリング
@@ -112,6 +107,23 @@ public class TextController_Base : MonoBehaviour
 
 		else {
 			completeAction?.Invoke();
+		}
+	}
+
+	//--------------------------------------------------
+
+	protected void DoMove()
+	{
+		if (textParameter.movable) {
+			text.rectTransform.DOLocalMove(textParameter.startPosition, 0);     // 初期座標に移動
+			text.rectTransform.DOLocalMove(textParameter.targetPosition, textParameter.movingDuration).SetEase(textParameter.movingEaseType);
+		}
+	}
+
+	protected void DoScale()
+	{
+		if (textParameter.scalable) {
+			text.rectTransform.DOScale(textParameter.targetScale, textParameter.scalingDuration).SetEase(textParameter.scalingEaseType);
 		}
 	}
 }

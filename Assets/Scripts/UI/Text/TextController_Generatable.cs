@@ -19,17 +19,17 @@ public class TextController_Generatable : TextController_Base
 		// ’x‰„‘Ò‹@
 		await UniTask.Delay(TimeSpan.FromSeconds(textParameter.delay), false, PlayerLoopTiming.FixedUpdate, token);
 
-		var obj = Instantiate(text, transform);
+		var textObj = Instantiate(text, transform);
 
-		obj.gameObject.SetActive(true);
+		textObj.gameObject.SetActive(true);
 
 		var message = SetMessage(value);
 
-		DispText(obj, message, () => {
+		DispText(textObj, message, () => {
 
 			// I—¹‚É”jŠü
 			if (destroyable) {
-				Destroy(obj.gameObject);
+				Destroy(textObj.gameObject);
 			}
 		});
 	}

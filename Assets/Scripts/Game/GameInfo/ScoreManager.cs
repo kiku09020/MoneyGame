@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -45,4 +46,23 @@ public class ScoreManager : MonoBehaviour
     {
         ComboCount = 0;
     }
+
+	/// <summary>
+	/// スコアの桁区切りされた文字列を取得する
+	/// </summary>
+	/// <returns>スコアの桁区切りされた文字列</returns>
+	public static string GetScoreString()
+	{
+		return string.Format("{0:#,0}", Score);
+    }
+
+	/// <summary>
+	/// 指定されたスコアを桁区切りした文字列を取得
+	/// </summary>
+	/// <param name="score">目標スコア</param>
+	/// <returns>スコアの桁区切りされた文字列</returns>
+	public static string GetScoreString(int score)
+    {
+		return string.Format("{0:#,0}", score);
+	}
 }

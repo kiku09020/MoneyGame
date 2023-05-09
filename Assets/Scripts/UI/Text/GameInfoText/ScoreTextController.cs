@@ -18,7 +18,7 @@ public class ScoreTextController : TextController_Generatable
 		SetTotalScoreText();        // 合計スコアのテキストも更新する
 
 		// 桁区切り
-		var text = string.Format("{0:#,0}", (int)value * ScoreManager.ComboCount);
+		var text = ScoreManager.GetScoreString((int)value * ScoreManager.ComboCount);
 
 		return $"+{text}";
 	}
@@ -26,8 +26,6 @@ public class ScoreTextController : TextController_Generatable
 	// 合計スコアのテキストの変更
 	void SetTotalScoreText()
 	{
-		var scoreText = string.Format("{0:#,0}", ScoreManager.Score);
-
-		totalScoreText.text = scoreText;
+		totalScoreText.text = ScoreManager.GetScoreString();
 	}
 }

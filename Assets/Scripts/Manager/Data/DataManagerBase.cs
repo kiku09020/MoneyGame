@@ -69,7 +69,7 @@ public abstract class DataManagerBase<T> : SimpleSingleton<T> where T : DataMana
     }
 
     // ƒ[ƒh
-    Data Load<Data>() where Data : IData
+    protected Data Load<Data>() where Data : IData
     {
         var rd = new StreamReader(FilePath);
         var json = rd.ReadToEnd();

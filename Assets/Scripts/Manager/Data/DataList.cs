@@ -9,8 +9,8 @@ public interface IData { }
 /// セーブデータ
 /// </summary>
 [System.Serializable]
-public class SaveData : IData {
-
+public class GameData : IData {
+    public int highScore;       // ハイスコア
 }
 
 /// <summary>
