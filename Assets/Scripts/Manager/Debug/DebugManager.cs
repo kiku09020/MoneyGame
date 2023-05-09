@@ -4,47 +4,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 #if DEBUG
 
 public class DebugManager : MonoBehaviour {
     [SerializeField] List<DebugUnit> debugUnits = new List<DebugUnit>();
-    [SerializeField] string mainSceneName;
+
+    public List<DebugUnit> DebugUnits => debugUnits;
 
     protected void Awake()
     {
         // デバッグビルド以外は早期リターン
         if (!Debug.isDebugBuild) return;
 
-        // メインシーンでのみ実行
-        if (SceneManager.GetActiveScene().name == mainSceneName) {
-            foreach (var unit in debugUnits) {
-                unit.AddPerformedEvent(mainSceneName);
-            }
+        foreach (var unit in debugUnits) {
+            unit.AddPerformedEvent();
         }
     }
 
     [Serializable]
-    class DebugUnit {
+    public class DebugUnit {
         [SerializeField] string name;
-        [SerializeField, Tooltip("全てのシーンで利用可能か")] bool isAvailableInAllScenes;
+        [SerializeField,Tooltip("ボタン用のツールチップ")] string toolTip;
+
         [SerializeField] InputActionReference inputAction;
         [SerializeField] UnityEvent<InputAction.CallbackContext> action;
+
+        public string Name => name;
+        public string ToolTip => toolTip;
+
+        public void DoAction()
+        {
+            action?.Invoke(default);
+        }
 
         /// <summary>
         /// InputActionにイベント追加
         /// </summary>
-        public void AddPerformedEvent(string mainSceneName)
+        public void AddPerformedEvent()
         {
-            // メインシーンのみで利用可能だった場合、
-            // 現在のシーンがメインシーンじゃなかったら、リターン
-            if (!isAvailableInAllScenes) {
-                if (SceneManager.GetActiveScene().name != mainSceneName) {
-                    return;
-                }
-            }
-
             if (inputAction != null) {
                 inputAction.ToInputAction().performed += action.Invoke;
 

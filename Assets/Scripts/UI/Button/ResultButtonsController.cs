@@ -1,3 +1,4 @@
+using NatML.Sharing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,9 +21,13 @@ public class ResultButtonsController : MonoBehaviour
     }
 
     // 共有ボタン
-    public void OnShare()
+    public async void OnShare()
     {
+		var payLoad = new SharePayload();
 
-    }
+		payLoad.AddText("いえーい");
+
+		await payLoad.Share();
+	}
 
 }
