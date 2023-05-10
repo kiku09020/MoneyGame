@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GameController {
+namespace GameController.State {
     public abstract class GameStateBase : StateBase {
 
     }

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResultUIGroup : UIGroupBase
-{
+namespace GameController.UI.UIGroup {
+	public class ResultUIGroup : UIGroupBase {
 
+	}
 }

@@ -3,7 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameController {
+using Game.Money.MoneyManager;
+
+namespace GameController.State {
+
+	using UI.TextController;
+
     public class SetupState : GameStateBase {
 		[SerializeField] MoneyGenerator generator;
 		[SerializeField] GameStateMachine state;

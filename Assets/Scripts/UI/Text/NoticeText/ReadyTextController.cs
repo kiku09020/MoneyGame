@@ -5,34 +5,37 @@ using System;
 using Cysharp.Threading.Tasks;
 using GameController;
 
-public class ReadyTextController : TextController_Base
-{
-    [Header("Parameters")]
-    [SerializeField] string readyMessage = "Ready...";
-    [SerializeField] string startMessage = "Start!";
-    [SerializeField, Range(0,1)] float waitDuration;            // Readyテキスト表示後の待機時間
+namespace GameController.UI.TextController {
+    using State;
 
-    [Header("Components")]
-    [SerializeReference] GameStateMachine state;
+    public class ReadyTextController : TextController_Base {
+        [Header("Parameters")]
+        [SerializeField] string readyMessage = "Ready...";
+        [SerializeField] string startMessage = "Start!";
+        [SerializeField, Range(0, 1)] float waitDuration;            // Readyテキスト表示後の待機時間
 
-    //--------------------------------------------------
+        [Header("Components")]
+        [SerializeReference] GameStateMachine state;
 
-    public async void StartingAction()
-    {
-        text.gameObject.SetActive(true);        // 表示
+        //--------------------------------------------------
 
-        var prevPos = text.rectTransform.anchoredPosition;
-        var prevScale = text.rectTransform.localScale;
+        public async void StartingAction()
+        {
+            text.gameObject.SetActive(true);        // 表示
 
-        DispText(readyMessage);
-        await UniTask.Delay(TimeSpan.FromSeconds(waitDuration), cancellationToken: token);
+            var prevPos = text.rectTransform.anchoredPosition;
+            var prevScale = text.rectTransform.localScale;
 
-        text.rectTransform.anchoredPosition = prevPos;      // もとに戻す
-        text.rectTransform.localScale = prevScale;
+            DispText(readyMessage);
+            await UniTask.Delay(TimeSpan.FromSeconds(waitDuration), cancellationToken: token);
 
-        // 遷移
-        DispText(startMessage, () => {
-            state.StateTransition<MainState>();
-        });
+            text.rectTransform.anchoredPosition = prevPos;      // もとに戻す
+            text.rectTransform.localScale = prevScale;
+
+            // 遷移
+            DispText(startMessage, () => {
+                state.StateTransition<MainState>();
+            });
+        }
     }
 }

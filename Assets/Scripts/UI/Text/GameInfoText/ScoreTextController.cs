@@ -3,29 +3,30 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScoreTextController : TextController_Generatable
-{
-	[Header("Components")]
-	[SerializeField] TextMeshProUGUI totalScoreText;
+namespace GameController.UI.TextController {
+	public class ScoreTextController : TextController_Generatable {
+		[Header("Components")]
+		[SerializeField] TextMeshProUGUI totalScoreText;
 
-	private void Awake()
-	{
-		totalScoreText.text = "0";
-	}
+		private void Awake()
+		{
+			totalScoreText.text = "0";
+		}
 
-	protected override string SetMessage(object value)
-	{
-		SetTotalScoreText();        // 合計スコアのテキストも更新する
+		protected override string SetMessage(object value)
+		{
+			SetTotalScoreText();        // 合計スコアのテキストも更新する
 
-		// 桁区切り
-		var text = ScoreManager.GetScoreString((int)value * ScoreManager.ComboCount);
+			// 桁区切り
+			var text = ScoreManager.GetScoreString((int)value * ScoreManager.ComboCount);
 
-		return $"+{text}";
-	}
+			return $"+{text}";
+		}
 
-	// 合計スコアのテキストの変更
-	void SetTotalScoreText()
-	{
-		totalScoreText.text = ScoreManager.GetScoreString();
+		// 合計スコアのテキストの変更
+		void SetTotalScoreText()
+		{
+			totalScoreText.text = ScoreManager.GetScoreString();
+		}
 	}
 }

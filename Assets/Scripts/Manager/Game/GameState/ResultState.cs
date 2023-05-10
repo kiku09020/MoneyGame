@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameController {
+namespace GameController.State {
+
+	using UI.UIGroup;
+	using UI.TextController;
+
     public class ResultState : GameStateBase {
 
 		[SerializeField] GameDataManager dataManager;
@@ -21,7 +25,7 @@ namespace GameController {
 			bestScoreText.DispText();
 
 			// ƒŠƒUƒ‹ƒgUI•\Ž¦
-			UIManager.ShowUIGroup<ResultUIGroup>();
+			UIGroupManager.ShowUIGroup<ResultUIGroup>();
 		}
 
 		public override void OnUpdate()

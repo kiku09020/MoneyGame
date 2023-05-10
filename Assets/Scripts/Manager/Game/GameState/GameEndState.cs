@@ -4,7 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameController {
+namespace GameController.State {
+
+	using UI.TextController;
+
     public class GameEndState :GameStateBase
     {
 		[Header("Components")]

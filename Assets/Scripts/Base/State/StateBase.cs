@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GameController {
+namespace GameController.State {
     public abstract class StateBase :MonoBehaviour {
         [SerializeField] string stateName;
         public string Name => stateName;

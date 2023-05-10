@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace GameController {
+namespace GameController.State {
 	public abstract class StateMatchineBase<T> : MonoBehaviour where T : StateBase {
 		[SerializeField] T initState;
 		[SerializeField] protected List<T> states = new List<T>();

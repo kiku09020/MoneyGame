@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadingUIGroup : UIGroupBase
-{
-    [SerializeField] Image loadingImage;        // 進捗バー
+namespace GameController.UI.UIGroup {
+	public class LoadingUIGroup : UIGroupBase {
+        [SerializeField] Image loadingImage;        // 進捗バー
 
-    public override void Initialize()
-    {
-        if (loadingImage){
-            loadingImage.fillAmount = 0;
+        public override void Initialize()
+        {
+            if (loadingImage) {
+                loadingImage.fillAmount = 0;
+            }
         }
-    }
 
-    public void Loading(AsyncOperation async)
-    {
-        loadingImage.fillAmount = async.progress;
+        public void Loading(AsyncOperation async)
+        {
+            loadingImage.fillAmount = async.progress;
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-namespace GameController {
+namespace GameController.State {
     public class MainState : GameStateBase {
 		[SerializeField] GameStateMachine state;
 		[SerializeField] RectTransform gameInfoUI;
@@ -15,15 +15,12 @@ namespace GameController {
 		private void Awake()
 		{
 			gameInfoUI.localScale = Vector3.zero;
-
-			GameTimeManager.Enabled = false;
 		}
 
 		public override void OnEnter()
 		{
 			gameInfoUI.DOScale(1, .5f);
 
-			GameTimeManager.Enabled = true;			// タイマー有効化
 			MainGameManager.isOperable = true;	// 操作可能にする
 		}
 
