@@ -11,20 +11,13 @@ namespace Game.Money.MoneyManager {
 	public class WholeMoneyCalculator : MonoBehaviour {
 		[Header("Components")]
 		[SerializeField] WholeMoneyInfo wholeMoneyInfo;
-		[SerializeField] TargetPriceSetter priceSetter;
 		[SerializeField] MoneyGenerator moneyGenerator;
 		[SerializeField] MoneyEvaluator evaluator;
-		[SerializeField] ChangeTextController changeTextController;
 
-		[Header("Change")]
-		[SerializeField] Transform targetTransform;
-
-		[Header("Payment")]
-		[SerializeField, Tooltip("x•¥‚¢Œã‚Ì‘Ò‹@ŠÔ")] float waitPaymentDuration = 1;
+		[Header("Other")]
+		[SerializeField] Transform targetPriceTransform;
 
 		//--------------------------------------------------
-
-		CancellationToken token;
 
 		/// <summary>
 		/// x•¥‚¢‰Â”\‚©‚Ç‚¤‚©(x•¥Šz‚ª–Ú•WŠz‚æ‚è‚à‘å‚«‚¯‚ê‚Îx•¥‚¦‚é)
@@ -32,9 +25,9 @@ namespace Game.Money.MoneyManager {
 		public bool CanPay => (wholeMoneyInfo.PaymentMG.MoneyAmount >= TargetPriceSetter.TargetPrice) ? true : false;
 
 		/// <summary>
-		/// x•¥‚¢Œã‚Ì‘Ò‹@’†‚©‚Ç‚¤‚©
+		/// –Ú•WŠz‚ÌTransform
 		/// </summary>
-		public static bool IsWaitingPayment { get; private set; }
+		public Transform TargetPriceTransform => targetPriceTransform;
 
 		//--------------------------------------------------
 
@@ -51,50 +44,22 @@ namespace Game.Money.MoneyManager {
 
 		//--------------------------------------------------
 
-
-		private void Awake()
-		{
-			token = this.GetCancellationTokenOnDestroy();
-
-			IsWaitingPayment = false;
-		}
-
 		/// <summary>
-		/// x•¥‚¢
+		/// x•¥‚¢‚Ì•]‰¿A‚¨‚Â‚è¶¬‚È‚Ç‚ÌŠî‘b“I‚Èˆ—
 		/// </summary>
-		public async void Payment()
+		public void PaymentCoreAction()
 		{
-			if (CanPay && !IsWaitingPayment) {
+			if (CanPay) {
 				var changeList = GetChangeMoneyList();
 
 				// •]‰¿
 				evaluator.EvaluatePaidMoney(changeList, GetChangeCount());
 
-				// ‚¨‚Â‚è‚ÌƒeƒLƒXƒg¶¬
-				changeTextController.GenerateAndDispText(wholeMoneyInfo.Change);
-
 				// ‚¨‚Â‚è¶¬‚µ‚ÄˆÚ“®
-				moneyGenerator.GenerateAndMoveChange(changeList, targetTransform);
-
-				// –Ú•WŠztransform‚ÉˆÚ“®
-				wholeMoneyInfo.PaymentMG.Mover.MoveToTargetTransform(targetTransform);
+				moneyGenerator.GenerateAndMoveChange(changeList, targetPriceTransform);
 
 				// D¶¬
 				CheckBillCount();
-
-				// SetFlags
-				IsWaitingPayment = true;                    // ‘Ò‹@’†
-				MainGameManager.isOperable = false;         // ‘€ì•s‰Â
-
-				// ‘Ò‹@
-				await UniTask.Delay(TimeSpan.FromSeconds(waitPaymentDuration), false, PlayerLoopTiming.FixedUpdate, token);
-
-				// ResetFlags
-				IsWaitingPayment = false;
-				MainGameManager.isOperable = true;
-
-				// –Ú•WŠzw’è
-				priceSetter.SetTargetMoneyAmount();
 
 			}
 		}
@@ -104,7 +69,7 @@ namespace Game.Money.MoneyManager {
 		/// </summary>
 		public void Revert()
 		{
-			if (MainGameManager.isOperable && !IsWaitingPayment) {
+			if (MainGameManager.isOperable) {
 				wholeMoneyInfo.PaymentMG.Mover.MoveToTarget(true, true, false);
 			}
 		}

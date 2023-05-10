@@ -101,3 +101,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+--- !u!1 &1073113266635204179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5518686872282179737, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+  m_PrefabInstance: {fileID: 4787931874250018506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2462391862990488728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073113266635204179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27544fe21b146974984385fe4613a139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  calculator: {fileID: 0}
+  evaluator: {fileID: 0}
+  moneyInfo: {fileID: 0}
+  priceSetter: {fileID: 0}
+  changeText: {fileID: 0}
+  waitPaymentDuration: 3.5

@@ -3,8 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Goods {
+    using Mover;
+
     public class GoodsGenerator : MonoBehaviour {
 
-        //--------------------------------------------------
+        [Header("Prefab")]
+        [SerializeField] Goods goodsPrefab;
+
+        [Header("Components")]
+        [SerializeField] GoodsMover mover;
+
+		//--------------------------------------------------
+
+		private void Awake()
+		{
+			GenerateGoods();
+		}
+
+		/// <summary>
+		/// è§ïiÇê∂ê¨
+		/// </summary>
+		public void GenerateGoods()
+        {
+            var startPos = transform.position;
+            var obj = Instantiate(goodsPrefab, startPos, Quaternion.identity, transform.parent);      // ê∂ê¨
+                                                        
+            mover.MoveToGoodsPoint(obj);                        // íÜâõÇ…à⁄ìÆ
+        }
     }
 }

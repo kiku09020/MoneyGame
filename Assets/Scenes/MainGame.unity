@@ -2832,6 +2832,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1267303034}
+  - component: {fileID: 1267303036}
+  - component: {fileID: 1267303035}
   m_Layer: 5
   m_Name: GoodsGenerator
   m_TagString: Untagged
@@ -2859,6 +2861,36 @@ RectTransform:
   m_AnchoredPosition: {x: -300, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &1267303035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267303033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a0bbb86543aed40b7f1c9d46a9c243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goodsPoint: {fileID: 1480126490}
+  backetPoint: {fileID: 2095602524}
+  moveParam_GoodsPoint: {fileID: 11400000, guid: 5751b9612675f9243aa1fdbeec7d9b6f, type: 2}
+  moveParam_BacketPoint: {fileID: 11400000, guid: 1f7c64fe402de5c4dbaf203583912df3, type: 2}
+--- !u!114 &1267303036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267303033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b29ecd0add5cb941ab743f2dce63e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goodsPrefab: {fileID: 4920719795559233163, guid: 1f478f88390ec5e4ca3a4648e1cc7ffe, type: 3}
+  mover: {fileID: 1267303035}
 --- !u!1 &1332757636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4475,12 +4507,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wholeMoneyInfo: {fileID: 1854486985}
-  priceSetter: {fileID: 1393656283}
   moneyGenerator: {fileID: 1570260668}
   evaluator: {fileID: 1854486987}
-  changeTextController: {fileID: 1393656282}
-  targetTransform: {fileID: 1393656279}
-  waitPaymentDuration: 3
+  targetPriceTransform: {fileID: 1393656279}
 --- !u!114 &1854486987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4965,6 +4994,7 @@ GameObject:
   - component: {fileID: 2095602524}
   - component: {fileID: 2095602526}
   - component: {fileID: 2095602525}
+  - component: {fileID: 2095602527}
   m_Layer: 5
   m_Name: Basket
   m_TagString: Untagged
@@ -5030,6 +5060,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095602523}
   m_CullTransparentMesh: 1
+--- !u!114 &2095602527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095602523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e96d99688ad1d4d98c75d94fc93041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2101794010
 GameObject:
   m_ObjectHideFlags: 0
@@ -6726,15 +6768,35 @@ PrefabInstance:
     - target: {fileID: 1908839168634954845, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1854486986}
+      objectReference: {fileID: 7914086280472908688}
     - target: {fileID: 1908839168634954845, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Payment
+      value: OnPayment
       objectReference: {fileID: 0}
     - target: {fileID: 1908839168634954845, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WholeMoneyCalculator, Assembly-CSharp
+      value: GameController.UI.Button.PayButton, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 2462391862990488728, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+      propertyPath: evaluator
+      value: 
+      objectReference: {fileID: 1854486987}
+    - target: {fileID: 2462391862990488728, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+      propertyPath: moneyInfo
+      value: 
+      objectReference: {fileID: 1854486985}
+    - target: {fileID: 2462391862990488728, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+      propertyPath: calculator
+      value: 
+      objectReference: {fileID: 1854486986}
+    - target: {fileID: 2462391862990488728, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+      propertyPath: changeText
+      value: 
+      objectReference: {fileID: 1393656282}
+    - target: {fileID: 2462391862990488728, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+      propertyPath: priceSetter
+      value: 
+      objectReference: {fileID: 1393656283}
     - target: {fileID: 3885805896312978262, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6842,6 +6904,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3885805896312978262, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
   m_PrefabInstance: {fileID: 7914086280472908682}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7914086280472908688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2462391862990488728, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+  m_PrefabInstance: {fileID: 7914086280472908682}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27544fe21b146974984385fe4613a139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8126992488973207604
 PrefabInstance:
   m_ObjectHideFlags: 0
