@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-#if DEBUG
-
 public class DebugManager : MonoBehaviour {
     [SerializeField] List<DebugUnit> debugUnits = new List<DebugUnit>();
 
@@ -51,6 +49,3 @@ public class DebugManager : MonoBehaviour {
         }
     }
 }
-
-
-#endif

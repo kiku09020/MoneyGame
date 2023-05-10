@@ -32,6 +32,8 @@ public class TargetPriceSetter : MonoBehaviour
 
 	private void OnGUI()
 	{
+		if (!Debug.isDebugBuild) return;
+
 		GUI.color = Color.black;
 
 		var guiStyle = new GUIStyle(GUI.skin.label);
