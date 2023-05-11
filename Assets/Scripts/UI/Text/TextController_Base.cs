@@ -56,7 +56,7 @@ namespace GameController.UI.TextController {
 				text.DOFade(1, textParameter.inDuration);
 
 				// 待機
-				await UniTask.Delay(TimeSpan.FromSeconds(textParameter.normalDuration), cancellationToken: token);
+				await UniTask.Delay(TimeSpan.FromSeconds(textParameter.normalDuration), false, PlayerLoopTiming.FixedUpdate, token);
 
 				// フェードアウト
 				text.DOFade(0, textParameter.outDuration).OnComplete(() => {
@@ -97,7 +97,7 @@ namespace GameController.UI.TextController {
 				text.DOFade(1, textParameter.inDuration);
 
 				// 待機
-				await UniTask.Delay(TimeSpan.FromSeconds(textParameter.normalDuration), cancellationToken: token);
+				await UniTask.Delay(TimeSpan.FromSeconds(textParameter.normalDuration), false, PlayerLoopTiming.FixedUpdate, token);
 
 				// フェードアウト
 				text.DOFade(0, textParameter.outDuration).OnComplete(() => {
@@ -112,18 +112,22 @@ namespace GameController.UI.TextController {
 
 		//--------------------------------------------------
 
-		protected void DoMove()
+		void DoMove()
 		{
 			if (textParameter.movable) {
 				text.rectTransform.DOLocalMove(textParameter.startPosition, 0);     // 初期座標に移動
-				text.rectTransform.DOLocalMove(textParameter.targetPosition, textParameter.movingDuration).SetEase(textParameter.movingEaseType);
+				text.rectTransform.DOLocalMove(textParameter.targetPosition, textParameter.movingDuration)
+					.SetEase(textParameter.movingEaseType)
+					.SetUpdate(UpdateType.Fixed);
 			}
 		}
 
-		protected void DoScale()
+		void DoScale()
 		{
 			if (textParameter.scalable) {
-				text.rectTransform.DOScale(textParameter.targetScale, textParameter.scalingDuration).SetEase(textParameter.scalingEaseType);
+				text.rectTransform.DOScale(textParameter.targetScale, textParameter.scalingDuration)
+					.SetEase(textParameter.scalingEaseType)
+					.SetUpdate(UpdateType.Fixed);
 			}
 		}
 	}

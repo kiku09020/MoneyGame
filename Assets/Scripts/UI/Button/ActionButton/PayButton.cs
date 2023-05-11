@@ -9,6 +9,7 @@ using GameController.UI.TextController;
 using Game.Money.MoneyManager;
 using Game.Goods.Mover;
 using Game.Goods;
+using UnityEngine.Events;
 
 namespace GameController.UI.Button {
     public class PayButton : MonoBehaviour {
@@ -23,6 +24,10 @@ namespace GameController.UI.Button {
 		[SerializeField] ChangeTextController changeText;
 		[SerializeField] GoodsGenerator goodsGenerator;
 		[SerializeField] GoodsMover goodsMover;
+
+		[Header("Actions")]
+		[SerializeField] UnityEvent paymentAction;
+		[SerializeField] UnityEvent afterWaitingAction;
 
 		[Header("Parameters")]
 		[SerializeField, Tooltip("支払い後の待機時間")] float waitPaymentDuration = 1;
@@ -62,7 +67,10 @@ namespace GameController.UI.Button {
 			// 支払額を目標額transformに移動
 			moneyInfo.PaymentMG.Mover.MoveToTargetTransform(calculator.TargetPriceTransform);
 
+			// かごまで移動
 			goodsMover.MoveToBacketPoint(goodsGenerator.CurrentGoods);
+
+			paymentAction?.Invoke();				// その他の処理実行
 
 			MainGameManager.isOperable = false;     // 操作不可
 		}
@@ -74,7 +82,9 @@ namespace GameController.UI.Button {
 
 			priceSetter.SetTargetMoneyAmount();     // 目標額指定
 
-			goodsGenerator.GenerateGoods();
+			afterWaitingAction?.Invoke();			// その他の処理実行
+
+			goodsGenerator.GenerateGoods();			// 商品生成
 		}
     }
 }

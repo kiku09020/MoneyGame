@@ -27,7 +27,7 @@ namespace GameController.UI.TextController {
             var prevScale = text.rectTransform.localScale;
 
             DispText(readyMessage);
-            await UniTask.Delay(TimeSpan.FromSeconds(waitDuration), cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(waitDuration), false, PlayerLoopTiming.FixedUpdate, token);
 
             text.rectTransform.anchoredPosition = prevPos;      // ‚à‚Æ‚É–ß‚·
             text.rectTransform.localScale = prevScale;

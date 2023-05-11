@@ -70,7 +70,7 @@ namespace Game.Goods.Mover {
 						.SetEase(moveParams.scalingEaseType);
 				}
 
-				return null;
+				return default;
 			}
 		}
 
