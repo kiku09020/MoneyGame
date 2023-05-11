@@ -1,27 +1,87 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Game.Goods.Mover {
     public class GoodsMover : MonoBehaviour {
 
-        [Header("Points")]
-        [SerializeField] RectTransform goodsPoint;          // 中央
-        [SerializeField] RectTransform backetPoint;         // 買い物かご
+        [SerializeField] MoveUnit toMiddle;
+        [SerializeField] MoveUnit toBascket;
 
-        [Header("Mover")]
-        [SerializeField] GoodsMoveParams moveParam_GoodsPoint;
-        [SerializeField] GoodsMoveParams moveParam_BacketPoint;
+        public MoveUnit ToMiddle => toMiddle;
+        public MoveUnit ToBascket => toBascket;
 
         //--------------------------------------------------
 
-        /// <summary>
-        /// 中央まで移動
-        /// </summary>
-        public void MoveToGoodsPoint(Goods targetGoods)
+        [Serializable]
+        public class MoveUnit
         {
-            MoveBase(targetGoods, goodsPoint, moveParam_GoodsPoint);
+            [SerializeField] RectTransform targetPoint;
+            [SerializeField] GoodsParams moveParam;
+            [SerializeField] UnityEvent completedAction;
+
+            public void MoveToTargetPoint(Goods goods)
+            {
+				var seauence = DOTween.Sequence();
+
+				seauence.Append(MoveBase(goods, targetPoint, moveParam))
+					.Join(Scaling(goods, moveParam));
+			}
+
+			// 移動基底メソッド
+			Tween MoveBase(Goods target, Transform targetPoint, GoodsParams moveParams)
+			{
+				if (moveParams.doJump) {
+					var tween = target.RectTransform.DOJumpAnchorPos(targetPoint.localPosition, moveParams.jumpPower, 1, moveParams.duration);
+					return Sequences(tween);
+				}
+
+				else {
+					var tween = target.RectTransform.DOAnchorPos(targetPoint.localPosition, moveParams.duration);
+					return Sequences(tween);
+				}
+
+				// イージングとかいろいろ
+				Tween Sequences(Tween tween)
+				{
+					return tween.SetEase(moveParams.movingEaseType)         // イージング
+
+						// 完了時にゲームオブジェクトを削除
+						.OnComplete(() => {
+							if (moveParams.isDestroyed) {
+								Destroy(target.gameObject);
+							}
+
+							// その他の完了時の処理
+							completedAction?.Invoke();
+						});
+				}
+			}
+
+			// スケーリング
+			Tween Scaling(Goods target, GoodsParams moveParams)
+			{
+				if (moveParams.doScale) {
+					return target.transform.DOScale(moveParams.targetScale, moveParams.duration)
+						.SetEase(moveParams.scalingEaseType);
+				}
+
+				return null;
+			}
+		}
+
+		//--------------------------------------------------
+
+		/// <summary>
+		/// 中央まで移動
+		/// </summary>
+		public void MoveToGoodsPoint(Goods targetGoods)
+        {
+            toMiddle.MoveToTargetPoint(targetGoods);
         }
 
         /// <summary>
@@ -29,21 +89,9 @@ namespace Game.Goods.Mover {
         /// </summary>
         public void MoveToBacketPoint(Goods targetGoods)
         {
-            MoveBase(targetGoods, backetPoint, moveParam_BacketPoint);
+            ToBascket.MoveToTargetPoint(targetGoods);
         }
 
-        // 基底メソッド
-        void MoveBase(Goods target,RectTransform targetPoint,GoodsMoveParams moveParams)
-        {
-            if(moveParams.doJump) {
-                target.RectTransform.DOJumpAnchorPos(targetPoint.position, moveParams.jumpPower, 1, moveParams.moveDuration)
-                    .SetEase(moveParams.moveEaseType);
 
-			}
-
-            else {
-                target.RectTransform.DOAnchorPos(targetPoint.position, moveParams.moveDuration).SetEase(moveParams.moveEaseType);
-            }
-        }
     }
 }

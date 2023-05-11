@@ -286,6 +286,15 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StopTimer"",
+                    ""type"": ""Button"",
+                    ""id"": ""69ec00dd-f5cc-4eb7-8e3e-3449dbc8c9cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -530,6 +539,17 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
                     ""action"": ""SlowSpeed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbc99236-97a3-4eca-a384-449d0614ae00"",
+                    ""path"": ""<Keyboard>/f12"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StopTimer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -634,6 +654,7 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
         m_Time_Stop = m_Time.FindAction("Stop", throwIfNotFound: true);
         m_Time_FastSpeed = m_Time.FindAction("FastSpeed", throwIfNotFound: true);
         m_Time_SlowSpeed = m_Time.FindAction("SlowSpeed", throwIfNotFound: true);
+        m_Time_StopTimer = m_Time.FindAction("StopTimer", throwIfNotFound: true);
         // GameState
         m_GameState = asset.FindActionMap("GameState", throwIfNotFound: true);
         m_GameState_TransitionToEnd = m_GameState.FindAction("TransitionToEnd", throwIfNotFound: true);
@@ -751,6 +772,7 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Time_Stop;
     private readonly InputAction m_Time_FastSpeed;
     private readonly InputAction m_Time_SlowSpeed;
+    private readonly InputAction m_Time_StopTimer;
     public struct TimeActions
     {
         private @DebugInput m_Wrapper;
@@ -758,6 +780,7 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
         public InputAction @Stop => m_Wrapper.m_Time_Stop;
         public InputAction @FastSpeed => m_Wrapper.m_Time_FastSpeed;
         public InputAction @SlowSpeed => m_Wrapper.m_Time_SlowSpeed;
+        public InputAction @StopTimer => m_Wrapper.m_Time_StopTimer;
         public InputActionMap Get() { return m_Wrapper.m_Time; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -776,6 +799,9 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
                 @SlowSpeed.started -= m_Wrapper.m_TimeActionsCallbackInterface.OnSlowSpeed;
                 @SlowSpeed.performed -= m_Wrapper.m_TimeActionsCallbackInterface.OnSlowSpeed;
                 @SlowSpeed.canceled -= m_Wrapper.m_TimeActionsCallbackInterface.OnSlowSpeed;
+                @StopTimer.started -= m_Wrapper.m_TimeActionsCallbackInterface.OnStopTimer;
+                @StopTimer.performed -= m_Wrapper.m_TimeActionsCallbackInterface.OnStopTimer;
+                @StopTimer.canceled -= m_Wrapper.m_TimeActionsCallbackInterface.OnStopTimer;
             }
             m_Wrapper.m_TimeActionsCallbackInterface = instance;
             if (instance != null)
@@ -789,6 +815,9 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
                 @SlowSpeed.started += instance.OnSlowSpeed;
                 @SlowSpeed.performed += instance.OnSlowSpeed;
                 @SlowSpeed.canceled += instance.OnSlowSpeed;
+                @StopTimer.started += instance.OnStopTimer;
+                @StopTimer.performed += instance.OnStopTimer;
+                @StopTimer.canceled += instance.OnStopTimer;
             }
         }
     }
@@ -861,6 +890,7 @@ public partial class @DebugInput : IInputActionCollection2, IDisposable
         void OnStop(InputAction.CallbackContext context);
         void OnFastSpeed(InputAction.CallbackContext context);
         void OnSlowSpeed(InputAction.CallbackContext context);
+        void OnStopTimer(InputAction.CallbackContext context);
     }
     public interface IGameStateActions
     {

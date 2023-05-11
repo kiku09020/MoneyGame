@@ -20,18 +20,33 @@ public class DebugManager : MonoBehaviour {
         }
     }
 
-    [Serializable]
+	//--------------------------------------------------
+
+	[Serializable]
     public class DebugUnit {
         [SerializeField] string name;
         [SerializeField,Tooltip("ボタン用のツールチップ")] string toolTip;
+        [SerializeField,Tooltip("GUIの種類")] GUITypeEnum guiType;
 
         [SerializeField] InputActionReference inputAction;
         [SerializeField] UnityEvent<InputAction.CallbackContext> action;
 
+        [HideInInspector] public bool value;
+        [HideInInspector] public bool toggleValue;
+
         public string Name => name;
         public string ToolTip => toolTip;
+        public GUITypeEnum GUIType => guiType;
 
-        public void DoAction()
+        public enum GUITypeEnum
+        {
+            button,
+            toggle,
+        }
+
+		//--------------------------------------------------
+
+		public void DoAction()
         {
             action?.Invoke(default);
         }

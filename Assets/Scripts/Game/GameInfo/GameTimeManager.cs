@@ -13,6 +13,19 @@ namespace GameController {
 
         static float time;     // 時間
 
+        static bool infinityTimeToggle;
+
+        /// <summary>
+        /// 時間制限をなくすトグル
+        /// </summary>
+        public static bool InfinityTimeToggle => infinityTimeToggle = !infinityTimeToggle;
+
+        // UnityButton用
+        public void InfinityTimeToggle_Button()
+        {
+            infinityTimeToggle = !infinityTimeToggle;
+        }
+
         //--------------------------------------------------
 
         void Awake()
@@ -23,7 +36,7 @@ namespace GameController {
         void FixedUpdate()
         {
             // 操作可能時にタイマーを更新
-            if (MainGameManager.isOperable) {
+            if (MainGameManager.isOperable && !infinityTimeToggle) {
                 Timer();
             }
         }

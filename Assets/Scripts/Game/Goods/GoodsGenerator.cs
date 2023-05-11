@@ -13,7 +13,11 @@ namespace Game.Goods {
         [Header("Components")]
         [SerializeField] GoodsMover mover;
 
+        int generatedCount;
+
 		//--------------------------------------------------
+
+        public Goods CurrentGoods { get; private set; }
 
 		private void Awake()
 		{
@@ -26,9 +30,13 @@ namespace Game.Goods {
 		public void GenerateGoods()
         {
             var startPos = transform.position;
-            var obj = Instantiate(goodsPrefab, startPos, Quaternion.identity, transform.parent);      // 生成
-                                                        
-            mover.MoveToGoodsPoint(obj);                        // 中央に移動
+            CurrentGoods = Instantiate(goodsPrefab, startPos, Quaternion.identity, transform.parent);      // 生成
+
+            CurrentGoods.name = goodsPrefab.name + $"({generatedCount})";       // 生成されたオブジェクトの名前を変更
+                                                                                
+            generatedCount++;                                                   // 生成数追加
+
+            mover.MoveToGoodsPoint(CurrentGoods);                               // 中央に移動
         }
     }
 }

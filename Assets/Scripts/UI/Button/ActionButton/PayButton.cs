@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-using Game.Money.MoneyManager;
 using Cysharp.Threading.Tasks;
-using GameController.UI.TextController;
 using System;
 using System.Threading;
+
+using GameController.UI.TextController;
+using Game.Money.MoneyManager;
+using Game.Goods.Mover;
+using Game.Goods;
 
 namespace GameController.UI.Button {
     public class PayButton : MonoBehaviour {
@@ -19,6 +21,8 @@ namespace GameController.UI.Button {
 
 		[Header("EffectComponents")]
 		[SerializeField] ChangeTextController changeText;
+		[SerializeField] GoodsGenerator goodsGenerator;
+		[SerializeField] GoodsMover goodsMover;
 
 		[Header("Parameters")]
 		[SerializeField, Tooltip("x•¥‚¢Œã‚Ì‘Ò‹@ŠÔ")] float waitPaymentDuration = 1;
@@ -58,6 +62,8 @@ namespace GameController.UI.Button {
 			// x•¥Šz‚ğ–Ú•WŠztransform‚ÉˆÚ“®
 			moneyInfo.PaymentMG.Mover.MoveToTargetTransform(calculator.TargetPriceTransform);
 
+			goodsMover.MoveToBacketPoint(goodsGenerator.CurrentGoods);
+
 			MainGameManager.isOperable = false;     // ‘€ì•s‰Â
 		}
 
@@ -66,7 +72,9 @@ namespace GameController.UI.Button {
 		{
 			MainGameManager.isOperable = true;		// ‘€ì‰Â”\‚É–ß‚·
 
-			priceSetter.SetTargetMoneyAmount();		// –Ú•WŠzw’è
+			priceSetter.SetTargetMoneyAmount();     // –Ú•WŠzw’è
+
+			goodsGenerator.GenerateGoods();
 		}
     }
 }

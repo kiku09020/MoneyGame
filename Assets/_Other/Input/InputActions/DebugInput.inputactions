@@ -264,6 +264,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "StopTimer",
+                    "type": "Button",
+                    "id": "69ec00dd-f5cc-4eb7-8e3e-3449dbc8c9cf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -508,6 +517,17 @@
                     "action": "SlowSpeed",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "dbc99236-97a3-4eca-a384-449d0614ae00",
+                    "path": "<Keyboard>/f12",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StopTimer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

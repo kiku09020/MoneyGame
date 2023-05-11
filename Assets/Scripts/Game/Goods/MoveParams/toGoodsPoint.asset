@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187e66885f3cd3f489595384fe56d193, type: 3}
   m_Name: toGoodsPoint
   m_EditorClassIdentifier: 
-  moveDuration: 1
-  moveEaseType: 0
-  doJump: 1
+  duration: 1
+  movingEaseType: 7
+  doJump: 0
   jumpPower: 200
+  doScale: 0
+  targetScale: {x: 0, y: 0}
+  scalingEaseType: 0
+  isDestroyed: 0
+  completedAction:
+    m_PersistentCalls:
+      m_Calls: []
