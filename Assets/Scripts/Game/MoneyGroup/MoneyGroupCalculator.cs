@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 
-using Manager = Game.Money.MoneyManager;
+using Game.Money.MoneyManager;
 
 namespace Game.Money.MoneyGroup {
     public class MoneyGroupCalculator : MonoBehaviour {
         [Header("Components")]
         [SerializeField] MoneyGroup moneyGroup;
+        [SerializeField] WholeMoneyInfo wholeInfo;
 
         [Header("Text")]
         [SerializeField] TextMeshProUGUI text;
@@ -23,11 +23,6 @@ namespace Game.Money.MoneyGroup {
 
         //--------------------------------------------------
 
-        void Awake()
-        {
-
-        }
-
         private void FixedUpdate()
         {
             Disp();
@@ -37,12 +32,12 @@ namespace Game.Money.MoneyGroup {
         {
             switch (infoType) {
                 case DispInfoType.amount:
-                    text.text = Manager.WholeMoneyInfo.SeparatedAmountText(moneyGroup.MoneyAmount);
+                    text.text = WholeMoneyInfo.SeparatedAmountText(moneyGroup.MoneyAmount);
                     break;
 
                 case DispInfoType.count:
                     var countText = moneyGroup.MoneyCount.ToString("D2");
-                    var maxCountText = Manager.WholeMoneyInfo.Instance.PocketMoneyMaxCount.ToString("D2");
+                    var maxCountText = wholeInfo.PocketMoneyMaxCount.ToString("D2");
                     text.text = $"{countText}/{maxCountText}";
                     break;
             }

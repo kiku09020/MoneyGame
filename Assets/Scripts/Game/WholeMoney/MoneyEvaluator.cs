@@ -32,11 +32,6 @@ namespace Game.Money.MoneyManager {
 
 		#region Properties
 		/// <summary>
-		/// 所持枚数が最大数よりも多いか
-		/// </summary>
-		bool IsOverPocketMoney => (wholeMoneyInfo.PocketMG.MoneyCount > wholeMoneyInfo.PocketMoneyMaxCount) ? true : false;
-
-		/// <summary>
 		/// パーフェクト判定。おつりが0円かどうか
 		/// </summary>
 		bool IsPerfect => (wholeMoneyInfo.Change == 0) ? true : false;
@@ -93,37 +88,6 @@ namespace Game.Money.MoneyManager {
 		}
 
 		//--------------------------------------------------
-
-		/// <summary>
-		/// ミス判定(旧版)
-		/// </summary>
-		bool CheckMiss()
-		{
-			var reached = false;    // 支払額が目標額に到達したかどうか
-			var paidAmount = 0;     // 支払額
-
-			foreach (var mgUnit in wholeMoneyInfo.PaymentMG.MoneyGroupUnitList) {
-				foreach (var money in mgUnit.MoneyList) {
-
-					// 到達していなければ加算
-					if (!reached) {
-						paidAmount += money.Data.Amount;        // 支払額に加算
-
-						// 目標額よりも支払額が多くなったら、到達フラグ立てる
-						if (TargetPriceSetter.TargetPrice < paidAmount) {
-							reached = true;
-						}
-					}
-
-					// 到達したのに繰り返しが続く場合、余分に支払ったため、ミス判定とする
-					else {
-						return true;
-					}
-				}
-			}
-
-			return false;
-		}
 
 		/// <summary>
 		/// おつりに支払ったお金が含まれていたらミス判定

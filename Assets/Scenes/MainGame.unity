@@ -4299,7 +4299,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 300}
+  m_SizeDelta: {x: 100, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1570260668
 MonoBehaviour:
@@ -4578,8 +4578,8 @@ RectTransform:
   m_Father: {fileID: 2101794014}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.04148845}
+  m_AnchorMax: {x: 1, y: 0.9379812}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4770,6 +4770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPocketMoneyMaxCount: 25
+  minValueofPocketMoneyMaxCount: 16
   paymentMG: {fileID: 1206186971}
   pocketMG: {fileID: 115568466}
   moneyUnitList:
@@ -6442,6 +6443,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2817758390401229264, guid: cc876fc424cd30e408e42e8f4e15cbda, type: 3}
+      propertyPath: wholeInfo
+      value: 
+      objectReference: {fileID: 1854486985}
     - target: {fileID: 3062078805498759130, guid: cc876fc424cd30e408e42e8f4e15cbda, type: 3}
       propertyPath: m_Icon
       value: 
@@ -7466,6 +7471,10 @@ PrefabInstance:
       propertyPath: infoType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4927560049332826009, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
+      propertyPath: wholeInfo
+      value: 
+      objectReference: {fileID: 1854486985}
     - target: {fileID: 5173388116147978898, guid: dc4d81668e19d1a47a5c5ca230e481e7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
