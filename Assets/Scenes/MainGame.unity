@@ -4537,13 +4537,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1704909469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e2dda9749f496642915f051a834804d, type: 3}
+  m_Script: {fileID: 11500000, guid: e36c5eab32acbee4489c2d3b55225d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
   textParameter: {fileID: 11400000, guid: 3909f94862029b54392b706b8849c16a, type: 2}
   startDeactivate: 0
   destroyable: 1
+  totalTimerText: {fileID: 1516861123}
 --- !u!1 &1806596795
 GameObject:
   m_ObjectHideFlags: 0
@@ -4771,6 +4772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPocketMoneyMaxCount: 25
   minValueofPocketMoneyMaxCount: 16
+  decreasingComboCount: 3
   paymentMG: {fileID: 1206186971}
   pocketMG: {fileID: 115568466}
   moneyUnitList:

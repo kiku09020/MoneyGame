@@ -8,9 +8,11 @@ namespace Game.Money.MoneyManager {
 	public class WholeMoneyInfo : SimpleSingleton<WholeMoneyInfo> {
 
 		#region Fields
-		[Header("PocketMoneyCount")]
+		[Header("Parameters")]
 		[SerializeField, Tooltip("最初のお金の最大枚数")] int startPocketMoneyMaxCount = 25;
 		[SerializeField, Tooltip("最大所持枚数の最小値")] int minValueofPocketMoneyMaxCount = 16;
+		[SerializeField, Tooltip("xコンボ毎に最大所持枚数を減らす"),Range(1,5)] 
+		int decreasingComboCount = 3;
 
 		[Header("MoneyGroups")]
 		[SerializeField] MG.MoneyGroup paymentMG;
@@ -99,7 +101,7 @@ namespace Game.Money.MoneyManager {
 			// 最大所持枚数の最小値よりも大きければ、減らしていく
 			if(pocketMoneyMaxCount >= minValueofPocketMoneyMaxCount) {
 				// 5コンボごとに減らしていく
-				pocketMoneyMaxCount = startPocketMoneyMaxCount - (ScoreManager.ComboCount / 5);
+				pocketMoneyMaxCount = startPocketMoneyMaxCount - (ScoreManager.ComboCount / decreasingComboCount);
 			}
 
 			return pocketMoneyMaxCount;

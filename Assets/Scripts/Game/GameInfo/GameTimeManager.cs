@@ -9,9 +9,9 @@ namespace GameController {
         [SerializeField] TextMeshProUGUI timerText;
 
         [Header("Params")]
-        [SerializeField] int startTime = 45;            // 開始時の時間
+        [SerializeField] int startTime = 45;                // 開始時の時間
 
-        static float time;     // 時間
+        public static float TotalTime { get; private set; } // 時間
 
         static bool infinityTimeToggle;
 
@@ -30,7 +30,7 @@ namespace GameController {
 
         void Awake()
         {
-            time = startTime;       // 開始
+            TotalTime = startTime;       // 開始
         }
 
         void FixedUpdate()
@@ -44,36 +44,55 @@ namespace GameController {
         void Timer()
         {
             // 0秒より大きければ、時間を減らす
-            if (time > Time.deltaTime) {
-                time -= Time.deltaTime;
+            if (TotalTime > Time.deltaTime) {
+                TotalTime -= Time.deltaTime;
             }
 
             // 0秒をすぎたら、0秒にする
             else {
-                time = 0f;
+                TotalTime = 0f;
                 MainGameManager.isGameEnd = true;       // ゲーム終了
             }
 
-            var min = Mathf.FloorToInt(time / 60);
-            var sec = Mathf.FloorToInt(time % 60);
-            var milSec = Mathf.FloorToInt((time - Mathf.Floor(time)) * 100);
-
-            Disp(min, sec, milSec);
+            timerText.text = GetTimeText();      // テキスト表示
         }
 
-        void Disp(int min, int sec, int milSec)
+		//--------------------------------------------------
+
+		// 時間の分、秒、ミリ秒を配列として取得
+		static int[] GetTimeUnits()
         {
-            timerText.text = string.Format("{0:00}:{1:00}:{2:00}", min, sec, milSec);
+            var unitsArray = new int[3];
+
+            unitsArray[0] = Mathf.FloorToInt(TotalTime / 60);
+            unitsArray[1] = Mathf.FloorToInt(TotalTime % 60);
+            unitsArray[2] = Mathf.FloorToInt((TotalTime - Mathf.Floor(TotalTime)) * 100);
+
+            return unitsArray;
+        }
+
+        public static string GetTimeText(int min,int sec,int milSec)
+        {
+            return string.Format("{0:00}:{1:00}:{2:00}", min, sec, milSec);
+		}
+
+        public static string GetTimeText()
+        {
+            var units = GetTimeUnits();
+
+            return GetTimeText(units[0], units[1], units[2]);
         }
 
         //--------------------------------------------------
+
+
 
         /// <summary>
         /// タイマー加算
         /// </summary>
         public static void AddTimer(float addedTime)
         {
-            time += addedTime;
+            TotalTime += addedTime;
         }
 
         /// <summary>
@@ -81,11 +100,11 @@ namespace GameController {
         /// </summary>
         public static void RemoveTimer(float remmovedTime)
         {
-            time -= remmovedTime;
+            TotalTime -= remmovedTime;
 
             // 0以下だったら0にする
-            if (time < 0) {
-                time = 0;
+            if (TotalTime < 0) {
+                TotalTime = 0;
             }
         }
     }

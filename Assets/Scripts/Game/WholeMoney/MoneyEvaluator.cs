@@ -14,18 +14,18 @@ namespace Game.Money.MoneyManager {
 	public class MoneyEvaluator : MonoBehaviour {
 		#region Fields
 		[Header("Parametars")]
-		[SerializeField, Tooltip("ミス時の減算タイム")] float miss_RemovedTime = 10;
-		[SerializeField, Tooltip("オーバー時の減算タイム")] float over_RemovedTime = 5;
-		[SerializeField, Tooltip("パーフェクト時の加算タイム")] float parfectAddedTime = 10;
-		[SerializeField, Tooltip("正常時の加算タイム")] float addedTime = 2;
-
-		[Header("Evaluation")]
-		[SerializeField] EvaluationManager evaluationManager;
+		[SerializeField, Tooltip("ミス時の減算タイム")]			float miss_RemovedTime	= 10;
+		[SerializeField, Tooltip("オーバー時の減算タイム")]		float over_RemovedTime	=  5;
+		[SerializeField, Tooltip("パーフェクト時の加算タイム")] float parfectAddedTime	= 10;
+		[SerializeField, Tooltip("正常時の加算タイム")]			float addedTime			=  2;
 
 		[Header("Components")]
+		[SerializeField] EvaluationManager evaluationManager;
 		[SerializeField] WholeMoneyInfo wholeMoneyInfo;
+
+		[Header("TextControllers")]
 		[SerializeField] ScoreTextController scoreText;
-		[SerializeField] TimeTextController timeText;
+		[SerializeField] AddedTimeTextController timeText;
 		[SerializeField] EvaluateTextController evaluateText;
 		[SerializeField] ComboTextController comboText;
 		#endregion
@@ -47,29 +47,28 @@ namespace Game.Money.MoneyManager {
 		{
 			// ミス判定チェック
 			if (CheckMiss(changeList)) {
-				Missed(miss_RemovedTime);
-				GenerateEvaluationText(EvaluationManager.EvaluationType.Missed);
-
+				Missed(miss_RemovedTime);												// ミス処理
+				GenerateEvaluationText(EvaluationManager.EvaluationType.Missed);		// テキスト生成
 				return false;
 			}
 
 			// 所持金枚数チェック
 			if (CheckOver(changeCount)) {
-				Missed(over_RemovedTime);
-				GenerateEvaluationText(EvaluationManager.EvaluationType.Over);
+				Missed(over_RemovedTime);												// ミス処理
+				GenerateEvaluationText(EvaluationManager.EvaluationType.Over);			// テキスト生成
 				return false;
 			}
 
 			// パーフェクトチェック
 			if (IsPerfect) {
-				Corrected(parfectAddedTime, TargetPriceSetter.TargetPrice);
-				GenerateEvaluationText(EvaluationManager.EvaluationType.Perfect);
+				Corrected(parfectAddedTime, TargetPriceSetter.TargetPrice);				// 正解処理
+				GenerateEvaluationText(EvaluationManager.EvaluationType.Perfect);		// テキスト生成
 				return true;
 			}
 
 			// 通常処理
-			Corrected(addedTime, TargetPriceSetter.TargetPrice);
-			GenerateEvaluationText(EvaluationManager.EvaluationType.Normal);
+			Corrected(addedTime, TargetPriceSetter.TargetPrice);						// 正解処理
+			GenerateEvaluationText(EvaluationManager.EvaluationType.Normal);			// テキスト生成
 			return true;
 		}
 
@@ -80,6 +79,7 @@ namespace Game.Money.MoneyManager {
 		/// </summary>
 		bool CheckOver(int changeCount)
 		{
+			// おつり枚数 + 所持枚数が最大所持枚数を超えたら、true判定
 			if (changeCount + wholeMoneyInfo.PocketMG.MoneyCount > wholeMoneyInfo.PocketMoneyMaxCount) {
 				return true;
 			}
@@ -96,12 +96,12 @@ namespace Game.Money.MoneyManager {
 		/// <returns></returns>
 		bool CheckMiss(List<WholeMoneyCalculator.ChangeMoneyUnit> changeList)
 		{
-			// 順序を反転
-			changeList.Reverse();
+			changeList.Reverse();										// おつりのリストの順序を反転
 
 			for (int i = 0; i < changeList.Count; i++) {
-				if (changeList[i]?.MoneyList?.Count <= 0) continue;     // おつりの単位リストの数が少なければ、早期リターン
+				if (changeList[i]?.MoneyList?.Count <= 0) continue;     // おつりの単位リストの数が少なければ、次の単位へ
 
+				// 含まれていたらtrue
 				if (changeList[i].MoneyList[0].Money == wholeMoneyInfo.PaymentMG.MoneyGroupUnitList[i].TargetMoney) {
 					return true;
 				}
