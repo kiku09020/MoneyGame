@@ -15,6 +15,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: RevertButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3452953483460685142}
+    - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameController.UI.Button.ActionButton, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8619609809515918748, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -102,3 +114,34 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1142209400632393654, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+--- !u!114 &5137438252302482276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+  m_PrefabInstance: {fileID: 2253050436445131251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039926436509546858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6039926436509546858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5518686872282179737, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+  m_PrefabInstance: {fileID: 2253050436445131251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3452953483460685142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039926436509546858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99bbbb98fd389a40bf5484fa9bc3954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 5137438252302482276}
+  moneyInfo: {fileID: 0}
+  calculator: {fileID: 0}

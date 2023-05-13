@@ -12,12 +12,10 @@ using Game.Goods;
 using UnityEngine.Events;
 
 namespace GameController.UI.Button {
-    public class PayButton : MonoBehaviour {
+    public class PayButton : ActionButton {
 
 		[Header("MoneyManagers")]
-        [SerializeField] WholeMoneyCalculator calculator;
 		[SerializeField] MoneyEvaluator evaluator;
-		[SerializeField] WholeMoneyInfo moneyInfo;
 		[SerializeField] TargetPriceSetter priceSetter;
 
 		[Header("EffectComponents")]
@@ -26,11 +24,13 @@ namespace GameController.UI.Button {
 		[SerializeField] GoodsMover goodsMover;
 
 		[Header("Actions")]
-		[SerializeField] UnityEvent paymentAction;
-		[SerializeField] UnityEvent afterWaitingAction;
+		[SerializeField,Tooltip("支払い待機後の処理")] UnityEvent afterWaitingAction;
 
 		[Header("Parameters")]
 		[SerializeField, Tooltip("支払い後の待機時間")] float waitPaymentDuration = 1;
+
+		// 支払金額の枚数が0枚だったらクリック可能
+		protected override bool Clickable => (moneyInfo.PaymentMG.MoneyCount != 0) ? true : false;
 
 		//--------------------------------------------------
 
@@ -41,22 +41,26 @@ namespace GameController.UI.Button {
 			token = this.GetCancellationTokenOnDestroy();
 		}
 
-		/// <summary>
-		/// ボタン押されたら支払処理
-		/// </summary>
-		public async void OnPayment()
-        {
-			if (calculator.CanPay) {
-				calculator.PaymentCoreAction();     // 基本的な動作実行
+		//--------------------------------------------------
 
-				SubActions();						// 装飾関係の処理など
+		protected override async void ClickedAction()
+		{
+			calculator.PaymentCoreAction();     // 基本的な動作実行
 
-				// 待機
-				await UniTask.Delay(TimeSpan.FromSeconds(waitPaymentDuration), false, PlayerLoopTiming.FixedUpdate, token);
+			SubActions();                       // 装飾関係の処理など
 
-				AfterWaitingAction();		// 待機後の処理
-			}
+			// 待機
+			await UniTask.Delay(TimeSpan.FromSeconds(waitPaymentDuration), false, PlayerLoopTiming.FixedUpdate, token);
+
+			AfterWaitingAction();       // 待機後の処理
 		}
+
+		protected override void CantClickAction()
+		{
+
+		}
+
+		//--------------------------------------------------
 
 		// サブ処理群
 		void SubActions()
@@ -69,8 +73,6 @@ namespace GameController.UI.Button {
 
 			// かごまで移動
 			goodsMover.MoveToBacketPoint(goodsGenerator.CurrentGoods);
-
-			paymentAction?.Invoke();				// その他の処理実行
 
 			MainGameManager.isOperable = false;     // 操作不可
 		}
@@ -86,5 +88,5 @@ namespace GameController.UI.Button {
 
 			goodsGenerator.GenerateGoods();			// 商品生成
 		}
-    }
+	}
 }

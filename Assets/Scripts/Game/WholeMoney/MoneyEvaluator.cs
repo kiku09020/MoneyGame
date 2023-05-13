@@ -34,7 +34,7 @@ namespace Game.Money.MoneyManager {
 		/// <summary>
 		/// パーフェクト判定。おつりが0円かどうか
 		/// </summary>
-		bool IsPerfect => (wholeMoneyInfo.Change == 0) ? true : false;
+		public bool IsPerfect => (wholeMoneyInfo.Change == 0) ? true : false;
 		#endregion
 
 		//--------------------------------------------------

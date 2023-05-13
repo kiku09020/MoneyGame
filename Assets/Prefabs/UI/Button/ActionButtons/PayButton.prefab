@@ -15,6 +15,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PayButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2462391862990488728}
+    - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameController.UI.Button.ActionButton, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8619609809515918748, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -99,7 +111,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4476073533800407752, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
 --- !u!1 &1073113266635204179 stripped
 GameObject:
@@ -118,11 +131,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27544fe21b146974984385fe4613a139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 1908839168634954845}
+  moneyInfo: {fileID: 0}
   calculator: {fileID: 0}
   evaluator: {fileID: 0}
-  moneyInfo: {fileID: 0}
   priceSetter: {fileID: 0}
   changeText: {fileID: 0}
   goodsGenerator: {fileID: 0}
   goodsMover: {fileID: 0}
+  paymentAction:
+    m_PersistentCalls:
+      m_Calls: []
+  afterWaitingAction:
+    m_PersistentCalls:
+      m_Calls: []
+  cantPayAction:
+    m_PersistentCalls:
+      m_Calls: []
   waitPaymentDuration: 3
+--- !u!114 &1908839168634954845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6345476974687283863, guid: 5a232c74b341fb64aa604e2d5500a1c1, type: 3}
+  m_PrefabInstance: {fileID: 4787931874250018506}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073113266635204179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

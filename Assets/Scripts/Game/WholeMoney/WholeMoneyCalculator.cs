@@ -20,11 +20,6 @@ namespace Game.Money.MoneyManager {
 		//--------------------------------------------------
 
 		/// <summary>
-		/// x•¥‚¢‰Â”\‚©‚Ç‚¤‚©(x•¥Šz‚ª–Ú•WŠz‚æ‚è‚à‘å‚«‚¯‚ê‚Îx•¥‚¦‚é)
-		/// </summary>
-		public bool CanPay => (wholeMoneyInfo.PaymentMG.MoneyAmount >= TargetPriceSetter.TargetPrice) ? true : false;
-
-		/// <summary>
 		/// –Ú•WŠz‚ÌTransform
 		/// </summary>
 		public Transform TargetPriceTransform => targetPriceTransform;
@@ -49,29 +44,16 @@ namespace Game.Money.MoneyManager {
 		/// </summary>
 		public void PaymentCoreAction()
 		{
-			if (CanPay) {
-				var changeList = GetChangeMoneyList();
+			var changeList = GetChangeMoneyList();
 
-				// •]‰¿
-				evaluator.EvaluatePaidMoney(changeList, GetChangeCount());
+			// •]‰¿
+			evaluator.EvaluatePaidMoney(changeList, GetChangeCount());
 
-				// ‚¨‚Â‚è¶¬‚µ‚ÄˆÚ“®
-				moneyGenerator.GenerateAndMoveChange(changeList, targetPriceTransform);
+			// ‚¨‚Â‚è¶¬‚µ‚ÄˆÚ“®
+			moneyGenerator.GenerateAndMoveChange(changeList, targetPriceTransform);
 
-				// D¶¬
-				CheckBillCount();
-
-			}
-		}
-
-		/// <summary>
-		/// x•¥‚¢‹àŠz‚ğèŒ³‚É–ß‚·
-		/// </summary>
-		public void Revert()
-		{
-			if (MainGameManager.isOperable) {
-				wholeMoneyInfo.PaymentMG.Mover.MoveToTarget(true, true, false);
-			}
+			// D¶¬
+			CheckBillCount();
 		}
 
 		//--------------------------------------------------
