@@ -19,6 +19,8 @@ namespace GameController.UI.UIGroup {
 
         private void Awake()
         {
+            ResetUIHistory();
+
             foreach (var uiGroup in _uiGroupList) {
                 uiGroup.Hide();
                 uiGroup.Initialize();
