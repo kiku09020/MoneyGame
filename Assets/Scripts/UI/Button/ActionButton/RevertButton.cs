@@ -7,7 +7,7 @@ namespace GameController.UI.Button {
     public class RevertButton : ActionButton {
 
 		// Žx•¥‹àŠz‚ª–Ú•WŠzˆÈã‚¾‚Á‚½‚çƒNƒŠƒbƒN‰Â”\
-		protected override bool Clickable => (moneyInfo.PaymentMG.MoneyAmount >= TargetPriceSetter.TargetPrice) ? true : false;
+		protected override bool Clickable => (moneyInfo.PaymentMG.MoneyCount != 0) ? true : false;
 
 		//--------------------------------------------------
 

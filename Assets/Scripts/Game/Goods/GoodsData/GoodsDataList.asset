@@ -18,6 +18,7 @@ MonoBehaviour:
     maxPrice: 1000
     goodsList:
     - {fileID: 578120176453482301, guid: abdac93a257368141a0452e4ac90cb10, type: 3}
+    - {fileID: 972491031694203975, guid: 3ad782a88dad99a4ca22ce1fb5e14aaf, type: 3}
   - name: MiddlePriceList
     minPrice: 1000
     maxPrice: 2500

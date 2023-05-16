@@ -29,8 +29,8 @@ namespace GameController.UI.Button {
 		[Header("Parameters")]
 		[SerializeField, Tooltip("Žx•¥‚¢Œã‚Ì‘Ò‹@ŽžŠÔ")] float waitPaymentDuration = 1;
 
-		// Žx•¥‹àŠz‚Ì–‡”‚ª0–‡‚¾‚Á‚½‚çƒNƒŠƒbƒN‰Â”\
-		protected override bool Clickable => (moneyInfo.PaymentMG.MoneyCount != 0) ? true : false;
+		// Žx•¥‹àŠz‚ª–Ú•WŠz‚æ‚è‚à‘å‚«‚¯‚ê‚ÎƒNƒŠƒbƒN‰Â”\
+		protected override bool Clickable => (moneyInfo.PaymentMG.MoneyAmount >= TargetPriceSetter.TargetPrice) ? true : false;
 
 		//--------------------------------------------------
 

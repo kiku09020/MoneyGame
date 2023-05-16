@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1595981768052293687}
   - component: {fileID: 5090666056414384474}
   - component: {fileID: 1954127321961054741}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,10 +33,10 @@ RectTransform:
   m_Father: {fileID: 826910602220954854}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!198 &5090666056414384474
 ParticleSystem:
@@ -4829,7 +4829,7 @@ GameObject:
   - component: {fileID: 5050103443939939490}
   - component: {fileID: 1877629632142556352}
   - component: {fileID: 4920719795559233163}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Goods_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
