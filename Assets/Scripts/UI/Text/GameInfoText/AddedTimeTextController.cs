@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameController.UI.TextController {
 	public class AddedTimeTextController : TextController_Generatable {
@@ -10,9 +11,14 @@ namespace GameController.UI.TextController {
 		[Header("Components")] 
 		[SerializeField] TextMeshProUGUI totalTimerText;
 
+		[Header("Actions")]
+		[SerializeField] UnityEvent addedAction;
+
 		protected override string SetMessage(object value)
 		{
-			SetTotalTimer();		// 合計タイムに反映
+			addedAction.Invoke();		// 追加された時の処理
+
+			SetTotalTimer();			// 合計タイムに反映
 
 			// 符号判定
 			var signText = ((float)value > 0) ? "+" : "-";

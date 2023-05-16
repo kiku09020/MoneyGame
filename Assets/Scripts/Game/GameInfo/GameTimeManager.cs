@@ -107,5 +107,13 @@ namespace GameController {
                 TotalTime = 0;
             }
         }
+
+        /// <summary>
+        /// タイマーの値を指定して変更
+        /// </summary>
+        public static void SetTimer(int targetTime)
+        {
+            TotalTime = targetTime;
+        }
     }
 }

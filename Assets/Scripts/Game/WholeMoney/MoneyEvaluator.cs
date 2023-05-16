@@ -5,6 +5,7 @@ using UnityEngine;
 
 using GameController;
 using GameController.UI.TextController;
+using UnityEngine.Events;
 
 /// <summary>
 /// 支払い時の評価をするクラス
@@ -20,14 +21,30 @@ namespace Game.Money.MoneyManager {
 		[SerializeField, Tooltip("正常時の加算タイム")]			float addedTime			=  2;
 
 		[Header("Components")]
-		[SerializeField] EvaluationManager evaluationManager;
-		[SerializeField] WholeMoneyInfo wholeMoneyInfo;
+		[SerializeField] EvaluationManager	evaluationManager;
+		[SerializeField] WholeMoneyInfo		wholeMoneyInfo;
 
 		[Header("TextControllers")]
-		[SerializeField] ScoreTextController scoreText;
-		[SerializeField] AddedTimeTextController timeText;
-		[SerializeField] EvaluateTextController evaluateText;
-		[SerializeField] ComboTextController comboText;
+		[SerializeField] ScoreTextController		scoreText;
+		[SerializeField] AddedTimeTextController	timeText;
+		[SerializeField] EvaluateTextController		evaluateText;
+		[SerializeField] ComboTextController		comboText;
+
+		[Header("Actions")]
+		[SerializeField,Tooltip("ミス時のアクション")]			
+		UnityEvent missedAction;
+
+		[SerializeField,Tooltip("オーバー時のアクション")]		
+		UnityEvent overedAction;
+
+		[SerializeField,Tooltip("オーバー状態→通常状態のときのアクション")]		
+		UnityEvent overToNormalAction;
+		
+		[SerializeField,Tooltip("パーフェクト時のアクション")]	
+		UnityEvent perfectedAction;
+
+		bool isOvered;		// オーバー状態
+
 		#endregion
 
 		#region Properties
@@ -49,6 +66,9 @@ namespace Game.Money.MoneyManager {
 			if (CheckMiss(changeList)) {
 				Missed(miss_RemovedTime);												// ミス処理
 				GenerateEvaluationText(EvaluationManager.EvaluationType.Missed);		// テキスト生成
+
+				missedAction.Invoke();
+
 				return false;
 			}
 
@@ -56,13 +76,27 @@ namespace Game.Money.MoneyManager {
 			if (CheckOver(changeCount)) {
 				Missed(over_RemovedTime);												// ミス処理
 				GenerateEvaluationText(EvaluationManager.EvaluationType.Over);			// テキスト生成
+
+				overedAction.Invoke();
+
+				isOvered = true;
 				return false;
+			}
+
+			// オーバーが終了した瞬間
+			else if (isOvered) {
+				isOvered = false;
+
+				overToNormalAction.Invoke();
 			}
 
 			// パーフェクトチェック
 			if (IsPerfect) {
 				Corrected(parfectAddedTime, TargetPriceSetter.TargetPrice);				// 正解処理
 				GenerateEvaluationText(EvaluationManager.EvaluationType.Perfect);		// テキスト生成
+
+				perfectedAction.Invoke();
+
 				return true;
 			}
 
@@ -143,5 +177,7 @@ namespace Game.Money.MoneyManager {
 			scoreText.GenerateAndDispText(score);
 			comboText.SetText();                            // コンボテキスト変更
 		}
+
+		//--------------------------------------------------
 	}
 }
