@@ -461,20 +461,48 @@ PrefabInstance:
     m_TransformParent: {fileID: 1292294210}
     m_Modifications:
     - target: {fileID: 2245715301342151213, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245715301342151213, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 312159215}
-    - target: {fileID: 2245715301342151213, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadGameScene
+    - target: {fileID: 4337259068277999092, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2245715301342151213, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TitleManager, Assembly-CSharp
+    - target: {fileID: 4337259068277999092, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337259068277999092, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337259068277999092, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337259068277999092, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349806164526114923, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349806164526114923, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349806164526114923, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349806164526114923, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349806164526114923, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5789288569286407616, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
       propertyPath: m_Pivot.x
@@ -564,9 +592,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitleUIGroup
       objectReference: {fileID: 0}
-    - target: {fileID: 5789288569286407631, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 6679008800652245028, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679008800652245028, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679008800652245028, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679008800652245028, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679008800652245028, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8aa9f38c5c9558340a3718c04c7d9fed, type: 3}
