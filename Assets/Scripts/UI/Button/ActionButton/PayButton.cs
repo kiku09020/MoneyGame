@@ -72,7 +72,7 @@ namespace GameController.UI.Button {
 			moneyInfo.PaymentMG.Mover.MoveToTargetTransform(calculator.TargetPriceTransform);
 
 			// ‚©‚²‚Ü‚ÅˆÚ“®
-			goodsMover.MoveToBacketPoint(goodsGenerator.CurrentGoods);
+			goodsMover.MoveToBacketPoint(goodsGenerator.TargetGoods);
 
 			MainGameManager.isOperable = false;     // ‘€ì•s‰Â
 		}

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Goods {
-    using Mover;
+	using Game.Money.MoneyManager;
+	using Mover;
 
     public class GoodsGenerator : MonoBehaviour {
+
+        [SerializeField] GoodsDataManager dataManager;
 
         [Header("Prefab")]
         [SerializeField] Goods goodsPrefab;
@@ -13,11 +16,12 @@ namespace Game.Goods {
         [Header("Components")]
         [SerializeField] GoodsMover mover;
 
-        int generatedCount;
-
 		//--------------------------------------------------
 
-        public Goods CurrentGoods { get; private set; }
+        /// <summary>
+        /// 商品
+        /// </summary>
+        public Goods TargetGoods { get; private set; }
 
 		private void Awake()
 		{
@@ -30,13 +34,14 @@ namespace Game.Goods {
 		public void GenerateGoods()
         {
             var startPos = transform.position;
-            CurrentGoods = Instantiate(goodsPrefab, startPos, Quaternion.identity, transform.parent);      // 生成
 
-            CurrentGoods.name = goodsPrefab.name + $"({generatedCount})";       // 生成されたオブジェクトの名前を変更
-                                                                                
-            generatedCount++;                                                   // 生成数追加
+            // 価格から、商品を取得
+            var price = TargetPriceSetter.TargetPrice;
+            var goods = dataManager.GetGoods(price);
 
-            mover.MoveToGoodsPoint(CurrentGoods);                               // 中央に移動
+            TargetGoods = Instantiate(goods, startPos, Quaternion.identity, transform.parent);      // 生成
+
+            mover.MoveToGoodsPoint(TargetGoods);                               // 中央に移動
         }
     }
 }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593a89f96bebbdc47bec89e3471f7c61, type: 3}
+  m_Name: GoodsDataList
+  m_EditorClassIdentifier: 
+  goodsDataList:
+  - name: LowPriceList
+    minPrice: 0
+    maxPrice: 1000
+    goodsList:
+    - {fileID: 578120176453482301, guid: abdac93a257368141a0452e4ac90cb10, type: 3}
+  - name: MiddlePriceList
+    minPrice: 1000
+    maxPrice: 2500
+    goodsList:
+    - {fileID: 4203130681425456679, guid: 707be14ecee877d429ff8db65434f558, type: 3}
+  - name: HighPriceList
+    minPrice: 2500
+    maxPrice: 5000
+    goodsList:
+    - {fileID: 233257341663613428, guid: e9d9105df4a6b6643b900ddddf65e92a, type: 3}
+  defaultGoods: {fileID: 4920719795559233163, guid: 1f478f88390ec5e4ca3a4648e1cc7ffe, type: 3}
