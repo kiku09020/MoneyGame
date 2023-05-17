@@ -1,7 +1,10 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
+using System;
 
 namespace GameController {
     public class GameTimeManager : MonoBehaviour {
@@ -26,11 +29,15 @@ namespace GameController {
             infinityTimeToggle = !infinityTimeToggle;
         }
 
+        CancellationToken token;
+
         //--------------------------------------------------
 
         void Awake()
         {
-            TotalTime = startTime;       // 開始
+			token = this.GetCancellationTokenOnDestroy();
+
+			TotalTime = startTime;       // 開始
         }
 
         void FixedUpdate()
@@ -41,7 +48,22 @@ namespace GameController {
             }
         }
 
-        void Timer()
+        /// <summary>
+        /// 時間を停止した後に、指定した時間待機して元に戻す
+        /// </summary>
+        /// <param name="waitDuration">待機時間</param>
+        public async void StopWholeTime(float waitDuration)
+        {
+            TimeController.Stop();
+
+            await UniTask.Delay(TimeSpan.FromSeconds(waitDuration),true, cancellationToken: token);
+
+            TimeController.ResetTimeScale();
+        }
+
+		//--------------------------------------------------
+
+		void Timer()
         {
             // 0秒より大きければ、時間を減らす
             if (TotalTime > Time.deltaTime) {

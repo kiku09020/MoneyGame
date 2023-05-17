@@ -1,5 +1,8 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public static class TimeController
@@ -16,31 +19,14 @@ public static class TimeController
 
 	//--------------------------------------------------
 	/// <summary>
-	/// ŠÔ’â~
-	/// </summary>
-	public static void Stop(bool isStop)
-	{
-		Time.timeScale = 0;
-		IsStoping = true;
-		IsChanged = true;
-	}
-
-	/// <summary>
-	/// ŠÔ’â~BŠÔ’â~’†‚ÉŒÄ‚Ño‚·‚ÆA’â~I—¹
+	/// ŠÔ’â~BŠÔ’â~’†‚ÉŒÄ‚Ño‚·‚Æ
 	/// </summary>
 	public static void Stop()
 	{
-		// ’â~I—¹
-		if (IsStoping) {
-			ResetTimeScale();
-		}
-
 		// ’â~
-		else {
-			Time.timeScale = 0;
-			IsStoping = true;
-			IsChanged = true;
-		}
+		Time.timeScale = 0;
+		IsStoping = true;
+		IsChanged = true;
 	}
 
 	/// <summary>
@@ -70,4 +56,6 @@ public static class TimeController
 			IsChanged = true;
 		}
 	}
+
+	//--------------------------------------------------
 }

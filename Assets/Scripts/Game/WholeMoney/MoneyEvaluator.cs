@@ -62,6 +62,10 @@ namespace Game.Money.MoneyManager {
 		/// <returns>評価した結果が、高評価(ミスをしていない)かどうか</returns>
 		public bool EvaluatePaidMoney(List<WholeMoneyCalculator.ChangeMoneyUnit> changeList, int changeCount)
 		{
+			// 評価順：ミス判定→パーフェクト→オーバー判定
+
+
+
 			// ミス判定チェック
 			if (CheckMiss(changeList)) {
 				Missed(miss_RemovedTime);												// ミス処理
@@ -70,6 +74,16 @@ namespace Game.Money.MoneyManager {
 				missedAction.Invoke();
 
 				return false;
+			}
+
+			// パーフェクトチェック
+			if (IsPerfect) {
+				Corrected(parfectAddedTime, TargetPriceSetter.TargetPrice);             // 正解処理
+				GenerateEvaluationText(EvaluationManager.EvaluationType.Perfect);       // テキスト生成
+
+				perfectedAction.Invoke();
+
+				return true;
 			}
 
 			// 所持金枚数チェック
@@ -81,23 +95,6 @@ namespace Game.Money.MoneyManager {
 
 				isOvered = true;
 				return false;
-			}
-
-			// オーバーが終了した瞬間
-			else if (isOvered) {
-				isOvered = false;
-
-				overToNormalAction.Invoke();
-			}
-
-			// パーフェクトチェック
-			if (IsPerfect) {
-				Corrected(parfectAddedTime, TargetPriceSetter.TargetPrice);				// 正解処理
-				GenerateEvaluationText(EvaluationManager.EvaluationType.Perfect);		// テキスト生成
-
-				perfectedAction.Invoke();
-
-				return true;
 			}
 
 			// 通常処理
@@ -167,6 +164,13 @@ namespace Game.Money.MoneyManager {
 		// ミス以外の時の処理
 		void Corrected(float time, int score)
 		{
+			// オーバーが終了した瞬間の処理
+			if (isOvered) {
+				isOvered = false;
+
+				overToNormalAction.Invoke();
+			}
+
 			// タイム、スコア、コンボ加算
 			GameTimeManager.AddTimer(time);
 			ScoreManager.AddCombo();

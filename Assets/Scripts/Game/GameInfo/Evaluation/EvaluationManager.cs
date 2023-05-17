@@ -36,6 +36,17 @@ public class EvaluationManager:ScriptableObject {
 
 		return null;
 	}
+
+	public EvaluationUnit GetEvaluationUnit<T>() where T : EvaluationUnit 
+	{
+		foreach(var evalUnit in evaluationMessages) {
+			if (evalUnit.GetType() is T) {
+				return evalUnit;
+			}
+		}
+
+		return null;
+	}
 }
 
 
