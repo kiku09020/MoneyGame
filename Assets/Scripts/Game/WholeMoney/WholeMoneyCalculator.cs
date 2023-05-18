@@ -12,7 +12,7 @@ namespace Game.Money.MoneyManager {
 		[Header("Components")]
 		[SerializeField] WholeMoneyInfo wholeMoneyInfo;
 		[SerializeField] MoneyGenerator moneyGenerator;
-		[SerializeField] MoneyEvaluator evaluator;
+		[SerializeField] EvaluationManager evaluator;
 
 		[Header("Other")]
 		[SerializeField] Transform targetPriceTransform;
@@ -47,7 +47,7 @@ namespace Game.Money.MoneyManager {
 			var changeList = GetChangeMoneyList();
 
 			// 評価
-			evaluator.EvaluatePaidMoney(changeList, GetChangeCount());
+			evaluator.EvaluatePaidMoney();
 
 			// おつり生成して移動
 			moneyGenerator.GenerateAndMoveChange(changeList, targetPriceTransform);
@@ -59,7 +59,7 @@ namespace Game.Money.MoneyManager {
 		//--------------------------------------------------
 
 		// おつりのリストを取得
-		List<ChangeMoneyUnit> GetChangeMoneyList()
+		public List<ChangeMoneyUnit> GetChangeMoneyList()
 		{
 			var changeMoneyList = new List<ChangeMoneyUnit>();                  // おつりリスト
 			var _change = wholeMoneyInfo.Change;                                // おつりから差し引きされる値

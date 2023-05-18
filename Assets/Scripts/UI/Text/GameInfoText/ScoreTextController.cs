@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 namespace GameController.UI.TextController {
-	public class ScoreTextController : TextController_Generatable {
+	public class ScoreTextController : GeneratableTextController {
 		[Header("Components")]
 		[SerializeField] TextMeshProUGUI totalScoreText;
 
@@ -13,7 +13,7 @@ namespace GameController.UI.TextController {
 			totalScoreText.text = "0";
 		}
 
-		protected override string SetMessage(object value)
+		protected override string SetMessage(float value)
 		{
 			SetTotalScoreText();        // 合計スコアのテキストも更新する
 

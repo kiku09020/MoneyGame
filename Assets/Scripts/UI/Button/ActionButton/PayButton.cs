@@ -15,11 +15,9 @@ namespace GameController.UI.Button {
     public class PayButton : ActionButton {
 
 		[Header("MoneyManagers")]
-		[SerializeField] MoneyEvaluator evaluator;
 		[SerializeField] TargetPriceSetter priceSetter;
 
 		[Header("EffectComponents")]
-		[SerializeField] ChangeTextController changeText;
 		[SerializeField] GoodsGenerator goodsGenerator;
 		[SerializeField] GoodsMover goodsMover;
 
@@ -66,7 +64,6 @@ namespace GameController.UI.Button {
 		void SubActions()
 		{
 			// おつりのテキスト生成
-			changeText.GenerateAndDispText(moneyInfo.Change);
 
 			// 支払額を目標額transformに移動
 			moneyInfo.PaymentMG.Mover.MoveToTargetTransform(calculator.TargetPriceTransform);

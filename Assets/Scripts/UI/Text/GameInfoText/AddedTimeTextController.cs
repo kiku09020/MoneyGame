@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace GameController.UI.TextController {
-	public class AddedTimeTextController : TextController_Generatable {
+	public class AddedTimeTextController : GeneratableTextController {
 
 		[Header("Components")] 
 		[SerializeField] TextMeshProUGUI totalTimerText;
@@ -14,7 +14,7 @@ namespace GameController.UI.TextController {
 		[Header("Actions")]
 		[SerializeField] UnityEvent addedAction;
 
-		protected override string SetMessage(object value)
+		protected override string SetMessage(float value)
 		{
 			addedAction.Invoke();		// í«â¡Ç≥ÇÍÇΩéûÇÃèàóù
 
