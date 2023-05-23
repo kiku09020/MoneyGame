@@ -12,7 +12,7 @@ namespace GameController.State {
     {
 		[Header("Components")]
 		[SerializeField] GameStateMachine state;
-		[SerializeField] TextController_Base textController;
+		[SerializeField] TextController textController;
 		[SerializeField] GameDataManager dataManager; 
 
 		[Header("Parameters")]

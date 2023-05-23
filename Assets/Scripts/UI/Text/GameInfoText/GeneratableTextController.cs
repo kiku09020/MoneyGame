@@ -5,40 +5,74 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameController.UI.TextController {
-    public abstract class GeneratableTextController : TextController_Base {
+    public class GeneratableTextController : TextController {
 
         [Header("Parameters")]
-        [SerializeField,Tooltip("生成遅延時間")] float generationDelay; 
-
-        //--------------------------------------------------
-
-        /// <summary>
-        /// テキストを変更
-        /// </summary>
-        protected abstract string SetMessage(float value);
+        [SerializeField,Tooltip("生成遅延時間")] protected float generationDelay;
 
 		//--------------------------------------------------
 
 		/// <summary>
 		/// テキストの生成
 		/// </summary>
+		public async UniTask GenerateText()
+		{
+			await UniTask.Delay(TimeSpan.FromSeconds(generationDelay));     // 待機
+
+			Instantiate(uiObject, transform);       // 生成
+		}
+
+		/// <summary>
+		/// テキストの指定後に生成
+		/// </summary>
 		public async UniTask GenerateText(float value)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(generationDelay));
+            await UniTask.Delay(TimeSpan.FromSeconds(generationDelay));     // 待機
 
-            text.text = SetMessage(value);
-
-            Instantiate(text, transform);       // 生成
+            SetTextMessage(value);                     // テキスト指定
+            Instantiate(uiObject, transform);       // 生成
         }
 
         /// <summary>
-        /// テキストの生成後にすべてのアニメーションを再生
-        /// </summary>
-        public async void GenerateAndPlayAllAnimation(float value)
+		/// テキストの指定後に生成
+		/// </summary>
+		public async UniTask GenerateText(string text)
         {
-            await GenerateText(value);
+            await UniTask.Delay(TimeSpan.FromSeconds(generationDelay));     // 待機
 
-            PlayAllAnimations();
+            SetText(text);                          // テキスト指定
+            Instantiate(uiObject, transform);      // 生成
         }
-    }
+
+		//--------------------------------------------------
+
+		/// <summary>
+		/// 生成後にアニメーションを再生
+		/// </summary>
+		public async void GenerateAndPlayAnimation()
+		{
+			await GenerateText();
+			PlayAnimation();
+		}
+
+		/// <summary>
+		/// 生成後にアニメーションを再生
+		/// </summary>
+		public async void GenerateAndPlayAnimation(float value)
+		{
+			await GenerateText(value);
+			PlayAnimation();
+		}
+
+		/// <summary>
+		/// 生成後にアニメーションを再生
+		/// </summary>
+		public async void GenerateAndPlayAnimation(string text)
+		{
+			await GenerateText(text);
+			PlayAnimation();
+		}
+
+		//--------------------------------------------------
+	}
 }

@@ -7,7 +7,7 @@ using GameController;
 using GameController.UI.TextController;
 using UnityEngine.Events;
 
-namespace Game.Money.MoneyManager {
+namespace Game.Money.MoneyManager.Evaluator {
 /// <summary>
 /// 支払い時の評価をするクラス
 /// </summary>
@@ -16,10 +16,7 @@ namespace Game.Money.MoneyManager {
 		#region Fields
 
 		[SerializeField,Tooltip("評価リスト(上から順に実行される)")]
-		List<Evaluator_Base> evaluationUnitList = new List<Evaluator_Base>();
-
-		[Header("Components")]
-		[SerializeField] WholeMoneyInfo		wholeMoneyInfo;
+		List<Evaluator_Base> evalatorList = new List<Evaluator_Base>();
 
 		[Header("TextControllers")]
 		[SerializeField] ScoreTextController		scoreText;
@@ -32,33 +29,35 @@ namespace Game.Money.MoneyManager {
 
 		private void Awake()
 		{
-			// 各moneyInfo適用
-			if (evaluationUnitList.Count != 0) {
-
-				foreach (var unit in evaluationUnitList) {
-					unit.moneyInfo = wholeMoneyInfo;		// moneyInfo適用
-
-					// ミス、正常処理をそれぞれ追加
-					if (unit.IsCorrect) {
-						unit.EvaluateSubEvent += () => Corrected(unit.TargetTime, TargetPriceSetter.TargetPrice);
-					}
-
-					else {
-						unit.EvaluateSubEvent += () => Missed(unit.TargetTime);
-					}
-				}
+			foreach(var eval in  evalatorList) {
+				CheckType(eval);
 			}
 		}
 
-		/// <summary>
-		/// 支払い金額を評価する
-		/// </summary>
-		public void EvaluatePaidMoney()
+		// 正常、ミスそれぞれにイベント追加
+		void CheckType<T>(T eval) where T : Evaluator_Base
 		{
-			foreach(var unit in evaluationUnitList) {
+			// 正常評価
+			if (eval is Evaluator_Correct correctEval) {
+				eval.BasedEvalAction += () => Corrected(correctEval.AddedTime, correctEval.AddedScore);
+			}
 
+			// ミス評価
+			else if (eval is Evaluator_Incorrect inCorrectEval) {
+				eval.BasedEvalAction += () => Missed(inCorrectEval.RemovedTime);
+			}
+		}
+
+		//--------------------------------------------------
+
+		/// <summary>
+		/// 評価チェック
+		/// </summary>
+		public void CheckEvaluators(WholeMoneyInfo info)
+		{
+			foreach(var unit in evalatorList) {
 				// 評価
-				if (unit.Evaluate()) {
+				if (unit.Evaluate(info)) {
 					break;		// 評価条件にあっていたら抜ける
 				}
 			}
@@ -69,11 +68,11 @@ namespace Game.Money.MoneyManager {
 		// ミス時の処理
 		void Missed(float time)
 		{
-			GameTimeManager.AddTimer(time);			// タイム減算
-			ScoreManager.ResetCombo();              // コンボリセット
+			GameTimeManager.RemoveTimer(time);						// タイム減算
+			ScoreManager.ResetCombo();								// コンボリセット
 
-			timeText.GenerateAndPlayAllAnimation(time);
-			comboText.SetText();                    // コンボテキスト変更
+			timeText.GenerateAndPlayAnimation(time);				// タイムテキスト生成、再生
+			comboText.SetTextMessage(ScoreManager.ComboCount);		// コンボテキスト変更
 		}
 
 		// ミス以外の時の処理
@@ -85,22 +84,11 @@ namespace Game.Money.MoneyManager {
 			ScoreManager.AddScore(score);
 
 			// テキスト生成
-			timeText.GenerateAndPlayAllAnimation(time);
-			scoreText.GenerateAndPlayAllAnimation(score);
-			comboText.SetText();                            // コンボテキスト変更
+			timeText.GenerateAndPlayAnimation(time);
+			scoreText.GenerateAndPlayAnimation(score);
+			comboText.SetTextMessage(ScoreManager.ComboCount);         // コンボテキスト変更
 		}
 
 		//--------------------------------------------------
-
-		Evaluator_Base GetEvaluationUnit<T>() where T : Evaluator_Base
-		{
-			foreach (var evalUnit in evaluationUnitList) {
-				if (evalUnit.GetType() is T) {
-					return evalUnit;
-				}
-			}
-
-			return null;
-		}
 	}
 }

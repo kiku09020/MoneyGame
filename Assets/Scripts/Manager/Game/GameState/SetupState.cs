@@ -12,7 +12,7 @@ namespace GameController.State {
     public class SetupState : GameStateBase {
 		[SerializeField] MoneyGenerator generator;
 		[SerializeField] GameStateMachine state;
-		[SerializeField] TextController_Base textController;
+		[SerializeField] TextController textController;
 
 		bool onceActionFlag ;
 
@@ -26,7 +26,7 @@ namespace GameController.State {
 		public override void OnUpdate()
 		{
 			if (!MoneyGenerator.IsGenerating && !onceActionFlag) {
-				textController.PlayAllAnimations();
+				//textController.PlayAllAnimations();
 				onceActionFlag = true;
 			}
 		}

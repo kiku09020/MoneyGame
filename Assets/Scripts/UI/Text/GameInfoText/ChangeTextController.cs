@@ -6,12 +6,12 @@ namespace GameController.UI.TextController {
 	using Game.Money.MoneyManager;
 
 	public class ChangeTextController : GeneratableTextController {
-		protected override string SetMessage(float value)
+		public override void SetTextMessage(float value)
 		{
 			// Œ…‹æØ‚è‚Ì‰~•\¦
 			var separatedText = WholeMoneyInfo.SeparatedAmountText((int)value);
 
-			return $"+{separatedText}";
+			uiObject.text = $"+{separatedText}";
 		}
 	}
 }

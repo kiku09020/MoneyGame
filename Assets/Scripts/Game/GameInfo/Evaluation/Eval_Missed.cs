@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Money.MoneyManager {
-    public class Eval_Missed : Evaluator_Base {
-
-		[SerializeField] WholeMoneyCalculator calculator;
+namespace Game.Money.MoneyManager.Evaluator {
+    public class Eval_Missed : Evaluator_Incorrect {
 
 		//--------------------------------------------------
 
-		protected override bool Condition()
+		protected override bool Condition(WholeMoneyInfo moneyInfo)
 		{
 			var changeList = calculator.GetChangeMoneyList();
 
@@ -25,6 +23,11 @@ namespace Game.Money.MoneyManager {
 			}
 
 			return false;
+		}
+
+		protected override void EvaluatedAction()
+		{
+
 		}
 	}
 }

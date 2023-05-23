@@ -1,13 +1,12 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class UIAnimator :MonoBehaviour
+public class UIAnimator<T> :MonoBehaviour where T:ILayoutElement
 {
-	[Header("Data")]
-	[SerializeField] UIAnimData animData;
-
 	//--------------------------------------------------
 
 	/// <summary>
@@ -15,5 +14,28 @@ public abstract class UIAnimator :MonoBehaviour
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <param name="uiObject"></param>
-	public abstract void Play<T>(T uiObject) where T : ILayoutElement;
+	public static void Play(T uiObject, UIAnimData data)
+	{
+
+	}
+
+	static void Movement(T obj,UIAnimData data)
+	{
+
+	}
+
+	static void Scaling(T obj,UIAnimData data)
+	{
+
+	}
+
+	static void Rotation(T obj,UIAnimData data)
+	{
+
+	}
+
+	static void Fading(T obj,UIAnimData data)
+	{
+
+	}
 }

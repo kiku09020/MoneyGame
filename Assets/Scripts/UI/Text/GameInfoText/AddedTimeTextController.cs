@@ -14,7 +14,7 @@ namespace GameController.UI.TextController {
 		[Header("Actions")]
 		[SerializeField] UnityEvent addedAction;
 
-		protected override string SetMessage(float value)
+		public override void SetTextMessage(float value)
 		{
 			addedAction.Invoke();		// 追加された時の処理
 
@@ -25,7 +25,7 @@ namespace GameController.UI.TextController {
 
 			var absValue = Mathf.Abs((float)value);
 
-			return $"{signText}{absValue}s";
+			uiObject.text = $"{signText}{absValue}s";
 		}
 
 		// 合計タイマーのテキスト反映

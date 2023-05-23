@@ -11,8 +11,8 @@ namespace GameController.State {
 
 		[SerializeField] GameDataManager dataManager;
 
-		[SerializeField] TextController_Base scoreTextController;
-		[SerializeField] TextController_Base bestScoreTextController;
+		[SerializeField] TextController scoreTextController;
+		[SerializeField] TextController bestScoreTextController;
 
 		//--------------------------------------------------
 
@@ -21,8 +21,8 @@ namespace GameController.State {
 			dataManager.Load();							// ハイスコア読み込み
 
 			// テキストに反映
-			scoreTextController.PlayAllAnimations();
-			bestScoreTextController.PlayAllAnimations();
+			//scoreTextController.PlayAllAnimations();
+			//bestScoreTextController.PlayAllAnimations();
 
 			// リザルトUI表示
 			UIGroupManager.ShowUIGroup<ResultUIGroup>();

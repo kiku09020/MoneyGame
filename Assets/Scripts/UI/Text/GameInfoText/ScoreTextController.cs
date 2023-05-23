@@ -13,14 +13,14 @@ namespace GameController.UI.TextController {
 			totalScoreText.text = "0";
 		}
 
-		protected override string SetMessage(float value)
+		public override void SetTextMessage(float value)
 		{
 			SetTotalScoreText();        // 合計スコアのテキストも更新する
 
 			// 桁区切り
 			var text = ScoreManager.GetScoreString((int)value * ScoreManager.ComboCount);
 
-			return $"+{text}";
+			uiObject.text = $"+{text}";
 		}
 
 		// 合計スコアのテキストの変更

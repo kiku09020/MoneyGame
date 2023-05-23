@@ -8,6 +8,9 @@ using GameController;
 using GameController.UI.TextController;
 
 namespace Game.Money.MoneyManager {
+
+	using Evaluator;
+
 	public class WholeMoneyCalculator : MonoBehaviour {
 		[Header("Components")]
 		[SerializeField] WholeMoneyInfo wholeMoneyInfo;
@@ -47,7 +50,7 @@ namespace Game.Money.MoneyManager {
 			var changeList = GetChangeMoneyList();
 
 			// •]‰¿
-			evaluator.EvaluatePaidMoney();
+			evaluator.CheckEvaluators(wholeMoneyInfo);
 
 			// ‚¨‚Â‚è¶¬‚µ‚ÄˆÚ“®
 			moneyGenerator.GenerateAndMoveChange(changeList, targetPriceTransform);
