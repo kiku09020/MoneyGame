@@ -1627,7 +1627,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461177723}
-  - component: {fileID: 461177722}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1635,26 +1634,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &461177722
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461177721}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &461177723
 Transform:
   m_ObjectHideFlags: 0
@@ -4127,6 +4106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f6d2ec29abcb24c8a8069d773aa77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiObject: {fileID: 0}
+  animator: {fileID: 0}
   text: {fileID: 983918638018291991, guid: 9005b7fd973bd9b4da9755a99b17942f, type: 3}
   animationList: []
   generationDelay: 0
@@ -6139,6 +6120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af094c2fb98f997439312df1fe740ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiObject: {fileID: 0}
+  animator: {fileID: 0}
   text: {fileID: 983918638018291991, guid: b93b56f728c4e5548ac39d98ea062fc7, type: 3}
   animationList: []
   generationDelay: 0
@@ -6434,6 +6417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36c5eab32acbee4489c2d3b55225d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiObject: {fileID: 0}
+  animator: {fileID: 0}
   text: {fileID: 1086386654366732661, guid: 71025c58be3f4e84d9facc167fda06cb, type: 3}
   animationList: []
   generationDelay: 0
@@ -7114,6 +7099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16358d6f22bcc114ab4d3c7c245c968a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiObject: {fileID: 0}
+  animator: {fileID: 0}
   text: {fileID: 1935318790}
   animationList: []
 --- !u!1 &1935318788

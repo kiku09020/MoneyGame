@@ -10,7 +10,7 @@ using UnityEngine.Events;
 namespace Game.Money.MoneyManager {
 	public abstract class Evaluator_Base : MonoBehaviour {
 		[Header("Text")]
-		[SerializeField, Tooltip("テキスト")] protected TextController_Base textController;
+		[SerializeField, Tooltip("テキスト")] protected GameController.UI.TextController.TextController_Base textController;
 
 		[Header("Parameter")]
 		[SerializeField,Tooltip("ミス判定やオーバー判定じゃないか")]	protected bool isCorrect;
