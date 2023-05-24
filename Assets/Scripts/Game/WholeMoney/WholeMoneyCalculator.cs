@@ -5,7 +5,7 @@ using System.Threading;
 using UnityEngine;
 
 using GameController;
-using GameController.UI.TextController;
+using GameController.UI.UIController;
 
 namespace Game.Money.MoneyManager {
 

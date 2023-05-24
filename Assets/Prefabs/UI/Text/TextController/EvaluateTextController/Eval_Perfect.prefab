@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: uiObject
       value: 
       objectReference: {fileID: 5071894015757324547, guid: af46ae139b352ed449c0fc781ee4273c, type: 3}
+    - target: {fileID: 7071025357619732987, guid: 65083c29ad8ac02488c2d89c4842fbf6, type: 3}
+      propertyPath: uiObject
+      value: 
+      objectReference: {fileID: 5071894015757324547, guid: af46ae139b352ed449c0fc781ee4273c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65083c29ad8ac02488c2d89c4842fbf6, type: 3}
 --- !u!1 &1825254860079894150 stripped
@@ -118,18 +122,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c879c767f2c764b8b228620223e2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textController: {fileID: 8856690669580841728}
+  textController: {fileID: 4891010551285558031}
   moneyInfo: {fileID: 0}
   addedTime: 2
   scoreMultiple: 1.25
---- !u!114 &8856690669580841728 stripped
+--- !u!114 &4891010551285558031 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6568571570766608884, guid: 65083c29ad8ac02488c2d89c4842fbf6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7071025357619732987, guid: 65083c29ad8ac02488c2d89c4842fbf6, type: 3}
   m_PrefabInstance: {fileID: 2432234308365454068}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825254860079894150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d815b71c4c5433741b8e21d1fd3ffdd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6006b7a32e4483d4bae5a693effec514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

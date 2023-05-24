@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace GameController.UI.TextController {
-	public class ScoreTextController : GeneratableTextController {
+namespace GameController.UI.UIController {
+	public class AddedScoreTextController : GeneratableTextController {
 		[Header("Components")]
 		[SerializeField] TextMeshProUGUI totalScoreText;
 
@@ -13,12 +14,13 @@ namespace GameController.UI.TextController {
 			totalScoreText.text = "0";
 		}
 
-		public override void SetTextMessage(float value)
+		public override void SetText<T>(T value)
 		{
 			SetTotalScoreText();        // 合計スコアのテキストも更新する
 
 			// 桁区切り
-			var text = ScoreManager.GetScoreString((int)value * ScoreManager.ComboCount);
+			var intValue = Convert.ToInt32(value);
+			var text = ScoreManager.GetScoreString(intValue * ScoreManager.ComboCount);
 
 			uiObject.text = $"+{text}";
 		}

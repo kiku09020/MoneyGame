@@ -1,10 +1,8 @@
-using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace GameController.UI.UIController {
 public class UIAnimator<T> :MonoBehaviour where T:ILayoutElement
 {
 	//--------------------------------------------------
@@ -14,7 +12,7 @@ public class UIAnimator<T> :MonoBehaviour where T:ILayoutElement
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <param name="uiObject"></param>
-	public static void Play(T uiObject, UIAnimData data)
+	public static void Play(T uiObject, UIAnimData data, Action onCompletedAction = null)
 	{
 
 	}
@@ -39,3 +37,4 @@ public class UIAnimator<T> :MonoBehaviour where T:ILayoutElement
 
 	}
 }
+	}

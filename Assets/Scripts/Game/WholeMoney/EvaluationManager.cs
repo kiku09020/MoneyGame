@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using GameController;
-using GameController.UI.TextController;
+using GameController.UI.UIController;
 using UnityEngine.Events;
 
 namespace Game.Money.MoneyManager.Evaluator {
@@ -19,7 +19,7 @@ namespace Game.Money.MoneyManager.Evaluator {
 		List<Evaluator_Base> evalatorList = new List<Evaluator_Base>();
 
 		[Header("TextControllers")]
-		[SerializeField] ScoreTextController		scoreText;
+		[SerializeField] AddedScoreTextController		scoreText;
 		[SerializeField] AddedTimeTextController	timeText;
 		[SerializeField] ComboTextController		comboText;
 
@@ -72,7 +72,7 @@ namespace Game.Money.MoneyManager.Evaluator {
 			ScoreManager.ResetCombo();								// コンボリセット
 
 			timeText.GenerateAndPlayAnimation(time);				// タイムテキスト生成、再生
-			comboText.SetTextMessage(ScoreManager.ComboCount);		// コンボテキスト変更
+			comboText.SetText(ScoreManager.ComboCount);		// コンボテキスト変更
 		}
 
 		// ミス以外の時の処理
@@ -86,7 +86,7 @@ namespace Game.Money.MoneyManager.Evaluator {
 			// テキスト生成
 			timeText.GenerateAndPlayAnimation(time);
 			scoreText.GenerateAndPlayAnimation(score);
-			comboText.SetTextMessage(ScoreManager.ComboCount);         // コンボテキスト変更
+			comboText.SetText(ScoreManager.ComboCount);         // コンボテキスト変更
 		}
 
 		//--------------------------------------------------

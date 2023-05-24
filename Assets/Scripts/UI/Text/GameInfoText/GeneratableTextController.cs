@@ -4,8 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameController.UI.TextController {
-    public class GeneratableTextController : TextController {
+namespace GameController.UI.UIController {
+    public abstract class GeneratableTextController : TextController<GeneratableUIAnimData> {
 
         [Header("Parameters")]
         [SerializeField,Tooltip("生成遅延時間")] protected float generationDelay;
@@ -29,7 +29,7 @@ namespace GameController.UI.TextController {
         {
             await UniTask.Delay(TimeSpan.FromSeconds(generationDelay));     // 待機
 
-            SetTextMessage(value);                     // テキスト指定
+            SetText(value);                     // テキスト指定
             Instantiate(uiObject, transform);       // 生成
         }
 

@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace GameController.State {
 
-	using UI.TextController;
+	using UI.UIController;
 
     public class GameEndState :GameStateBase
     {
 		[Header("Components")]
 		[SerializeField] GameStateMachine state;
-		[SerializeField] TextController textController;
+		//[SerializeField] TextController textController;
 		[SerializeField] GameDataManager dataManager; 
 
 		[Header("Parameters")]

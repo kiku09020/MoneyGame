@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using GameController.UI.TextController;
+using GameController.UI.UIController;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace Game.Money.MoneyManager.Evaluator {
 	/// </summary>
 	public abstract class Evaluator_Base : MonoBehaviour {
 		[Header("Text")]
-		[SerializeField, Tooltip("テキスト")] protected TextController textController;
+		[SerializeField, Tooltip("テキスト")] protected EvalTextController textController;
 
 		[Header("Components")]
 		[HideInInspector] public WholeMoneyInfo moneyInfo;
@@ -44,7 +44,9 @@ namespace Game.Money.MoneyManager.Evaluator {
 			if (Condition(moneyInfo)) {
 				EvaluatedAction();				// 評価されたときの処理
 
-				BasedEvalAction?.Invoke();		// 評価に基づいた処理を実行
+				BasedEvalAction?.Invoke();      // 評価に基づいた処理を実行
+
+				textController?.PlayAnimation();	// テキストのアニメーション
 
 				return true;
 			}

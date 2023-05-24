@@ -1,8 +1,9 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-namespace GameController.UI.TextController {
-    public abstract class TextController : UIController<TextMeshProUGUI> {
+namespace GameController.UI.UIController {
+    public abstract class TextController<Anim> : UIController<TextMeshProUGUI,Anim> where Anim:UIAnimData {
 
         //--------------------------------------------------
         void Awake()
@@ -20,11 +21,11 @@ namespace GameController.UI.TextController {
         /// <summary>
         /// テキストの文字列を指定して返す
         /// </summary>
-        public virtual void SetTextMessage(float value) { }
+        public virtual void SetText<T>(T value)where T:IConvertible { }
 
         public void SetText(string text)
         {
-            this.uiObject.text = text;
+            uiObject.text = text;
         }
 
 		//--------------------------------------------------
@@ -34,7 +35,7 @@ namespace GameController.UI.TextController {
 		/// </summary>
 		public void SetAndPlayAnimation(float value)
         {
-            SetTextMessage(value);
+            SetText(value);
 
             PlayAnimation();
         }

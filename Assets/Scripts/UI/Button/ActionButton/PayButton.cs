@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
 
-using GameController.UI.TextController;
+using GameController.UI.UIController;
 using Game.Money.MoneyManager;
 using Game.Goods.Mover;
 using Game.Goods;

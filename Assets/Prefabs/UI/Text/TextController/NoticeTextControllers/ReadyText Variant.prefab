@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2264594358160697069
+--- !u!1001 &6151375850512956306
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -93,27 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2880306199771718303, guid: 6cb20a1500b8b2945abe3f5e008809c9, type: 3}
       propertyPath: m_Name
-      value: GeneratableTextController
+      value: ReadyText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cb20a1500b8b2945abe3f5e008809c9, type: 3}
---- !u!1 &4077327389283714162 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2880306199771718303, guid: 6cb20a1500b8b2945abe3f5e008809c9, type: 3}
-  m_PrefabInstance: {fileID: 2264594358160697069}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7071025357619732987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4077327389283714162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6006b7a32e4483d4bae5a693effec514, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiObject: {fileID: 0}
-  animData: {fileID: 0}
-  generationDelay: 0

@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameController.UI.TextController {
-	public class ComboTextController : TextController {
+namespace GameController.UI.UIController {
+	public class ComboTextController : GeneratableTextController {
 
 		//--------------------------------------------------
 
-		public override void SetTextMessage(float value)
+		public override void SetText<T>(T value)
 		{
-			uiObject.text = $"Å~{value}";
+			var intValue = Convert.ToInt32(value);
+
+			uiObject.text = $"Å~{intValue}";
 		}
 	}
 }

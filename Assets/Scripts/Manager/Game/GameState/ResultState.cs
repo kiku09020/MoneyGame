@@ -5,14 +5,14 @@ using UnityEngine;
 namespace GameController.State {
 
 	using UI.UIGroup;
-	using UI.TextController;
+	using UI.UIController;
 
     public class ResultState : GameStateBase {
 
 		[SerializeField] GameDataManager dataManager;
 
-		[SerializeField] TextController scoreTextController;
-		[SerializeField] TextController bestScoreTextController;
+		//[SerializeField] TextController scoreTextController;
+		//[SerializeField] TextController bestScoreTextController;
 
 		//--------------------------------------------------
 

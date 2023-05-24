@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class UIController<T> : MonoBehaviour where T : ILayoutElement
-{
-    [SerializeField] protected T uiObject;
+namespace GameController.UI.UIController {
+    public abstract class UIController<T,Anim> : MonoBehaviour where T : ILayoutElement where Anim:UIAnimData {
+        [SerializeField] protected T uiObject;
 
-    [SerializeField] protected UIAnimData animData;
+        [SerializeField] protected Anim animData;
 
-    //--------------------------------------------------
+        //--------------------------------------------------
 
-    /// <summary>
-    /// UIを表示、非表示
-    /// </summary>
-    /// <param name="activate"></param>
-    abstract public void SetUIActivate(bool activate);
+        /// <summary>
+        /// UIを表示、非表示
+        /// </summary>
+        /// <param name="activate"></param>
+        abstract public void SetUIActivate(bool activate);
 
-    /// <summary>
-    /// アニメーションを再生
-    /// </summary>
-    protected void PlayAnimation()
-    {
-        if (uiObject != null && animData != null) {
-            UIAnimator<T>.Play(uiObject, animData);
+        /// <summary>
+        /// アニメーションを再生
+        /// </summary>
+        public void PlayAnimation()
+        {
+            if (uiObject != null && animData != null) {
+                UIAnimator<T>.Play(uiObject, animData);
+            }
         }
     }
 }

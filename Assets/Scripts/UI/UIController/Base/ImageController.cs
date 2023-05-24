@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageController : UIController<Image>
-{
+namespace GameController.UI.UIController {
+	public class ImageController : UIController<Image,UIAnimData> {
 
-	//--------------------------------------------------
+		//--------------------------------------------------
 
-	public override void SetUIActivate(bool activate)
-	{
-		uiObject.gameObject.SetActive(activate);
+		public override void SetUIActivate(bool activate)
+		{
+			uiObject.gameObject.SetActive(activate);
+		}
 	}
 }
