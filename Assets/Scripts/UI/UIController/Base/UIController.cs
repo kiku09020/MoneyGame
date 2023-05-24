@@ -22,10 +22,8 @@ namespace GameController.UI.UIController {
         /// </summary>
         public void PlayAnimation()
         {
-            var targetAnim = anims[0];
-
-            if (uiObject != null && targetAnim != null) {
-                UIAnimator<T>.Play(uiObject, targetAnim);       // アニメーション再生
+            if (uiObject != null && anims.Count > 0) {
+                UIAnimator<T>.Play(uiObject, anims[0]);       // アニメーション再生
             }
         }
 

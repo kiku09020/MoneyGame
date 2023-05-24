@@ -1900,6 +1900,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 702938515}
     m_Modifications:
+    - target: {fileID: 1678594084861857635, guid: 743de9937be1a844f8ff2bec5c1a9792, type: 3}
+      propertyPath: addedTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678594084861857635, guid: 743de9937be1a844f8ff2bec5c1a9792, type: 3}
+      propertyPath: timeManager
+      value: 
+      objectReference: {fileID: 570712178}
+    - target: {fileID: 1678594084861857635, guid: 743de9937be1a844f8ff2bec5c1a9792, type: 3}
+      propertyPath: canvasAnimator
+      value: 
+      objectReference: {fileID: 1418411377}
     - target: {fileID: 1825254860079894150, guid: 743de9937be1a844f8ff2bec5c1a9792, type: 3}
       propertyPath: m_Name
       value: Eval_Perfect
@@ -1987,6 +1999,10 @@ PrefabInstance:
     - target: {fileID: 1825254860079894153, guid: 743de9937be1a844f8ff2bec5c1a9792, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891010551285558031, guid: 743de9937be1a844f8ff2bec5c1a9792, type: 3}
+      propertyPath: generationDelay
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 743de9937be1a844f8ff2bec5c1a9792, type: 3}
@@ -2409,6 +2425,10 @@ PrefabInstance:
       propertyPath: calculator
       value: 
       objectReference: {fileID: 1090847353}
+    - target: {fileID: 5441911954932408918, guid: c6d6833d0bb22a34885967439daff6ac, type: 3}
+      propertyPath: canvasAnimator
+      value: 
+      objectReference: {fileID: 1418411377}
     - target: {fileID: 8581635139051934407, guid: c6d6833d0bb22a34885967439daff6ac, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2566,7 +2586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObject: {fileID: 6093229538097176706, guid: 50bc70aa3704dc0439aae3ab64ac963c, type: 3}
-  animData: {fileID: 0}
+  anims: []
   generationDelay: 0
   dispDuration: 3
   generatedPosition: {x: 0, y: 0}
@@ -2816,8 +2836,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObject: {fileID: 3398667701279676885, guid: 7ca26f13d93faef4295b5998516b3b7e, type: 3}
-  animData: {fileID: 0}
-  generationDelay: 1
+  anims: []
+  generationDelay: 0.75
   dispDuration: 1
   generatedPosition: {x: 0, y: 0}
   totalScoreText: {fileID: 585336922}
@@ -2883,6 +2903,14 @@ PrefabInstance:
       propertyPath: calculator
       value: 
       objectReference: {fileID: 1090847353}
+    - target: {fileID: 1921875974512001444, guid: b5391c0bc066ca5429993713b2dd9cba, type: 3}
+      propertyPath: removedTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921875974512001444, guid: b5391c0bc066ca5429993713b2dd9cba, type: 3}
+      propertyPath: canvasAnimator
+      value: 
+      objectReference: {fileID: 1418411377}
     - target: {fileID: 3760263247583290258, guid: b5391c0bc066ca5429993713b2dd9cba, type: 3}
       propertyPath: m_Name
       value: Eval_Missed
@@ -4901,8 +4929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObject: {fileID: 1485341268494881047, guid: 2afb484f53886f94680a866f01b1548e, type: 3}
-  animData: {fileID: 0}
-  generationDelay: 0
+  anims: []
+  generationDelay: 0.25
   dispDuration: 1
   generatedPosition: {x: 0, y: 100}
 --- !u!1 &1621569989
@@ -5208,7 +5236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObject: {fileID: 1086386654366732661, guid: 71025c58be3f4e84d9facc167fda06cb, type: 3}
-  animData: {fileID: 0}
+  anims: []
   generationDelay: 0.5
   dispDuration: 1
   generatedPosition: {x: 0, y: 100}
@@ -5827,7 +5855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObject: {fileID: 1935318790}
-  animData: {fileID: 0}
+  anims: []
   generationDelay: 0
   dispDuration: 0
   generatedPosition: {x: 0, y: 0}
@@ -8082,6 +8110,10 @@ PrefabInstance:
       propertyPath: goodsGenerator
       value: 
       objectReference: {fileID: 1267303036}
+    - target: {fileID: 2462391862990488728, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
+      propertyPath: waitPaymentDuration
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2462391862990488728, guid: a25f7ff544fe62f47aef0c2e60bdb4de, type: 3}
       propertyPath: clickedSubAction.m_PersistentCalls.m_Calls.Array.size
       value: 1

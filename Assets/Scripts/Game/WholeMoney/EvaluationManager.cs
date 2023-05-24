@@ -44,7 +44,7 @@ namespace Game.Money.MoneyManager.Evaluator {
 
 			// ƒ~ƒX•]‰¿
 			else if (eval is Evaluator_Incorrect inCorrectEval) {
-				eval.BasedEvalAction += () => Missed(inCorrectEval.RemovedTime);
+				eval.BasedEvalAction += () => Missed(-inCorrectEval.RemovedTime);
 			}
 		}
 

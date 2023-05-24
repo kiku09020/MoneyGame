@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Money.MoneyManager.Evaluator {
     public class Eval_Missed : Evaluator_Incorrect {
-
+		
 		//--------------------------------------------------
 
 		protected override bool Condition(WholeMoneyInfo moneyInfo)
@@ -27,7 +27,7 @@ namespace Game.Money.MoneyManager.Evaluator {
 
 		protected override void EvaluatedAction()
 		{
-
+			base.EvaluatedAction();
 		}
 	}
 }

@@ -115,5 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObject: {fileID: 0}
-  animData: {fileID: 0}
+  anims:
+  - {fileID: 0}
   generationDelay: 0
+  dispDuration: 3
+  generatedPosition: {x: 0, y: 0}

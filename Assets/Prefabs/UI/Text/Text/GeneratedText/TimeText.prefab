@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
       propertyPath: m_text
-      value: +2s
+      value: -10s
       objectReference: {fileID: 0}
     - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
       propertyPath: m_fontSize

@@ -1,11 +1,8 @@
-using Cysharp.Threading.Tasks;
 using GameController.UI.UIController;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Game.Money.MoneyManager.Evaluator {
 	/// <summary>
@@ -14,9 +11,6 @@ namespace Game.Money.MoneyManager.Evaluator {
 	public abstract class Evaluator_Base : MonoBehaviour {
 		[Header("Text")]
 		[SerializeField, Tooltip("テキスト")] protected EvalTextController textController;
-
-		[Header("Components")]
-		[HideInInspector] public WholeMoneyInfo moneyInfo;
 
 		//--------------------------------------------------
 

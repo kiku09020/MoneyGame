@@ -16,7 +16,7 @@ namespace Game.Money.MoneyManager.Evaluator {
 
 		protected override void EvaluatedAction()
 		{
-
+			base.EvaluatedAction();
 		}
 	}
 }
