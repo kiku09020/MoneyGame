@@ -17,6 +17,8 @@ namespace Game.Money.MoneyManager {
 		[SerializeField] MoneyGenerator moneyGenerator;
 		[SerializeField] EvaluationManager evaluator;
 
+		[SerializeField] ChangeTextController changeTextController;
+
 		[Header("Other")]
 		[SerializeField] Transform targetPriceTransform;
 
@@ -51,6 +53,9 @@ namespace Game.Money.MoneyManager {
 
 			// 評価
 			evaluator.CheckEvaluators(wholeMoneyInfo);
+
+			// おつりテキスト生成
+			changeTextController.GenerateAndPlayAnimation(wholeMoneyInfo.Change);
 
 			// おつり生成して移動
 			moneyGenerator.GenerateAndMoveChange(changeList, targetPriceTransform);

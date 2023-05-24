@@ -39,7 +39,8 @@ namespace GameController.State {
 		public override void OnUpdate()
 		{
 			if (!MoneyGenerator.IsGenerating && !onceActionFlag) {
-				//readyTextController.PlayAnimation();
+				readyTextController?.GenerateAndPlayAnimation();
+				startTextController?.GenerateAndPlayAnimation();
 
 				TransitionToMainState();
 				onceActionFlag = true;

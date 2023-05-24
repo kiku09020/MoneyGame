@@ -7,7 +7,7 @@ namespace GameController.UI.UIController {
     public abstract class UIController<T,Anim> : MonoBehaviour where T : ILayoutElement where Anim:UIAnimData {
         [SerializeField] protected T uiObject;
 
-        [SerializeField] protected Anim animData;
+        [SerializeField] protected List<Anim> anims = new List<Anim>();
 
         //--------------------------------------------------
 
@@ -22,8 +22,26 @@ namespace GameController.UI.UIController {
         /// </summary>
         public void PlayAnimation()
         {
-            if (uiObject != null && animData != null) {
-                UIAnimator<T>.Play(uiObject, animData);
+            var targetAnim = anims[0];
+
+            if (uiObject != null && targetAnim != null) {
+                UIAnimator<T>.Play(uiObject, targetAnim);       // アニメーション再生
+            }
+        }
+
+        /// <summary>
+        /// アニメーションデータを指定して再生
+        /// </summary>
+        /// <param name="animation"></param>
+        public void PlayAnimation(string animationName)
+        {
+            foreach(var anim in anims) {
+
+                // 指定した名前のアニメーションがあれば、再生
+                if(anim.name == animationName) {
+                    UIAnimator<T>.Play(uiObject, anim);
+                    break;
+                }
             }
         }
     }

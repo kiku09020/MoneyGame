@@ -6,7 +6,7 @@ namespace GameController.UI.UIController {
     public abstract class TextController<Anim> : UIController<TextMeshProUGUI,Anim> where Anim:UIAnimData {
 
         //--------------------------------------------------
-        void Awake()
+        protected virtual void Awake()
         {
             SetUIActivate(false);
         }

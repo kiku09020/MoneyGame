@@ -46,7 +46,7 @@ namespace Game.Money.MoneyManager.Evaluator {
 
 				BasedEvalAction?.Invoke();      // 評価に基づいた処理を実行
 
-				textController?.PlayAnimation();	// テキストのアニメーション
+				textController?.GenerateAndPlayAnimation();	// テキストのアニメーション
 
 				return true;
 			}

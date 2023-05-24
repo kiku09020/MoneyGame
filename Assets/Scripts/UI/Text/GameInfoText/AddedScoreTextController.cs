@@ -9,7 +9,7 @@ namespace GameController.UI.UIController {
 		[Header("Components")]
 		[SerializeField] TextMeshProUGUI totalScoreText;
 
-		private void Awake()
+		protected override void Awake()
 		{
 			totalScoreText.text = "0";
 		}

@@ -12,13 +12,8 @@ namespace GameController.UI.UIController {
 		[Header("Components")] 
 		[SerializeField] TextMeshProUGUI totalTimerText;
 
-		[Header("Actions")]
-		[SerializeField] UnityEvent addedAction;
-
 		public override void SetText<T>(T value)
 		{
-			addedAction.Invoke();		// ’Ç‰Á‚³‚ê‚½‚Ìˆ—
-
 			SetTotalTimer();            // ‡Œvƒ^ƒCƒ€‚É”½‰f
 
 			var floatValue = Convert.ToSingle(value);				// float‚É•ÏŠ·

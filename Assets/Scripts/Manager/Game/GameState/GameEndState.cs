@@ -12,7 +12,7 @@ namespace GameController.State {
     {
 		[Header("Components")]
 		[SerializeField] GameStateMachine state;
-		//[SerializeField] TextController textController;
+		[SerializeField] GeneratableTextController textController;
 		[SerializeField] GameDataManager dataManager; 
 
 		[Header("Parameters")]
@@ -25,7 +25,7 @@ namespace GameController.State {
 			MainGameManager.isOperable = false;		// 操作不能にする
 
 			// 終了テキスト表示
-
+			textController.GenerateAndPlayAnimation();
 			TransitionToResult();
 		}
 

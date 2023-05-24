@@ -7,9 +7,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_fontSize
+      value: 69.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_colorMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_fontColorGradient.topRight.b
+      value: 0.31132078
+      objectReference: {fileID: 0}
+    - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_fontColorGradient.topRight.g
+      value: 0.31132078
+      objectReference: {fileID: 0}
+    - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_fontColorGradient.topRight.r
+      value: 0.31132078
+      objectReference: {fileID: 0}
+    - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.b
+      value: 0.31132078
+      objectReference: {fileID: 0}
+    - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.g
+      value: 0.31132078
+      objectReference: {fileID: 0}
+    - target: {fileID: 983918638018291991, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.r
+      value: 0.31132078
+      objectReference: {fileID: 0}
     - target: {fileID: 2468088980942565093, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
       propertyPath: m_Name
       value: EvaluationText_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468088980942565093, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7326632933560640257, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
       propertyPath: m_Pivot.x
@@ -41,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7326632933560640257, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 150
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7326632933560640257, guid: f88783b9e7943254a8d4d2afe9243b0f, type: 3}
       propertyPath: m_SizeDelta.y

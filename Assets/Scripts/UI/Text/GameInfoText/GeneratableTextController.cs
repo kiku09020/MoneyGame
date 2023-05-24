@@ -2,47 +2,61 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using TMPro;
 using UnityEngine;
 
 namespace GameController.UI.UIController {
-    public abstract class GeneratableTextController : TextController<GeneratableUIAnimData> {
+    public class GeneratableTextController : TextController<GeneratableUIAnimData> {
 
         [Header("Parameters")]
-        [SerializeField,Tooltip("生成遅延時間")] protected float generationDelay;
+        [SerializeField,Tooltip("生成遅延時間")]	protected float generationDelay;
+		[SerializeField, Tooltip("表示時間")]		protected float dispDuration = 3;
+
+		[SerializeField, Tooltip("生成位置")] protected Vector2 generatedPosition = Vector3.zero;
 
 		//--------------------------------------------------
+
+		CancellationToken token;
+
+		protected override void Awake()
+		{
+			token = this.GetCancellationTokenOnDestroy();
+
+			SetUIActivate(true);
+		}
 
 		/// <summary>
 		/// テキストの生成
 		/// </summary>
-		public async UniTask GenerateText()
+		public async UniTask<TextMeshProUGUI> GenerateText()
 		{
-			await UniTask.Delay(TimeSpan.FromSeconds(generationDelay));     // 待機
+			await Delay(generationDelay);
 
-			Instantiate(uiObject, transform);       // 生成
+			return Generate_Base();
 		}
 
 		/// <summary>
 		/// テキストの指定後に生成
 		/// </summary>
-		public async UniTask GenerateText(float value)
+		public async UniTask<TextMeshProUGUI> GenerateText(float value)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(generationDelay));     // 待機
+			await Delay(generationDelay);
 
-            SetText(value);                     // テキスト指定
-            Instantiate(uiObject, transform);       // 生成
-        }
+            SetText(value);                                 // テキスト指定
+			return Generate_Base();
+		}
 
-        /// <summary>
+		/// <summary>
 		/// テキストの指定後に生成
 		/// </summary>
-		public async UniTask GenerateText(string text)
+		public async UniTask<TextMeshProUGUI> GenerateText(string text)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(generationDelay));     // 待機
+			await Delay(generationDelay);
 
-            SetText(text);                          // テキスト指定
-            Instantiate(uiObject, transform);      // 生成
-        }
+            SetText(text);                                  // テキスト指定
+			return Generate_Base();
+		}
 
 		//--------------------------------------------------
 
@@ -51,8 +65,10 @@ namespace GameController.UI.UIController {
 		/// </summary>
 		public async void GenerateAndPlayAnimation()
 		{
-			await GenerateText();
+			var obj = await GenerateText();
 			PlayAnimation();
+
+			await DestroyUI(obj);
 		}
 
 		/// <summary>
@@ -60,8 +76,10 @@ namespace GameController.UI.UIController {
 		/// </summary>
 		public async void GenerateAndPlayAnimation(float value)
 		{
-			await GenerateText(value);
+			var obj = await GenerateText(value);
 			PlayAnimation();
+
+			await DestroyUI(obj);
 		}
 
 		/// <summary>
@@ -69,10 +87,38 @@ namespace GameController.UI.UIController {
 		/// </summary>
 		public async void GenerateAndPlayAnimation(string text)
 		{
-			await GenerateText(text);
+			var obj = await GenerateText(text);
 			PlayAnimation();
+
+			await DestroyUI(obj);
 		}
 
 		//--------------------------------------------------
+
+		// 待機
+		async UniTask Delay(float duration)
+		{
+			await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: token);
+		}
+
+		//--------------------------------------------------
+
+		// 生成基礎メソッド
+		TextMeshProUGUI Generate_Base()
+		{
+			var obj = Instantiate(uiObject, transform);     // 生成
+
+			obj.rectTransform.anchoredPosition = generatedPosition;		// 位置指定
+
+			return obj;
+		}
+
+		// 表示時間を過ぎたら削除
+		async UniTask DestroyUI(TextMeshProUGUI text)
+		{
+			await Delay(dispDuration);
+
+			Destroy(text.gameObject);
+		}
 	}
 }
